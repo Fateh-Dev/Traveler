@@ -14,6 +14,6 @@ namespace Xplore.Models
 
         public string Tools { get; set; }
 
-        public string IdTrip { get; set; }
+        public Guid IdTrip { get; set; }
     }
 }

@@ -6,7 +6,7 @@ namespace Xplore.Models
 {
     public partial class Bring : FullAuditedAggregateRoot<Guid>
     {
-        public string IdStuff { get; set; }
-        public string IdTrip { get; set; }
+        public Guid IdStuff { get; set; }
+        public Guid IdTrip { get; set; }
     }
 }

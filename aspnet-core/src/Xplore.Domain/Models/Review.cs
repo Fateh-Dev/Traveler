@@ -6,10 +6,10 @@ namespace Xplore.Models
 {
     public partial class Review : FullAuditedAggregateRoot<Guid>
     {
-        public string IdTourist { get; set; }
-        public string IdComment { get; set; }
-        public string Rating { get; set; }
-        public string IdTrip { get; set; }
+        public Guid IdTourist { get; set; }
+        public Guid IdComment { get; set; }
+        public int Rating { get; set; }
+        public Guid IdTrip { get; set; }
         public DateOnly? Date { get; set; }
     }
 }

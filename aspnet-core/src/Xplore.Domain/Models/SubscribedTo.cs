@@ -6,8 +6,8 @@ namespace Xplore.Models
 {
     public partial class SubscribedTo : FullAuditedAggregateRoot<Guid>
     {
-        public string IdTrip { get; set; }
-        public string IdTouriste { get; set; }
+        public Guid IdTrip { get; set; }
+        public Guid IdTouriste { get; set; }
         public DateOnly? Date { get; set; }
     }
 }

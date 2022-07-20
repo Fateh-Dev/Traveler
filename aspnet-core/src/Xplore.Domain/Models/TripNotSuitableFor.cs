@@ -6,7 +6,7 @@ namespace Xplore.Models
 {
     public partial class TripNotSuitableFor : FullAuditedAggregateRoot<Guid>
     {
-        public string IdTrip { get; set; }
-        public string IdWarning { get; set; }
+        public Guid IdTrip { get; set; }
+        public Guid IdWarning { get; set; }
     }
 }

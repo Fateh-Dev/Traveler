@@ -6,7 +6,7 @@ namespace Xplore.Models
 {
     public partial class TripInclude : FullAuditedAggregateRoot<Guid>
     {
-        public string IdTrip { get; set; }
-        public string IdInclude { get; set; }
+        public Guid IdTrip { get; set; }
+        public Guid IdInclude { get; set; }
     }
 }

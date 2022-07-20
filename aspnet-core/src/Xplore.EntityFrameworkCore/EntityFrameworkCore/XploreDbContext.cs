@@ -61,8 +61,7 @@ public class XploreDbContext :
         public  DbSet<Include> Includes { get; set; }
         public  DbSet<NotAllowedStuff> NotAllowedStuffs { get; set; }
         public  DbSet<Place> Places { get; set; }
-        public  DbSet<Price> Prices { get; set; }
-        public  DbSet<Profile> Profiles { get; set; }
+        public  DbSet<Price> Prices { get; set; } 
         public  DbSet<Rating> Ratings { get; set; }
         public  DbSet<Review> Reviews { get; set; }
         public  DbSet<SubscribeAt> SubscribeAts { get; set; }
@@ -72,7 +71,7 @@ public class XploreDbContext :
         public  DbSet<Trip> Trips { get; set; }
         public  DbSet<TripInclude> TripIncludes { get; set; }
         public  DbSet<TripNotSuitableFor> TripNotSuitableFors { get; set; }
-        public  DbSet<Type> Types { get; set; }
+        // public  DbSet<Type> Types { get; set; }
         public  DbSet<Warning> Warnings { get; set; }
         public  DbSet<WishList> WishLists { get; set; }
 
@@ -89,7 +88,6 @@ public class XploreDbContext :
     {
         base.OnModelCreating(builder);
 
-
         builder.ConfigurePermissionManagement();
         builder.ConfigureSettingManagement();
         builder.ConfigureBackgroundJobs();
@@ -102,7 +100,7 @@ public class XploreDbContext :
 
             builder.Entity<Activity>(entity =>
             {
-                entity.ToTable("Activity");
+                entity.ToTable(XploreConsts.DbTablePrefix + "Activity");
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
@@ -119,7 +117,7 @@ public class XploreDbContext :
             {
                 entity.HasNoKey();
 
-                entity.ToTable("Avoid");
+                entity.ToTable(XploreConsts.DbTablePrefix + "Avoid");
 
                 entity.Property(e => e.IdStuff).HasMaxLength(255);
 
@@ -130,7 +128,7 @@ public class XploreDbContext :
             {
                 entity.HasNoKey();
 
-                entity.ToTable("Bring");
+                entity.ToTable(XploreConsts.DbTablePrefix + "Bring");
 
                 entity.Property(e => e.IdStuff).HasMaxLength(255);
 
@@ -139,7 +137,7 @@ public class XploreDbContext :
 
             builder.Entity<Comment>(entity =>
             {
-                entity.ToTable("Comment");
+                entity.ToTable(XploreConsts.DbTablePrefix + "Comment");
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
@@ -150,7 +148,7 @@ public class XploreDbContext :
             {
                 entity.HasNoKey();
 
-                entity.ToTable("EnchargeOf");
+                entity.ToTable(XploreConsts.DbTablePrefix + "EnchargeOf");
 
                 entity.Property(e => e.IdGuide).HasMaxLength(255);
 
@@ -159,7 +157,7 @@ public class XploreDbContext :
 
             builder.Entity<Guide>(entity =>
             {
-                entity.ToTable("Guide");
+                entity.ToTable(XploreConsts.DbTablePrefix + "Guide");
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
@@ -176,7 +174,7 @@ public class XploreDbContext :
 
             builder.Entity<Include>(entity =>
             {
-                entity.ToTable("Include");
+                entity.ToTable(XploreConsts.DbTablePrefix + "Include");
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
@@ -187,7 +185,7 @@ public class XploreDbContext :
 
             builder.Entity<NotAllowedStuff>(entity =>
             {
-                entity.ToTable("NotAllowedStuff");
+                entity.ToTable(XploreConsts.DbTablePrefix + "NotAllowedStuff");
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
@@ -196,7 +194,7 @@ public class XploreDbContext :
 
             builder.Entity<Place>(entity =>
             {
-                entity.ToTable("Place");
+                entity.ToTable(XploreConsts.DbTablePrefix + "Place");
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
@@ -211,7 +209,7 @@ public class XploreDbContext :
 
             builder.Entity<Price>(entity =>
             {
-                entity.ToTable("Price");
+                entity.ToTable(XploreConsts.DbTablePrefix + "Price");
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
@@ -222,18 +220,10 @@ public class XploreDbContext :
                     .HasColumnName("Price");
             });
 
-            builder.Entity<Profile>(entity =>
-            {
-                entity.ToTable("Profile");
-
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
-                entity.Property(e => e.IdPersonne).HasMaxLength(255);
-            });
-
+            
        builder.Entity<Rating>(entity =>
             {
-                entity.ToTable("Rating");
+                entity.ToTable(XploreConsts.DbTablePrefix + "Rating");
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
@@ -241,7 +231,7 @@ public class XploreDbContext :
 
                 entity.Property(e => e.IdTrip).HasMaxLength(255);
 
-                entity.Property(e => e.Rating1)
+                entity.Property(e => e.Value)
                     .HasMaxLength(255)
                     .HasColumnName("Rating");
 
@@ -252,7 +242,7 @@ public class XploreDbContext :
             {
                 entity.HasNoKey();
 
-                entity.ToTable("Review");
+                entity.ToTable(XploreConsts.DbTablePrefix + "Review");
 
                 entity.Property(e => e.IdComment).HasMaxLength(255);
 
@@ -261,13 +251,15 @@ public class XploreDbContext :
                 entity.Property(e => e.IdTrip).HasMaxLength(255);
 
                 entity.Property(e => e.Rating).HasMaxLength(255);
+
+                
             });
 
             builder.Entity<SubscribeAt>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToTable("SubscribeAt");
+                entity.ToTable(XploreConsts.DbTablePrefix + "SubscribeAt");
 
                 entity.Property(e => e.IdTourist).HasMaxLength(255);
 
@@ -278,7 +270,7 @@ public class XploreDbContext :
             {
                 entity.HasNoKey();
 
-                entity.ToTable("SubscribedTo");
+                entity.ToTable(XploreConsts.DbTablePrefix + "SubscribedTo");
 
                 entity.Property(e => e.IdTouriste).HasMaxLength(255);
 
@@ -287,7 +279,7 @@ public class XploreDbContext :
 
             builder.Entity<ToBringStuff>(entity =>
             {
-                entity.ToTable("ToBringStuff");
+                entity.ToTable(XploreConsts.DbTablePrefix + "ToBringStuff");
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
@@ -296,7 +288,7 @@ public class XploreDbContext :
 
             builder.Entity<Tourist>(entity =>
             {
-                entity.ToTable("Tourist");
+                entity.ToTable(XploreConsts.DbTablePrefix + "Tourist");
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
@@ -311,7 +303,7 @@ public class XploreDbContext :
 
             builder.Entity<Trip>(entity =>
             {
-                entity.ToTable("Trip");
+                entity.ToTable(XploreConsts.DbTablePrefix + "Trip");
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
@@ -327,7 +319,7 @@ public class XploreDbContext :
                     .HasMaxLength(255)
                     .HasColumnName("GLanguages");
 
-                entity.Property(e => e.IdAchived).HasMaxLength(255);
+                entity.Property(e => e.IsAchived).HasMaxLength(255);
 
                 entity.Property(e => e.Rating).HasMaxLength(255);
 
@@ -335,7 +327,10 @@ public class XploreDbContext :
             });
 
             builder.Entity<TripInclude>(entity =>
+
             {
+                
+                entity.ToTable(XploreConsts.DbTablePrefix + "TripInclude");
                 entity.HasNoKey();
 
                 entity.Property(e => e.IdInclude).HasMaxLength(255);
@@ -347,21 +342,16 @@ public class XploreDbContext :
             {
                 entity.HasNoKey();
 
-                entity.ToTable("TripNotSuitableFor");
+                entity.ToTable(XploreConsts.DbTablePrefix + "TripNotSuitableFor");
 
                 entity.Property(e => e.IdTrip).HasMaxLength(255);
 
                 entity.Property(e => e.IdWarning).HasMaxLength(255);
             });
 
-            builder.Entity<Type>(entity =>
-            {
-                entity.HasNoKey();
-            });
-
             builder.Entity<Warning>(entity =>
             {
-                entity.ToTable("Warning");
+                entity.ToTable(XploreConsts.DbTablePrefix + "Warning");
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
@@ -372,7 +362,7 @@ public class XploreDbContext :
             {
                 entity.HasNoKey();
 
-                entity.ToTable("WishList");
+                entity.ToTable(XploreConsts.DbTablePrefix + "WishList");
 
                 entity.Property(e => e.IdTourist).HasMaxLength(255);
 
@@ -383,11 +373,11 @@ public class XploreDbContext :
 
         /* Configure your own tables/entities inside here */
 
-        //builder.Entity<YourEntity>(b =>
-        //{
+        // builder.Entity<YourEntity>(b =>
+        // {
         //    b.ToTable(XploreConsts.DbTablePrefix + "YourEntities", XploreConsts.DbSchema);
         //    b.ConfigureByConvention(); //auto configure for the base class props
         //    //...
-        //});
+        // });
     }
 }
