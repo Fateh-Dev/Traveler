@@ -12,6 +12,7 @@ using Volo.Abp.PermissionManagement.EntityFrameworkCore;
 using Volo.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
+using Xplore.Models;
 
 namespace Xplore.EntityFrameworkCore;
 
@@ -50,6 +51,31 @@ public class XploreDbContext :
     public DbSet<Tenant> Tenants { get; set; }
     public DbSet<TenantConnectionString> TenantConnectionStrings { get; set; }
 
+    // App Models
+     public  DbSet<Activity> Activities { get; set; }
+        public  DbSet<Avoid> Avoids { get; set; }
+        public  DbSet<Bring> Brings { get; set; }
+        public  DbSet<Comment> Comments { get; set; }
+        public  DbSet<EnchargeOf> EnchargeOfs { get; set; }
+        public  DbSet<Guide> Guides { get; set; }
+        public  DbSet<Include> Includes { get; set; }
+        public  DbSet<NotAllowedStuff> NotAllowedStuffs { get; set; }
+        public  DbSet<Place> Places { get; set; }
+        public  DbSet<Price> Prices { get; set; }
+        public  DbSet<Profile> Profiles { get; set; }
+        public  DbSet<Rating> Ratings { get; set; }
+        public  DbSet<Review> Reviews { get; set; }
+        public  DbSet<SubscribeAt> SubscribeAts { get; set; }
+        public  DbSet<SubscribedTo> SubscribedTos { get; set; }
+        public  DbSet<ToBringStuff> ToBringStuffs { get; set; }
+        public  DbSet<Tourist> Tourists { get; set; }
+        public  DbSet<Trip> Trips { get; set; }
+        public  DbSet<TripInclude> TripIncludes { get; set; }
+        public  DbSet<TripNotSuitableFor> TripNotSuitableFors { get; set; }
+        public  DbSet<Type> Types { get; set; }
+        public  DbSet<Warning> Warnings { get; set; }
+        public  DbSet<WishList> WishLists { get; set; }
+
     #endregion
 
     public XploreDbContext(DbContextOptions<XploreDbContext> options)
@@ -58,11 +84,11 @@ public class XploreDbContext :
 
     }
 
+
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
 
-        /* Include modules to your migration db context */
 
         builder.ConfigurePermissionManagement();
         builder.ConfigureSettingManagement();
@@ -72,6 +98,288 @@ public class XploreDbContext :
         builder.ConfigureIdentityServer();
         builder.ConfigureFeatureManagement();
         builder.ConfigureTenantManagement();
+        /* Include modules to your migration db context */
+
+            builder.Entity<Activity>(entity =>
+            {
+                entity.ToTable("Activity");
+
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
+                entity.Property(e => e.Description).HasMaxLength(255);
+
+                entity.Property(e => e.IdTrip).HasMaxLength(255);
+
+                entity.Property(e => e.Title).HasMaxLength(255);
+
+                entity.Property(e => e.Tools).HasMaxLength(255);
+            });
+
+            builder.Entity<Avoid>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("Avoid");
+
+                entity.Property(e => e.IdStuff).HasMaxLength(255);
+
+                entity.Property(e => e.IdTrip).HasMaxLength(255);
+            });
+
+            builder.Entity<Bring>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("Bring");
+
+                entity.Property(e => e.IdStuff).HasMaxLength(255);
+
+                entity.Property(e => e.IdTrip).HasMaxLength(255);
+            });
+
+            builder.Entity<Comment>(entity =>
+            {
+                entity.ToTable("Comment");
+
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
+                entity.Property(e => e.Description).HasMaxLength(255);
+            });
+
+            builder.Entity<EnchargeOf>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("EnchargeOf");
+
+                entity.Property(e => e.IdGuide).HasMaxLength(255);
+
+                entity.Property(e => e.IdTrip).HasMaxLength(255);
+            });
+
+            builder.Entity<Guide>(entity =>
+            {
+                entity.ToTable("Guide");
+
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
+                entity.Property(e => e.Email).HasMaxLength(255);
+
+                entity.Property(e => e.Firstname).HasMaxLength(255);
+
+                entity.Property(e => e.Languages).HasMaxLength(255);
+
+                entity.Property(e => e.Lastname).HasMaxLength(255);
+
+                entity.Property(e => e.Rating).HasMaxLength(255);
+            });
+
+            builder.Entity<Include>(entity =>
+            {
+                entity.ToTable("Include");
+
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
+                entity.Property(e => e.Description).HasMaxLength(255);
+
+                entity.Property(e => e.Title).HasMaxLength(255);
+            });
+
+            builder.Entity<NotAllowedStuff>(entity =>
+            {
+                entity.ToTable("NotAllowedStuff");
+
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
+                entity.Property(e => e.Description).HasMaxLength(255);
+            });
+
+            builder.Entity<Place>(entity =>
+            {
+                entity.ToTable("Place");
+
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
+                entity.Property(e => e.Description).HasMaxLength(255);
+
+                entity.Property(e => e.GpsLocation).HasMaxLength(255);
+
+                entity.Property(e => e.IdTrip).HasMaxLength(255);
+
+                entity.Property(e => e.Type).HasMaxLength(255);
+            });
+
+            builder.Entity<Price>(entity =>
+            {
+                entity.ToTable("Price");
+
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
+                entity.Property(e => e.IdTrip).HasMaxLength(255);
+
+                entity.Property(e => e.Price1)
+                    .HasPrecision(10, 2)
+                    .HasColumnName("Price");
+            });
+
+            builder.Entity<Profile>(entity =>
+            {
+                entity.ToTable("Profile");
+
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
+                entity.Property(e => e.IdPersonne).HasMaxLength(255);
+            });
+
+       builder.Entity<Rating>(entity =>
+            {
+                entity.ToTable("Rating");
+
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
+                entity.Property(e => e.IdTourist).HasMaxLength(255);
+
+                entity.Property(e => e.IdTrip).HasMaxLength(255);
+
+                entity.Property(e => e.Rating1)
+                    .HasMaxLength(255)
+                    .HasColumnName("Rating");
+
+                entity.Property(e => e.Type).HasMaxLength(255);
+            });
+
+            builder.Entity<Review>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("Review");
+
+                entity.Property(e => e.IdComment).HasMaxLength(255);
+
+                entity.Property(e => e.IdTourist).HasMaxLength(255);
+
+                entity.Property(e => e.IdTrip).HasMaxLength(255);
+
+                entity.Property(e => e.Rating).HasMaxLength(255);
+            });
+
+            builder.Entity<SubscribeAt>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("SubscribeAt");
+
+                entity.Property(e => e.IdTourist).HasMaxLength(255);
+
+                entity.Property(e => e.IdTrip).HasMaxLength(255);
+            });
+
+            builder.Entity<SubscribedTo>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("SubscribedTo");
+
+                entity.Property(e => e.IdTouriste).HasMaxLength(255);
+
+                entity.Property(e => e.IdTrip).HasMaxLength(255);
+            });
+
+            builder.Entity<ToBringStuff>(entity =>
+            {
+                entity.ToTable("ToBringStuff");
+
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
+                entity.Property(e => e.Description).HasMaxLength(255);
+            });
+
+            builder.Entity<Tourist>(entity =>
+            {
+                entity.ToTable("Tourist");
+
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
+                entity.Property(e => e.Age).HasMaxLength(255);
+
+                entity.Property(e => e.Email).HasMaxLength(255);
+
+                entity.Property(e => e.Firstname).HasMaxLength(255);
+
+                entity.Property(e => e.Lastname).HasMaxLength(255);
+            });
+
+            builder.Entity<Trip>(entity =>
+            {
+                entity.ToTable("Trip");
+
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
+                entity.Property(e => e.Agency).HasMaxLength(255);
+
+                entity.Property(e => e.Description).HasMaxLength(255);
+
+                entity.Property(e => e.Duration).HasMaxLength(255);
+
+                entity.Property(e => e.DurationUnit).HasMaxLength(255);
+
+                entity.Property(e => e.Glanguages)
+                    .HasMaxLength(255)
+                    .HasColumnName("GLanguages");
+
+                entity.Property(e => e.IdAchived).HasMaxLength(255);
+
+                entity.Property(e => e.Rating).HasMaxLength(255);
+
+                entity.Property(e => e.Title).HasMaxLength(255);
+            });
+
+            builder.Entity<TripInclude>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.Property(e => e.IdInclude).HasMaxLength(255);
+
+                entity.Property(e => e.IdTrip).HasMaxLength(255);
+            });
+
+            builder.Entity<TripNotSuitableFor>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("TripNotSuitableFor");
+
+                entity.Property(e => e.IdTrip).HasMaxLength(255);
+
+                entity.Property(e => e.IdWarning).HasMaxLength(255);
+            });
+
+            builder.Entity<Type>(entity =>
+            {
+                entity.HasNoKey();
+            });
+
+            builder.Entity<Warning>(entity =>
+            {
+                entity.ToTable("Warning");
+
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
+                entity.Property(e => e.Title).HasMaxLength(255);
+            });
+
+            builder.Entity<WishList>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("WishList");
+
+                entity.Property(e => e.IdTourist).HasMaxLength(255);
+
+                entity.Property(e => e.IdTrip).HasMaxLength(255);
+            });
+
+      
 
         /* Configure your own tables/entities inside here */
 
