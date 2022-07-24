@@ -13,8 +13,8 @@ using Xplore.EntityFrameworkCore;
 namespace Xplore.Migrations
 {
     [DbContext(typeof(XploreDbContext))]
-    [Migration("20220724145106_initialModel")]
-    partial class initialModel
+    [Migration("20220724194744_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -2036,6 +2036,15 @@ namespace Xplore.Migrations
                         .HasColumnType("timestamp without time zone")
                         .HasColumnName("DeletionTime");
 
+                    b.Property<string>("DisplayAn")
+                        .HasColumnType("text");
+
+                    b.Property<string>("DisplayEn")
+                        .HasColumnType("text");
+
+                    b.Property<string>("DisplayFr")
+                        .HasColumnType("text");
+
                     b.Property<string>("ExtraProperties")
                         .HasColumnType("text")
                         .HasColumnName("ExtraProperties");
@@ -2661,9 +2670,9 @@ namespace Xplore.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)");
 
-                    b.Property<string>("DurationUnit")
+                    b.Property<int>("DurationUnit")
                         .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("ExtraProperties")
                         .HasColumnType("text")
@@ -2737,6 +2746,35 @@ namespace Xplore.Migrations
 
             modelBuilder.Entity("Xplore.Models.WishList", b =>
                 {
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasMaxLength(40)
+                        .HasColumnType("character varying(40)")
+                        .HasColumnName("ConcurrencyStamp");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("CreationTime");
+
+                    b.Property<Guid?>("CreatorId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("CreatorId");
+
+                    b.Property<Guid?>("DeleterId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("DeleterId");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("DeletionTime");
+
+                    b.Property<string>("ExtraProperties")
+                        .HasColumnType("text")
+                        .HasColumnName("ExtraProperties");
+
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid");
+
                     b.Property<string>("IdTourist")
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)");
@@ -2744,6 +2782,20 @@ namespace Xplore.Migrations
                     b.Property<string>("IdTrip")
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false)
+                        .HasColumnName("IsDeleted");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("LastModificationTime");
+
+                    b.Property<Guid?>("LastModifierId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("LastModifierId");
 
                     b.ToTable("Xplore.WishList", (string)null);
                 });
