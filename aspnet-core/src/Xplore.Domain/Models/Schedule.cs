@@ -4,10 +4,10 @@ using Volo.Abp.Domain.Entities.Auditing;
 
 namespace Xplore.Models
 {
-    public partial class EnchargeOf : FullAuditedAggregateRoot<Guid>
+    public partial class Schedule : FullAuditedAggregateRoot<Guid>
     {
-        public Guid IdTrip { get; set; }
-        public Guid IdGuide { get; set; }
+        public string IdTrip { get; set; }
+        public string IdGuide { get; set; }
         public DateOnly? Date { get; set; }
     }
 }

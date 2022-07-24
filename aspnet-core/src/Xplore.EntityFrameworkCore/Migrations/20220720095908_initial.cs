@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Xplore.Migrations
 {
-    public partial class init : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -467,7 +467,9 @@ namespace Xplore.Migrations
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Title = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
-                    Description = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
+                    DisplayFr = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
+                    DisplayAr = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
+                    DisplayEn = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
                     Tools = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
                     IdTrip = table.Column<Guid>(type: "uuid", maxLength: 255, nullable: false),
                     ExtraProperties = table.Column<string>(type: "text", nullable: true),
@@ -601,8 +603,9 @@ namespace Xplore.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Title = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
-                    Description = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
+                    DisplayFr = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
+                    DisplayAr = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
+                    DisplayEn = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
                     ExtraProperties = table.Column<string>(type: "text", nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true),
                     CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
@@ -623,7 +626,9 @@ namespace Xplore.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Description = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
+                    DisplayFr = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
+                    DisplayAr = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
+                    DisplayEn = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
                     ExtraProperties = table.Column<string>(type: "text", nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true),
                     CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
@@ -647,7 +652,7 @@ namespace Xplore.Migrations
                     Description = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
                     GpsLocation = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
                     IdTrip = table.Column<Guid>(type: "uuid", maxLength: 255, nullable: false),
-                    Type = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
+                    Type = table.Column<int>(type: "integer", maxLength: 255, nullable: false),
                     Order = table.Column<int>(type: "integer", nullable: true),
                     ExtraProperties = table.Column<string>(type: "text", nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true),
@@ -669,7 +674,7 @@ namespace Xplore.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Category = table.Column<int>(type: "integer", nullable: true),
+                    Category = table.Column<int>(type: "integer", nullable: false),
                     Price = table.Column<decimal>(type: "numeric(10,2)", precision: 10, scale: 2, nullable: true),
                     IdTrip = table.Column<Guid>(type: "uuid", maxLength: 255, nullable: false),
                     ExtraProperties = table.Column<string>(type: "text", nullable: true),
@@ -692,7 +697,7 @@ namespace Xplore.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Type = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
+                    Type = table.Column<int>(type: "integer", maxLength: 255, nullable: false),
                     Rating = table.Column<int>(type: "integer", maxLength: 255, nullable: false),
                     IdTrip = table.Column<Guid>(type: "uuid", maxLength: 255, nullable: false),
                     IdTourist = table.Column<Guid>(type: "uuid", maxLength: 255, nullable: false),
@@ -784,7 +789,9 @@ namespace Xplore.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Description = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
+                    DisplayFr = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
+                    DisplayAr = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
+                    DisplayEn = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
                     ExtraProperties = table.Column<string>(type: "text", nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true),
                     CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
@@ -834,8 +841,8 @@ namespace Xplore.Migrations
                     Rating = table.Column<int>(type: "integer", maxLength: 255, nullable: false),
                     Duration = table.Column<int>(type: "integer", maxLength: 255, nullable: false),
                     GLanguages = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
-                    TripSize = table.Column<double>(type: "double precision", nullable: true),
-                    DurationUnit = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
+                    TripSize = table.Column<int>(type: "integer", nullable: true),
+                    DurationUnit = table.Column<int>(type: "integer", maxLength: 255, nullable: false),
                     Date = table.Column<DateOnly>(type: "date", nullable: true),
                     StartingTime = table.Column<DateOnly>(type: "date", nullable: true),
                     Agency = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
@@ -902,7 +909,9 @@ namespace Xplore.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Title = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
+                    DisplayFr = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
+                    DisplayAr = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
+                    DisplayEn = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
                     ExtraProperties = table.Column<string>(type: "text", nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true),
                     CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),

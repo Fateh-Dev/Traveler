@@ -5,11 +5,9 @@ using Volo.Abp.Domain.Entities.Auditing;
 namespace Xplore.Models
 {
     public partial class Rating : FullAuditedAggregateRoot<Guid>
-    {
-        public Guid Id { get; set; }
-        public string Type { get; set; }
-        public int Value { get; set; }
-        public Guid IdTrip { get; set; }
-        public Guid IdTourist { get; set; }
+    { 
+        public string Value { get; set; }
+        public RatingType Type { get; set; }
+        public string IdReview { get; set; }
     }
 }

@@ -4,13 +4,12 @@ using Volo.Abp.Domain.Entities.Auditing;
 
 namespace Xplore.Models
 {
-    public partial class Place : FullAuditedAggregateRoot<Guid>
-    {
-        public Guid Id { get; set; }
+    public partial class Location : FullAuditedAggregateRoot<Guid>
+    { 
         public string Description { get; set; }
         public string GpsLocation { get; set; }
-        public Guid IdTrip { get; set; }
-        public string Type { get; set; }
+        public string IdTrip { get; set; }
+        public LocationType Type { get; set; }
         public int? Order { get; set; }
     }
 }
