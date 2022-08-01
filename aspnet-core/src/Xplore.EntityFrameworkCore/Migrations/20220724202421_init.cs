@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Xplore.Migrations
 {
-    public partial class initial : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -719,7 +719,7 @@ namespace Xplore.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Title = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
                     Description = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
-                    Rating = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
+                    Rating = table.Column<double>(type: "double precision", maxLength: 255, nullable: false),
                     Duration = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
                     GLanguages = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
                     TripSize = table.Column<double>(type: "double precision", nullable: true),

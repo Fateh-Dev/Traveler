@@ -11,9 +11,9 @@ namespace Xplore.Models
 
         public string Description { get; set; }
 
-        public string Rating { get; set; }
+        public double Rating { get; set; }
 
-        public string Duration { get; set; }
+        public int Duration { get; set; }
 
         public string Glanguages { get; set; }
 
@@ -54,7 +54,7 @@ namespace Xplore.Models
         [StringLength(128)]
         public string Description { get; set; }
 
-        public string Rating { get; set; }
+        public double Rating { get; set; } = 5;
 
         [Required]
         [StringLength(128)]

@@ -2715,9 +2715,9 @@ namespace Xplore.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)");
 
-                    b.Property<string>("Rating")
+                    b.Property<double>("Rating")
                         .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
+                        .HasColumnType("double precision");
 
                     b.Property<string>("RequiredStuff")
                         .HasMaxLength(255)

@@ -11,7 +11,7 @@ namespace Xplore
     EnumerationDataSeederContributor
     : IDataSeedContributor, ITransientDependency
     {
-        private readonly IRepository<Enumeration, Guid> _enumerationRepository;
+        private readonly IRepository<Enumeration, Guid> _enumerationRepository; 
 
         public EnumerationDataSeederContributor(
             IRepository<Enumeration, Guid> enumerationRepository
@@ -28,6 +28,8 @@ namespace Xplore
                 await _enumerationRepository
                     .InsertAsync(new Enumeration {
                         DisplayEn = "Pets",
+                        Code = "Pets",
+                        Value = "Pets",
                         Type = EnumType.NotAllowedStuff
                     },
                     autoSave: true);
@@ -35,6 +37,8 @@ namespace Xplore
                 await _enumerationRepository
                     .InsertAsync(new Enumeration {
                         DisplayEn = "Smoking",
+                        Code = "Smoking",
+                        Value = "Smoking",
                         Type = EnumType.NotAllowedStuff
                     },
                     autoSave: true);
@@ -43,6 +47,8 @@ namespace Xplore
                 await _enumerationRepository
                     .InsertAsync(new Enumeration {
                         DisplayEn = "High-heeled shoes",
+                        Code = "High-heeled shoes",
+                        Value = "High-heeled shoes",
                         Type = EnumType.NotSuitableFor
                     },
                     autoSave: true);
@@ -50,6 +56,8 @@ namespace Xplore
                 await _enumerationRepository
                     .InsertAsync(new Enumeration {
                         DisplayEn = "Sandals or flip flops",
+                        Code = "Sandals or flip flops",
+                        Value = "Sandals or flip flops",
                         Type = EnumType.NotSuitableFor
                     },
                     autoSave: true);
@@ -57,6 +65,8 @@ namespace Xplore
                     .InsertAsync(new Enumeration {
                         DisplayEn = "Children under 5 years",
                         DisplayFr = "Enfant Mois de 5 ans",
+                        Code = "Enfant Mois de 5 ans",
+                        Value = "Enfant Mois de 5 ans",
                         Type = EnumType.NotSuitableFor
                     },
                     autoSave: true);
@@ -64,6 +74,8 @@ namespace Xplore
                 await _enumerationRepository
                     .InsertAsync(new Enumeration {
                         DisplayEn = "Pregnant women",
+                        Code = "Pregnant women",
+                        Value = "Pregnant women",
                         DisplayFr = "Femme Enceinte",
                         Type = EnumType.NotSuitableFor
                     },
@@ -72,6 +84,8 @@ namespace Xplore
                 await _enumerationRepository
                     .InsertAsync(new Enumeration {
                         DisplayEn = "Wheelchair users",
+                        Code = "Wheelchair users",
+                        Value = "Wheelchair users",
                         DisplayFr = "Personne avec Chaise Roulante",
                         Type = EnumType.NotSuitableFor
                     },
@@ -80,6 +94,8 @@ namespace Xplore
                     .InsertAsync(new Enumeration {
                         DisplayEn = "Lunch",
                         DisplayFr = "Dejeuner",
+                        Code = "Dejeuner",
+                        Value = "Dejeuner",
                         Type = EnumType.RequiredStuff
                     },
                     autoSave: true);
@@ -87,7 +103,9 @@ namespace Xplore
                 await _enumerationRepository
                     .InsertAsync(new Enumeration {
                         DisplayEn = "Swimming clothes",
-                        DisplayFr = "maillot",
+                        DisplayFr = "Maillot",
+                        Code = "Maillot",
+                        Value = "Maillot",
                         Type = EnumType.RequiredStuff
                     },
                     autoSave: true);

@@ -5,15 +5,14 @@ using Volo.Abp.Domain.Entities.Auditing;
 namespace Xplore.Models
 {
     public partial class Trip : FullAuditedAggregateRoot<Guid>
-    { 
-
+    {
         public string Title { get; set; }
 
         public string Description { get; set; }
 
-        public string Rating { get; set; }
+        public double Rating { get; set; }
 
-        public string Duration { get; set; }
+        public int Duration { get; set; }
 
         public string Glanguages { get; set; }
 
@@ -21,9 +20,9 @@ namespace Xplore.Models
 
         public DurationUnit DurationUnit { get; set; }
 
-        public DateOnly? Date { get; set; }
+        public DateOnly? Date { get; set; } 
 
-        public DateTime? StartingTime { get; set; }
+        public DateTime? StartingTime { get; set; } 
 
         public string Agency { get; set; }
 

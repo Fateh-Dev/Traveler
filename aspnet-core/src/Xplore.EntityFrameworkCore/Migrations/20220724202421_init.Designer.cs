@@ -13,8 +13,8 @@ using Xplore.EntityFrameworkCore;
 namespace Xplore.Migrations
 {
     [DbContext(typeof(XploreDbContext))]
-    [Migration("20220724194744_initial")]
-    partial class initial
+    [Migration("20220724202421_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -2717,9 +2717,9 @@ namespace Xplore.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)");
 
-                    b.Property<string>("Rating")
+                    b.Property<double>("Rating")
                         .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
+                        .HasColumnType("double precision");
 
                     b.Property<string>("RequiredStuff")
                         .HasMaxLength(255)
