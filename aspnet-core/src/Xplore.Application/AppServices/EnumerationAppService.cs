@@ -1,4 +1,5 @@
 using System;
+using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
@@ -6,6 +7,7 @@ using Xplore.Models;
 
 namespace Xplore.AppServices
 {
+    [ApiExplorerSettings(GroupName = "Xplorer_Api", IgnoreApi = false)]
     public class
     EnumerationAppService
     :

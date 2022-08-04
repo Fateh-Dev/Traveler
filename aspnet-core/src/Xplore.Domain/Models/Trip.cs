@@ -45,9 +45,7 @@ namespace Xplore.Models
         public string Loging { get; set; }
 
         public ICollection<Location> Locations { get; set; }
-
         public ICollection<Image> Images { get; set; }
-
         public ICollection<Price> Prices { get; set; }
         public ICollection<Review> Reviews { get; set; } 
     }

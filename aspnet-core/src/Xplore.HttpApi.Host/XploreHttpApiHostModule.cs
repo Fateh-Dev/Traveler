@@ -46,6 +46,10 @@ namespace Xplore;
 )]
 public class XploreHttpApiHostModule : AbpModule
 {
+        public static HashSet<string> hsIgnoredDocs = new HashSet<string>(){
+                                "AbpApplicationConfiguration","Account","Profile" ,"Login","IdentityUser","Tenant","IdentityRole"
+                                };
+
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         var configuration = context.Services.GetConfiguration();
@@ -140,12 +144,30 @@ public class XploreHttpApiHostModule : AbpModule
             configuration["AuthServer:Authority"],
             new Dictionary<string, string>
             {
-                    {"Xplore", "Xplore API"}
+                    {"Xplorer_Api", "efault"}
             },
             options =>
-            {
-                options.SwaggerDoc("v1", new OpenApiInfo { Title = "Xplore API", Version = "v1" });
-                options.DocInclusionPredicate((docName, description) => true);
+            { 
+                options.SwaggerDoc("Xplorer_Api", new OpenApiInfo { Title = "Xplorer Api", Version = "1.0" });
+                options.SwaggerDoc("v1", new OpenApiInfo { Title = "ABP Default APIs", Version = "v1" });
+
+
+                options.DocInclusionPredicate((docName, description) =>
+                {       var nm = description.ActionDescriptor.ToString().ToLower();
+                        var groupName = description.GroupName;
+                    if(docName=="v1") return true; 
+                    if (!string.IsNullOrWhiteSpace(groupName))
+                        {
+                    Console.WriteLine("====================================");
+                    Console.WriteLine(description.GroupName);
+                    Console.WriteLine("====================================");
+                            if (groupName == docName) return true;
+                        }
+
+                    return false;
+                });
+
+
                 options.CustomSchemaIds(type => type.FullName);
             });
     }
@@ -234,14 +256,15 @@ public class XploreHttpApiHostModule : AbpModule
         app.UseSwagger();
         app.UseAbpSwaggerUI(c =>
         {
-            c.SwaggerEndpoint("/swagger/v1/swagger.json", "Xplore API");
+            c.SwaggerEndpoint("/swagger/Xplorer_Api/swagger.json", "Xplorer_Api");
+            c.SwaggerEndpoint("/swagger/v1/swagger.json", "ABP Default APIs");
 
             var configuration = context.ServiceProvider.GetRequiredService<IConfiguration>();
             c.OAuthClientId(configuration["AuthServer:SwaggerClientId"]);
             c.OAuthClientSecret(configuration["AuthServer:SwaggerClientSecret"]);
             c.OAuthScopes("Xplore");
         });
-
+    
         app.UseAuditing();
         app.UseAbpSerilogEnrichers();
         app.UseConfiguredEndpoints();

@@ -3,9 +3,11 @@ using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
 using Xplore.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Xplore.AppServices
 {
+    [ApiExplorerSettings(GroupName = "Xplorer_Api", IgnoreApi = false)]
     public class
     ReviewAppService
     :
