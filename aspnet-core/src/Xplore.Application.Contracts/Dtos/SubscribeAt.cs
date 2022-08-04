@@ -6,13 +6,15 @@ namespace Xplore.Models
 {
     public partial class SubscribeAtDto: AuditedEntityDto<Guid>
     {
-        public string IdTrip { get; set; }
-        public string IdTourist { get; set; }
+        public Guid IdTrip { get; set; }
+        public TripDto Trip { get; set; }
+        public Guid IdTourist { get; set; }
+        public TouristDto Tourist { get; set; }
         public DateTime? Date { get; set; }
     } public partial class CreateUpdateSubscribeAtDto
     {
-        public string IdTrip { get; set; }
-        public string IdTourist { get; set; }
+        public Guid IdTrip { get; set; }
+        public Guid IdTourist { get; set; }
         public DateTime? Date { get; set; }
     }
 }

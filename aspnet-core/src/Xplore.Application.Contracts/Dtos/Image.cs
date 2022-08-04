@@ -7,12 +7,19 @@ namespace Xplore.Models
 {
     public partial class ImageDto : AuditedEntityDto<Guid>
     {
-        public string IdTrip { get; set; }
+        public string Url { get; set; }
+
+        public string Description { get; set; }
+        public Guid IdTrip { get; set; }
+        public TripDto Trip { get; set; }
     }
 
     public partial class CreateUpdateImageDto
     {
         [Required]
-        public string IdTrip { get; set; }
+        public Guid IdTrip { get; set; }
+        public string Url { get; set; }
+
+        public string Description { get; set; }
     }
 }

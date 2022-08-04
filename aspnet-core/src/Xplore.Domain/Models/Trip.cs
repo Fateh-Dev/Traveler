@@ -20,9 +20,11 @@ namespace Xplore.Models
 
         public DurationUnit DurationUnit { get; set; }
 
-        public DateOnly? Date { get; set; } 
+        public Difficulty Difficulty { get; set; }
 
-        public DateTime? StartingTime { get; set; } 
+        public DateTime? Date { get; set; }
+
+        public DateTime? StartingTime { get; set; }
 
         public string Agency { get; set; }
 
@@ -41,5 +43,12 @@ namespace Xplore.Models
         public string IncludedStuff { get; set; }
 
         public string Loging { get; set; }
+
+        public ICollection<Location> Locations { get; set; }
+
+        public ICollection<Image> Images { get; set; }
+
+        public ICollection<Price> Prices { get; set; }
+        public ICollection<Review> Reviews { get; set; } 
     }
 }

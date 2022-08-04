@@ -5,16 +5,7 @@ using Xplore.Models;
 
 namespace Xplore
 {
-    public interface
-    ICommentAppService
-    :
-    ICrudAppService<//Defines CRUD methods
-        CommentDto, //Used to show books
-        Guid, //Primary key of the book entity
-        PagedAndSortedResultRequestDto, //Used for paging/sorting
-        CreateUpdateCommentDto
-    > //Used to create/update a book
-    { }
+    
 
     public interface
     IEnumerationAppService

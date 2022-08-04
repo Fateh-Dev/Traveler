@@ -7,7 +7,9 @@ namespace Xplore.Models
     public partial class Price : FullAuditedAggregateRoot<Guid>
     { 
         public PriceCategory Category { get; set; }
-        public decimal? Price1 { get; set; }
-        public string IdTrip { get; set; }
+        public decimal? Value { get; set; }
+        public Guid IdTrip { get; set; }
+
+        public Trip Trip { get; set; }
     }
 }

@@ -8,6 +8,7 @@ namespace Xplore.Models
     { 
         public string Value { get; set; }
         public RatingType Type { get; set; }
-        public string IdReview { get; set; }
+        public Guid IdReview { get; set; }
+        public Review Review { get; set; }
     }
 }

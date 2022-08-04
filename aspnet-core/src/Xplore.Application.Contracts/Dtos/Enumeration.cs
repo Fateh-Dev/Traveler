@@ -7,10 +7,11 @@ namespace Xplore.Models
 {
     public partial class EnumerationDto : AuditedEntityDto<Guid>
     {
-        public string Code { get; set; }
-
+          public string Code { get; set; }
         public string Value { get; set; }
-
+        public string DisplayEn { get; set; }
+        public string DisplayAn { get; set; }
+        public string DisplayFr { get; set; }
         public EnumType Type { get; set; }
     }
 
@@ -26,5 +27,8 @@ namespace Xplore.Models
 
         [Required]
         public EnumType Type { get; set; }
+        public string DisplayEn { get; set; }
+        public string DisplayAn { get; set; }
+        public string DisplayFr { get; set; }
     }
 }

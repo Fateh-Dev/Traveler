@@ -9,9 +9,7 @@ public class XploreApplicationAutoMapperProfile : Profile
     {
         /* You can configure your AutoMapper mapping configuration here.
          * Alternatively, you can split your mapping configurations
-         * into multiple profile classes for a better organization. */
-         CreateMap<Comment, CommentDto>();
-         CreateMap<CreateUpdateCommentDto, Comment>();
+         * into multiple profile classes for a better organization. */ 
          CreateMap<Enumeration, EnumerationDto>();
          CreateMap<CreateUpdateEnumerationDto, Enumeration>();
          CreateMap<Guide, GuideDto>();

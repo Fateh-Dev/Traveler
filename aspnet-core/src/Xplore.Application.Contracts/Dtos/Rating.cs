@@ -11,7 +11,8 @@ namespace Xplore.Models
 
         public RatingType Type { get; set; }
 
-        public string IdReview { get; set; }
+        public Guid IdReview { get; set; }
+        public ReviewDto Review { get; set; }
     }
 
     public partial class CreateUpdateRatingDto
@@ -23,6 +24,6 @@ namespace Xplore.Models
         [Required]
         public RatingType Type { get; set; } = RatingType.Guide;
 
-        public string IdReview { get; set; }
+        public Guid IdReview { get; set; }
     }
 }

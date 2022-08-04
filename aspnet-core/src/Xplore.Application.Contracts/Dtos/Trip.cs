@@ -19,13 +19,14 @@ namespace Xplore.Models
 
         public double? TripSize { get; set; }
 
-        public string DurationUnit { get; set; }
+        public DurationUnit DurationUnit { get; set; }
 
         public DateTime? Date { get; set; }
 
         public DateTime? StartingTime { get; set; }
 
         public string Agency { get; set; }
+        public Difficulty Difficulty { get; set; }
 
         public string IdAchived { get; set; }
 
@@ -42,6 +43,13 @@ namespace Xplore.Models
         public string IncludedStuff { get; set; }
 
         public string Loging { get; set; }
+
+        public ICollection<LocationDto> Locations { get; set; }
+
+        public ICollection<ImageDto> Images { get; set; }
+
+        public ICollection<PriceDto> Prices { get; set; }
+        public ICollection<ReviewDto> Reviews { get; set; }
     }
 
     public partial class CreateUpdateTripDto
@@ -57,10 +65,10 @@ namespace Xplore.Models
         public double Rating { get; set; } = 5;
 
         [Required]
-        [StringLength(128)]
         public int Duration { get; set; }
 
         public string Glanguages { get; set; }
+        public Difficulty Difficulty { get; set; }
 
         public double? TripSize { get; set; }
 

@@ -52,8 +52,7 @@ public class XploreDbContext :
     public DbSet<Tenant> Tenants { get; set; }
     public DbSet<TenantConnectionString> TenantConnectionStrings { get; set; }
 
-    // App Models
-    public virtual DbSet<Comment> Comments { get; set; }
+    // App Models 
     public virtual DbSet<Enumeration> Enumeration { get; set; }
     public virtual DbSet<Guide> Guides { get; set; }
     public virtual DbSet<Image> Images { get; set; }
@@ -102,14 +101,7 @@ public class XploreDbContext :
         //    b.ConfigureByConvention(); //auto configure for the base class props
         //    //...
         // });
-
-         builder.Entity<Comment>(entity =>
-            { 
-                entity.ToTable(XploreConsts.DbTablePrefix + "Comment"); 
-                entity.Property(e => e.Id).ValueGeneratedNever(); 
-                entity.Property(e => e.Description).HasMaxLength(255);
-                entity.ConfigureByConvention();
-            });
+ 
 
         builder.Entity<Enumeration>(entity =>
             {
@@ -150,6 +142,8 @@ public class XploreDbContext :
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
                 entity.Property(e => e.IdTrip).HasMaxLength(255);
+                entity.HasOne(e=>e.Trip).WithMany(e=>e.Images)
+                        .HasForeignKey(p => p.IdTrip);
                 entity.ConfigureByConvention();
             });
 
@@ -166,6 +160,8 @@ public class XploreDbContext :
                 entity.Property(e => e.IdTrip).HasMaxLength(255);
 
                 entity.Property(e => e.Type).HasMaxLength(255);
+                entity.HasOne(e=>e.Trip).WithMany(e=>e.Locations)
+                        .HasForeignKey(p => p.IdTrip);
                 entity.ConfigureByConvention();
             });
 
@@ -177,9 +173,12 @@ public class XploreDbContext :
 
                 entity.Property(e => e.IdTrip).HasMaxLength(255);
 
-                entity.Property(e => e.Price1)
+                entity.Property(e => e.Value)
                     .HasPrecision(10, 2)
-                    .HasColumnName("Price");
+                    .HasColumnName("Value");
+                    
+                entity.HasOne(e=>e.Trip).WithMany(e=>e.Prices)
+                        .HasForeignKey(p => p.IdTrip);
                 entity.ConfigureByConvention();
             });
 
@@ -206,7 +205,7 @@ public class XploreDbContext :
 
                 entity.Property(e => e.IdTourist).HasMaxLength(255);
 
-                entity.Property(e => e.IdComment).HasMaxLength(255);
+                entity.Property(e => e.Comment).HasMaxLength(2550);
 
                 entity.Property(e => e.IdTrip)
                     .IsRequired()
@@ -215,6 +214,8 @@ public class XploreDbContext :
                 entity.Property(e => e.Rating)
                     .IsRequired()
                     .HasMaxLength(255);
+                entity.HasOne(e=>e.Trip).WithMany(e=>e.Reviews)
+                        .HasForeignKey(p => p.IdTrip);
                 entity.ConfigureByConvention();
             });
 
@@ -247,8 +248,7 @@ public class XploreDbContext :
                 entity.ToTable(XploreConsts.DbTablePrefix + "Tourist");
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
-
-                entity.Property(e => e.Age).HasMaxLength(255);
+ 
 
                 entity.Property(e => e.Email).HasMaxLength(255);
 
@@ -268,9 +268,7 @@ public class XploreDbContext :
 
                 entity.Property(e => e.Agency).HasMaxLength(255);
 
-                entity.Property(e => e.Description).HasMaxLength(255);
-
-                entity.Property(e => e.Duration).HasMaxLength(255);
+                entity.Property(e => e.Description).HasMaxLength(255); 
 
                 entity.Property(e => e.DurationUnit).HasMaxLength(255);
 
