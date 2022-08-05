@@ -12,8 +12,8 @@ namespace Xplore.Models
         public string GpsLocation { get; set; }
 
         public Guid TripId { get; set; }
-        // public TripDto Trip { get; set; }
 
+        // public TripDto Trip { get; set; }
         public LocationType Type { get; set; }
 
         public int? Order { get; set; }
@@ -33,7 +33,7 @@ namespace Xplore.Models
         public Guid TripId { get; set; }
 
         [Required]
-        public LocationType Type { get; set; } = LocationType.Undefined;
+        public LocationType Type { get; set; }
 
         public int? Order { get; set; }
     }

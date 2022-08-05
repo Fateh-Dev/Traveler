@@ -11,7 +11,7 @@ public class XploreApplicationAutoMapperProfile : Profile
         /* You can configure your AutoMapper mapping configuration here.
          * Alternatively, you can split your mapping configurations
          * into multiple profile classes for a better organization. */ 
-         CreateMap<Enumeration, EnumerationDto>();
+         CreateMap<Enumeration, EnumerationDto>(); 
          CreateMap<CreateUpdateEnumerationDto, Enumeration>();
          CreateMap<Guide, GuideDto>();
          CreateMap<CreateUpdateGuideDto, Guide>();

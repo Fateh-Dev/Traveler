@@ -1,7 +1,6 @@
 public enum PriceCategory
 {
-    Undefined,
-    Adult,
+     Adult,
     kid,
     Baby
 }

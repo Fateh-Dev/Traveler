@@ -1,6 +1,6 @@
 public enum EnumType
 {
-    Undefined,
+     
     Activity,
     Risk,
     NotAllowedStuff,

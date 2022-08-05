@@ -1,6 +1,6 @@
 public enum LocationType
 {
-    Undefined,
+    Destination,
     PickUp,
     DropOff,
     Stop

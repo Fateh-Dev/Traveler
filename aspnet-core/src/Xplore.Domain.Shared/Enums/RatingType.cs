@@ -1,6 +1,6 @@
 public enum RatingType
 {
-    Undefined,
+     
     Guide,
     Service,
     Organisation,
