@@ -6,9 +6,9 @@ namespace Xplore.Models
 {
     public partial class Rating : FullAuditedAggregateRoot<Guid>
     { 
-        public string Value { get; set; }
+        public int Value { get; set; }
         public RatingType Type { get; set; }
-        public Guid IdReview { get; set; }
+        public Guid ReviewId { get; set; }
         public Review Review { get; set; }
     }
 }

@@ -1,5 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using JetBrains.Annotations;
+using Volo.Abp;
 using Volo.Abp.Domain.Entities.Auditing;
 
 namespace Xplore.Models
@@ -44,9 +48,33 @@ namespace Xplore.Models
 
         public string Loging { get; set; }
 
+        public Guid GuideId { get; set; }
+
+        public Guide Guide { get; set; }
+
         public ICollection<Location> Locations { get; set; }
+
         public ICollection<Image> Images { get; set; }
-        public ICollection<Price> Prices { get; set; }
-        public ICollection<Review> Reviews { get; set; } 
+
+        public ICollection<ScheduledTrip> ScheduledTrips { get; set; }
+
+        public ICollection<WishList> PotentialClients { get; set; }
+
+        public Trip()
+        {
+        }
+
+        public Trip(Guid id, [NotNull] string title) :
+            base(id)
+        {
+            SetTitle (title);
+            ScheduledTrips = new Collection<ScheduledTrip>();
+        }
+
+        public void SetTitle(string title)
+        {
+            Title =
+                Check.NotNullOrWhiteSpace(title, nameof(title), maxLength: 255);
+        }
     }
 }

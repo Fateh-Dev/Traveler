@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Domain.Repositories;
+using Volo.Abp.Guids;
 using Xplore.Models;
 
 namespace Xplore
@@ -11,16 +12,35 @@ namespace Xplore
     EnumerationDataSeederContributor
     : IDataSeedContributor, ITransientDependency
     {
-        private readonly IRepository<Enumeration, Guid> _enumerationRepository; 
+        private readonly IRepository<Enumeration, Guid> _enumerationRepository;
+
+        private readonly IRepository<Tourist, Guid> _touristRepository;
+
+        private readonly IRepository<Guide, Guid> _guideRepository;
+
+        private readonly IGuidGenerator _guidGenerator;
 
         public EnumerationDataSeederContributor(
-            IRepository<Enumeration, Guid> enumerationRepository
+            IGuidGenerator guidGenerator,
+            IRepository<Enumeration, Guid> enumerationRepository,
+            IRepository<Tourist, Guid> touristRepository,
+            IRepository<Guide, Guid> guideRepository
         )
         {
+            _guidGenerator = guidGenerator;
             _enumerationRepository = enumerationRepository;
+            _touristRepository = touristRepository;
+            _guideRepository = guideRepository;
         }
 
         public async Task SeedAsync(DataSeedContext context)
+        {
+            await SeedEnumerationsAsync();
+            await SeedTouristsAsync();
+            await SeedGuidesAsync();
+        }
+
+        private async Task SeedEnumerationsAsync()
         {
             if (await _enumerationRepository.GetCountAsync() <= 0)
             {
@@ -107,6 +127,59 @@ namespace Xplore
                         Code = "Maillot",
                         Value = "Maillot",
                         Type = EnumType.RequiredStuff
+                    },
+                    autoSave: true);
+            }
+        }
+
+        private async Task SeedTouristsAsync()
+        {
+            if (await _touristRepository.GetCountAsync() <= 0)
+            {
+                await _touristRepository
+                    .InsertAsync(new Tourist(_guidGenerator.Create())
+                    {
+                        Firstname = "Fateh",
+                        Lastname = "Djehinet",
+                        Email = "fateh_djehinet@outlook.com",
+                        Gender = Gender.Man,
+                        Birthday = new DateTime(1993, 3, 4),
+                        Wilaya = "Jijel",
+                        ZipCode = 18000,
+                        Address = "Cite Bouhali - Tassoust - Jijel",
+                        Address2 = "Cite Semrouni - Ouled Fayet - Alger"
+                    },
+                    autoSave: true);
+                await _touristRepository
+                    .InsertAsync(new Tourist(_guidGenerator.Create())
+                    {
+                        Firstname = "Hichem",
+                        Lastname = "Boudjemia",
+                        Email = "Hicham.B@gmail.com",
+                        Gender = Gender.Man,
+                        Birthday = new DateTime(1991, 3, 4),
+                        Wilaya = "Jijel",
+                        ZipCode = 18000,
+                        Address = "Cite Elmoudjahidin - Tassoust - Jijel"
+                    },
+                    autoSave: true);
+            }
+        }
+
+        private async Task SeedGuidesAsync()
+        {
+            if (await _guideRepository.GetCountAsync() <= 0)
+            {
+                await _guideRepository
+                    .InsertAsync(new Guide {
+                        Firstname = "Amine",
+                        Lastname = "Aiche",
+                        Email = "Amine.A@gmail.com",
+                        Gender = Gender.Man,
+                        Birthday = new DateTime(1992, 7, 14),
+                        Wilaya = "Jijel",
+                        ZipCode = 18000,
+                        Address = "Cite Elmoudjahidin - Tassoust - Jijel"
                     },
                     autoSave: true);
             }

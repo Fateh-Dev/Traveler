@@ -29,14 +29,17 @@ namespace Xplore.AppServices
             _tripRepository = repository;
         }
 
-        public override async Task<TripDto> GetAsync(Guid id)
+        [HttpGet("api/app/getTripWithDetails/{id}")]
+        public async Task<TripDto> GetTripWithDetailsAsync(Guid id)
         {
             //Get a IQueryable<T> by including sub collections
             var queryable =
                 await _tripRepository
                     .WithDetailsAsync(z => z.Locations,
                     e => e.Images,
-                    s => s.Prices);
+                    s => s.ScheduledTrips,
+                    k => k.PotentialClients,
+                    b => b.Guide);
 
             //Apply additional LINQ extension methods
             var query = queryable.Where(x => x.Id == id);

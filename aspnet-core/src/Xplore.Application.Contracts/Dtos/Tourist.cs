@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using Volo.Abp.Application.Dtos; 
+using Volo.Abp.Application.Dtos;
 
 namespace Xplore.Models
 {
-    public partial class TouristDto: AuditedEntityDto<Guid>
+    public partial class TouristDto : AuditedEntityDto<Guid>
     {
-     public string Firstname { get; set; }
+        public string Firstname { get; set; }
 
         public string Lastname { get; set; }
 
@@ -37,9 +37,17 @@ namespace Xplore.Models
         public string Address { get; set; }
 
         public string Address2 { get; set; }
-    } public partial class CreateUpdateTouristDto 
+
+        public ICollection<ReviewDto> Reviews { get; set; }
+
+        public ICollection<WishListDto> WishLists { get; set; }
+
+        public ICollection<SubscribeAtDto> SubscribedTrips { get; set; }
+    }
+
+    public partial class CreateUpdateTouristDto
     {
-     public string Firstname { get; set; }
+        public string Firstname { get; set; }
 
         public string Lastname { get; set; }
 

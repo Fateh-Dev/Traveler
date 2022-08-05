@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using AutoMapper;
 using Xplore.Models;
 
 namespace Xplore;
@@ -24,8 +25,8 @@ public class XploreApplicationAutoMapperProfile : Profile
          CreateMap<CreateUpdateRatingDto, Rating>();
          CreateMap<Review, ReviewDto>();
          CreateMap<CreateUpdateReviewDto, Review>();
-         CreateMap<Schedule, ScheduleDto>();
-         CreateMap<CreateUpdateScheduleDto, Schedule>();
+         CreateMap<ScheduledTrip, ScheduledTripDto>(); 
+         CreateMap<CreateUpdateScheduledTripDto, ScheduledTrip>();
          CreateMap<SubscribeAt, SubscribeAtDto>();
          CreateMap<CreateUpdateSubscribeAtDto, SubscribeAt>();
          CreateMap<Tourist, TouristDto>();

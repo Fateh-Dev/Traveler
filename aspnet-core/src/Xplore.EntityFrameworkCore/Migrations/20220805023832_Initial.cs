@@ -565,45 +565,6 @@ namespace Xplore.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Xplore.Trip",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Title = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
-                    Description = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
-                    Rating = table.Column<double>(type: "double precision", maxLength: 255, nullable: false),
-                    Duration = table.Column<int>(type: "integer", nullable: false),
-                    GLanguages = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
-                    TripSize = table.Column<double>(type: "double precision", nullable: true),
-                    DurationUnit = table.Column<int>(type: "integer", maxLength: 255, nullable: false),
-                    Difficulty = table.Column<int>(type: "integer", nullable: false),
-                    Date = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    StartingTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    Agency = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
-                    IdAchived = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
-                    Activities = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
-                    Risks = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
-                    NotAllowedStuff = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
-                    RequiredStuff = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
-                    NotSuitableFor = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
-                    IncludedStuff = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
-                    Loging = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
-                    ExtraProperties = table.Column<string>(type: "text", nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    CreatorId = table.Column<Guid>(type: "uuid", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    LastModifierId = table.Column<Guid>(type: "uuid", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
-                    DeleterId = table.Column<Guid>(type: "uuid", nullable: true),
-                    DeletionTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Xplore.Trip", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AbpAuditLogActions",
                 columns: table => new
                 {
@@ -1153,41 +1114,30 @@ namespace Xplore.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Xplore.Image",
+                name: "Xplore.Trip",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Url = table.Column<string>(type: "text", nullable: true),
-                    Description = table.Column<string>(type: "text", nullable: true),
-                    IdTrip = table.Column<Guid>(type: "uuid", maxLength: 255, nullable: false),
-                    ExtraProperties = table.Column<string>(type: "text", nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    CreatorId = table.Column<Guid>(type: "uuid", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    LastModifierId = table.Column<Guid>(type: "uuid", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Xplore.Image", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Xplore.Image_Xplore.Trip_IdTrip",
-                        column: x => x.IdTrip,
-                        principalTable: "Xplore.Trip",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Xplore.Location",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Title = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
                     Description = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
-                    GpsLocation = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
-                    IdTrip = table.Column<Guid>(type: "uuid", maxLength: 255, nullable: false),
-                    Type = table.Column<int>(type: "integer", maxLength: 255, nullable: false),
-                    Order = table.Column<int>(type: "integer", nullable: true),
+                    Rating = table.Column<double>(type: "double precision", maxLength: 255, nullable: false),
+                    Duration = table.Column<int>(type: "integer", nullable: false),
+                    GLanguages = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
+                    TripSize = table.Column<double>(type: "double precision", nullable: true),
+                    DurationUnit = table.Column<int>(type: "integer", maxLength: 255, nullable: false),
+                    Difficulty = table.Column<int>(type: "integer", nullable: false),
+                    Date = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    StartingTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    Agency = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
+                    IdAchived = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
+                    Activities = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
+                    Risks = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
+                    NotAllowedStuff = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
+                    RequiredStuff = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
+                    NotSuitableFor = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
+                    IncludedStuff = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
+                    Loging = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
+                    GuideId = table.Column<Guid>(type: "uuid", nullable: false),
                     ExtraProperties = table.Column<string>(type: "text", nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true),
                     CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
@@ -1200,180 +1150,13 @@ namespace Xplore.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Xplore.Location", x => x.Id);
+                    table.PrimaryKey("PK_Xplore.Trip", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Xplore.Location_Xplore.Trip_IdTrip",
-                        column: x => x.IdTrip,
-                        principalTable: "Xplore.Trip",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Xplore.Price",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Category = table.Column<int>(type: "integer", nullable: false),
-                    Value = table.Column<decimal>(type: "numeric(10,2)", precision: 10, scale: 2, nullable: true),
-                    IdTrip = table.Column<Guid>(type: "uuid", maxLength: 255, nullable: false),
-                    ExtraProperties = table.Column<string>(type: "text", nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    CreatorId = table.Column<Guid>(type: "uuid", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    LastModifierId = table.Column<Guid>(type: "uuid", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
-                    DeleterId = table.Column<Guid>(type: "uuid", nullable: true),
-                    DeletionTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Xplore.Price", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Xplore.Price_Xplore.Trip_IdTrip",
-                        column: x => x.IdTrip,
-                        principalTable: "Xplore.Trip",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Xplore.Review",
-                columns: table => new
-                {
-                    IdTourist = table.Column<Guid>(type: "uuid", maxLength: 255, nullable: false),
-                    TouristId = table.Column<Guid>(type: "uuid", nullable: true),
-                    Comment = table.Column<string>(type: "character varying(2550)", maxLength: 2550, nullable: true),
-                    Rating = table.Column<int>(type: "integer", maxLength: 255, nullable: false),
-                    IdTrip = table.Column<Guid>(type: "uuid", maxLength: 255, nullable: false),
-                    Date = table.Column<DateOnly>(type: "date", nullable: false),
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    ExtraProperties = table.Column<string>(type: "text", nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    CreatorId = table.Column<Guid>(type: "uuid", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    LastModifierId = table.Column<Guid>(type: "uuid", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
-                    DeleterId = table.Column<Guid>(type: "uuid", nullable: true),
-                    DeletionTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("Review_pkey", x => x.IdTourist);
-                    table.ForeignKey(
-                        name: "FK_Xplore.Review_Xplore.Tourist_TouristId",
-                        column: x => x.TouristId,
-                        principalTable: "Xplore.Tourist",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Xplore.Review_Xplore.Trip_IdTrip",
-                        column: x => x.IdTrip,
-                        principalTable: "Xplore.Trip",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Xplore.Schedule",
-                columns: table => new
-                {
-                    IdTrip = table.Column<Guid>(type: "uuid", maxLength: 255, nullable: false),
-                    TripId = table.Column<Guid>(type: "uuid", nullable: true),
-                    IdGuide = table.Column<Guid>(type: "uuid", maxLength: 255, nullable: false),
-                    GuideId = table.Column<Guid>(type: "uuid", nullable: true),
-                    Date = table.Column<DateOnly>(type: "date", nullable: true),
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    ExtraProperties = table.Column<string>(type: "text", nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    CreatorId = table.Column<Guid>(type: "uuid", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    LastModifierId = table.Column<Guid>(type: "uuid", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
-                    DeleterId = table.Column<Guid>(type: "uuid", nullable: true),
-                    DeletionTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.ForeignKey(
-                        name: "FK_Xplore.Schedule_Xplore.Guide_GuideId",
+                        name: "FK_Xplore.Trip_Xplore.Guide_GuideId",
                         column: x => x.GuideId,
                         principalTable: "Xplore.Guide",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Xplore.Schedule_Xplore.Trip_TripId",
-                        column: x => x.TripId,
-                        principalTable: "Xplore.Trip",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Xplore.SubscribeAt",
-                columns: table => new
-                {
-                    IdTrip = table.Column<Guid>(type: "uuid", maxLength: 255, nullable: false),
-                    TripId = table.Column<Guid>(type: "uuid", nullable: true),
-                    IdTourist = table.Column<Guid>(type: "uuid", maxLength: 255, nullable: false),
-                    TouristId = table.Column<Guid>(type: "uuid", nullable: true),
-                    Date = table.Column<DateOnly>(type: "date", nullable: true),
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    ExtraProperties = table.Column<string>(type: "text", nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    CreatorId = table.Column<Guid>(type: "uuid", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    LastModifierId = table.Column<Guid>(type: "uuid", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
-                    DeleterId = table.Column<Guid>(type: "uuid", nullable: true),
-                    DeletionTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.ForeignKey(
-                        name: "FK_Xplore.SubscribeAt_Xplore.Tourist_TouristId",
-                        column: x => x.TouristId,
-                        principalTable: "Xplore.Tourist",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Xplore.SubscribeAt_Xplore.Trip_TripId",
-                        column: x => x.TripId,
-                        principalTable: "Xplore.Trip",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Xplore.WishList",
-                columns: table => new
-                {
-                    IdTrip = table.Column<Guid>(type: "uuid", maxLength: 255, nullable: false),
-                    TripId = table.Column<Guid>(type: "uuid", nullable: true),
-                    IdTourist = table.Column<Guid>(type: "uuid", maxLength: 255, nullable: false),
-                    TouristId = table.Column<Guid>(type: "uuid", nullable: true),
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    ExtraProperties = table.Column<string>(type: "text", nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    CreatorId = table.Column<Guid>(type: "uuid", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    LastModifierId = table.Column<Guid>(type: "uuid", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
-                    DeleterId = table.Column<Guid>(type: "uuid", nullable: true),
-                    DeletionTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.ForeignKey(
-                        name: "FK_Xplore.WishList_Xplore.Tourist_TouristId",
-                        column: x => x.TouristId,
-                        principalTable: "Xplore.Tourist",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Xplore.WishList_Xplore.Trip_TripId",
-                        column: x => x.TripId,
-                        principalTable: "Xplore.Trip",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -1400,14 +1183,232 @@ namespace Xplore.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Xplore.Image",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Url = table.Column<string>(type: "text", nullable: true),
+                    Description = table.Column<string>(type: "text", nullable: true),
+                    TripId = table.Column<Guid>(type: "uuid", nullable: false),
+                    ExtraProperties = table.Column<string>(type: "text", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true),
+                    CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    CreatorId = table.Column<Guid>(type: "uuid", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    LastModifierId = table.Column<Guid>(type: "uuid", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Xplore.Image", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Xplore.Image_Xplore.Trip_TripId",
+                        column: x => x.TripId,
+                        principalTable: "Xplore.Trip",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Xplore.Location",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Description = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
+                    GpsLocation = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
+                    TripId = table.Column<Guid>(type: "uuid", nullable: false),
+                    Type = table.Column<int>(type: "integer", maxLength: 255, nullable: false),
+                    Order = table.Column<int>(type: "integer", nullable: true),
+                    ExtraProperties = table.Column<string>(type: "text", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true),
+                    CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    CreatorId = table.Column<Guid>(type: "uuid", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    LastModifierId = table.Column<Guid>(type: "uuid", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
+                    DeleterId = table.Column<Guid>(type: "uuid", nullable: true),
+                    DeletionTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Xplore.Location", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Xplore.Location_Xplore.Trip_TripId",
+                        column: x => x.TripId,
+                        principalTable: "Xplore.Trip",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Xplore.ScheduledTrip",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Date = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    Description = table.Column<string>(type: "text", nullable: true),
+                    TripId = table.Column<Guid>(type: "uuid", nullable: false),
+                    ExtraProperties = table.Column<string>(type: "text", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true),
+                    CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    CreatorId = table.Column<Guid>(type: "uuid", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    LastModifierId = table.Column<Guid>(type: "uuid", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
+                    DeleterId = table.Column<Guid>(type: "uuid", nullable: true),
+                    DeletionTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Xplore.ScheduledTrip", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Xplore.ScheduledTrip_Xplore.Trip_TripId",
+                        column: x => x.TripId,
+                        principalTable: "Xplore.Trip",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Xplore.WishList",
+                columns: table => new
+                {
+                    TripId = table.Column<Guid>(type: "uuid", nullable: false),
+                    TouristId = table.Column<Guid>(type: "uuid", nullable: false),
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    ExtraProperties = table.Column<string>(type: "text", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true),
+                    CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    CreatorId = table.Column<Guid>(type: "uuid", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    LastModifierId = table.Column<Guid>(type: "uuid", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
+                    DeleterId = table.Column<Guid>(type: "uuid", nullable: true),
+                    DeletionTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Xplore.WishList", x => new { x.TripId, x.TouristId });
+                    table.ForeignKey(
+                        name: "FK_Xplore.WishList_Xplore.Tourist_TouristId",
+                        column: x => x.TouristId,
+                        principalTable: "Xplore.Tourist",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Xplore.WishList_Xplore.Trip_TripId",
+                        column: x => x.TripId,
+                        principalTable: "Xplore.Trip",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Xplore.Price",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Category = table.Column<int>(type: "integer", nullable: false),
+                    Value = table.Column<decimal>(type: "numeric(10,2)", precision: 10, scale: 2, nullable: true),
+                    ScheduledTripId = table.Column<Guid>(type: "uuid", nullable: false),
+                    ExtraProperties = table.Column<string>(type: "text", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true),
+                    CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    CreatorId = table.Column<Guid>(type: "uuid", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    LastModifierId = table.Column<Guid>(type: "uuid", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
+                    DeleterId = table.Column<Guid>(type: "uuid", nullable: true),
+                    DeletionTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Xplore.Price", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Xplore.Price_Xplore.ScheduledTrip_ScheduledTripId",
+                        column: x => x.ScheduledTripId,
+                        principalTable: "Xplore.ScheduledTrip",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Xplore.Review",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    TouristId = table.Column<Guid>(type: "uuid", nullable: false),
+                    Comment = table.Column<string>(type: "character varying(2550)", maxLength: 2550, nullable: true),
+                    Rating = table.Column<int>(type: "integer", nullable: false),
+                    ScheduledTripId = table.Column<Guid>(type: "uuid", nullable: false),
+                    ExtraProperties = table.Column<string>(type: "text", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true),
+                    CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    CreatorId = table.Column<Guid>(type: "uuid", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    LastModifierId = table.Column<Guid>(type: "uuid", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
+                    DeleterId = table.Column<Guid>(type: "uuid", nullable: true),
+                    DeletionTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Xplore.Review", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Xplore.Review_Xplore.ScheduledTrip_ScheduledTripId",
+                        column: x => x.ScheduledTripId,
+                        principalTable: "Xplore.ScheduledTrip",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Xplore.Review_Xplore.Tourist_TouristId",
+                        column: x => x.TouristId,
+                        principalTable: "Xplore.Tourist",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Xplore.SubscribeAt",
+                columns: table => new
+                {
+                    ScheduledTripId = table.Column<Guid>(type: "uuid", nullable: false),
+                    TouristId = table.Column<Guid>(type: "uuid", nullable: false),
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    ExtraProperties = table.Column<string>(type: "text", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true),
+                    CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    CreatorId = table.Column<Guid>(type: "uuid", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    LastModifierId = table.Column<Guid>(type: "uuid", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
+                    DeleterId = table.Column<Guid>(type: "uuid", nullable: true),
+                    DeletionTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Xplore.SubscribeAt", x => new { x.ScheduledTripId, x.TouristId });
+                    table.ForeignKey(
+                        name: "FK_Xplore.SubscribeAt_Xplore.ScheduledTrip_ScheduledTripId",
+                        column: x => x.ScheduledTripId,
+                        principalTable: "Xplore.ScheduledTrip",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Xplore.SubscribeAt_Xplore.Tourist_TouristId",
+                        column: x => x.TouristId,
+                        principalTable: "Xplore.Tourist",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Xplore.Rating",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Value = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
+                    Value = table.Column<int>(type: "integer", maxLength: 255, nullable: false),
                     Type = table.Column<int>(type: "integer", maxLength: 255, nullable: false),
-                    IdReview = table.Column<Guid>(type: "uuid", maxLength: 255, nullable: false),
-                    ReviewIdTourist = table.Column<Guid>(type: "uuid", nullable: true),
+                    ReviewId = table.Column<Guid>(type: "uuid", nullable: false),
                     ExtraProperties = table.Column<string>(type: "text", nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true),
                     CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
@@ -1422,10 +1423,11 @@ namespace Xplore.Migrations
                 {
                     table.PrimaryKey("PK_Xplore.Rating", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Xplore.Rating_Xplore.Review_ReviewIdTourist",
-                        column: x => x.ReviewIdTourist,
+                        name: "FK_Xplore.Rating_Xplore.Review_ReviewId",
+                        column: x => x.ReviewId,
                         principalTable: "Xplore.Review",
-                        principalColumn: "IdTourist");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -1619,29 +1621,29 @@ namespace Xplore.Migrations
                 columns: new[] { "SubjectId", "SessionId", "Type" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Xplore.Image_IdTrip",
+                name: "IX_Xplore.Image_TripId",
                 table: "Xplore.Image",
-                column: "IdTrip");
+                column: "TripId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Xplore.Location_IdTrip",
+                name: "IX_Xplore.Location_TripId",
                 table: "Xplore.Location",
-                column: "IdTrip");
+                column: "TripId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Xplore.Price_IdTrip",
+                name: "IX_Xplore.Price_ScheduledTripId",
                 table: "Xplore.Price",
-                column: "IdTrip");
+                column: "ScheduledTripId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Xplore.Rating_ReviewIdTourist",
+                name: "IX_Xplore.Rating_ReviewId",
                 table: "Xplore.Rating",
-                column: "ReviewIdTourist");
+                column: "ReviewId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Xplore.Review_IdTrip",
+                name: "IX_Xplore.Review_ScheduledTripId",
                 table: "Xplore.Review",
-                column: "IdTrip");
+                column: "ScheduledTripId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Xplore.Review_TouristId",
@@ -1649,13 +1651,8 @@ namespace Xplore.Migrations
                 column: "TouristId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Xplore.Schedule_GuideId",
-                table: "Xplore.Schedule",
-                column: "GuideId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Xplore.Schedule_TripId",
-                table: "Xplore.Schedule",
+                name: "IX_Xplore.ScheduledTrip_TripId",
+                table: "Xplore.ScheduledTrip",
                 column: "TripId");
 
             migrationBuilder.CreateIndex(
@@ -1664,19 +1661,14 @@ namespace Xplore.Migrations
                 column: "TouristId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Xplore.SubscribeAt_TripId",
-                table: "Xplore.SubscribeAt",
-                column: "TripId");
+                name: "IX_Xplore.Trip_GuideId",
+                table: "Xplore.Trip",
+                column: "GuideId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Xplore.WishList_TouristId",
                 table: "Xplore.WishList",
                 column: "TouristId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Xplore.WishList_TripId",
-                table: "Xplore.WishList",
-                column: "TripId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -1805,9 +1797,6 @@ namespace Xplore.Migrations
                 name: "Xplore.Rating");
 
             migrationBuilder.DropTable(
-                name: "Xplore.Schedule");
-
-            migrationBuilder.DropTable(
                 name: "Xplore.SubscribeAt");
 
             migrationBuilder.DropTable(
@@ -1844,16 +1833,19 @@ namespace Xplore.Migrations
                 name: "Xplore.Review");
 
             migrationBuilder.DropTable(
-                name: "Xplore.Guide");
+                name: "AbpAuditLogs");
 
             migrationBuilder.DropTable(
-                name: "AbpAuditLogs");
+                name: "Xplore.ScheduledTrip");
 
             migrationBuilder.DropTable(
                 name: "Xplore.Tourist");
 
             migrationBuilder.DropTable(
                 name: "Xplore.Trip");
+
+            migrationBuilder.DropTable(
+                name: "Xplore.Guide");
         }
     }
 }

@@ -7,11 +7,12 @@ namespace Xplore.Models
 {
     public partial class RatingDto : AuditedEntityDto<Guid>
     {
-        public string Value { get; set; }
+        public int Value { get; set; }
 
         public RatingType Type { get; set; }
 
-        public Guid IdReview { get; set; }
+        public Guid ReviewId { get; set; }
+
         public ReviewDto Review { get; set; }
     }
 
@@ -24,6 +25,6 @@ namespace Xplore.Models
         [Required]
         public RatingType Type { get; set; } = RatingType.Guide;
 
-        public Guid IdReview { get; set; }
+        public Guid ReviewId { get; set; }
     }
 }

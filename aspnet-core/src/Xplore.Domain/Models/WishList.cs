@@ -6,9 +6,12 @@ namespace Xplore.Models
 {
     public partial class WishList : FullAuditedAggregateRoot<Guid>
     {
-        public Guid IdTrip { get; set; }
+        public Guid TripId { get; set; }
+
         public Trip Trip { get; set; }
-        public Guid IdTourist { get; set; }
+
+        public Guid TouristId { get; set; }
+
         public Tourist Tourist { get; set; }
     }
 }

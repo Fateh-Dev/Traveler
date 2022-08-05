@@ -46,9 +46,7 @@ namespace Xplore;
 )]
 public class XploreHttpApiHostModule : AbpModule
 {
-        public static HashSet<string> hsIgnoredDocs = new HashSet<string>(){
-                                "AbpApplicationConfiguration","Account","Profile" ,"Login","IdentityUser","Tenant","IdentityRole"
-                                };
+       
 
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
@@ -144,11 +142,11 @@ public class XploreHttpApiHostModule : AbpModule
             configuration["AuthServer:Authority"],
             new Dictionary<string, string>
             {
-                    {"Xplorer_Api", "efault"}
+                    {"Xplorer_Api", "Default"}
             },
             options =>
             { 
-                options.SwaggerDoc("Xplorer_Api", new OpenApiInfo { Title = "Xplorer Api", Version = "1.0" });
+                options.SwaggerDoc("Xplorer_Api", new OpenApiInfo { Title = "Xplorer APIs", Version = "1.0" });
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "ABP Default APIs", Version = "v1" });
 
 
@@ -157,10 +155,7 @@ public class XploreHttpApiHostModule : AbpModule
                         var groupName = description.GroupName;
                     if(docName=="v1") return true; 
                     if (!string.IsNullOrWhiteSpace(groupName))
-                        {
-                    Console.WriteLine("====================================");
-                    Console.WriteLine(description.GroupName);
-                    Console.WriteLine("====================================");
+                        { 
                             if (groupName == docName) return true;
                         }
 

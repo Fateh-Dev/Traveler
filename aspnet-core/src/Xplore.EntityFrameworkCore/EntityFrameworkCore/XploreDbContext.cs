@@ -60,7 +60,7 @@ public class XploreDbContext :
     public virtual DbSet<Price> Prices { get; set; }
     public virtual DbSet<Rating> Ratings { get; set; }
     public virtual DbSet<Review> Reviews { get; set; }
-    public virtual DbSet<Schedule> Schedules { get; set; }
+    public virtual DbSet<ScheduledTrip> ScheduledTrips { get; set; }
     public virtual DbSet<SubscribeAt> SubscribeAts { get; set; }
     public virtual DbSet<Tourist> Tourists { get; set; }
     public virtual DbSet<Trip> Trips { get; set; }
@@ -139,11 +139,9 @@ public class XploreDbContext :
             {
                 entity.ToTable(XploreConsts.DbTablePrefix + "Image");
 
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
-                entity.Property(e => e.IdTrip).HasMaxLength(255);
+                entity.Property(e => e.Id).ValueGeneratedNever(); 
                 entity.HasOne(e=>e.Trip).WithMany(e=>e.Images)
-                        .HasForeignKey(p => p.IdTrip);
+                        .HasForeignKey(p => p.TripId);
                 entity.ConfigureByConvention();
             });
 
@@ -155,13 +153,13 @@ public class XploreDbContext :
 
                 entity.Property(e => e.Description).HasMaxLength(255);
 
-                entity.Property(e => e.GpsLocation).HasMaxLength(255);
-
-                entity.Property(e => e.IdTrip).HasMaxLength(255);
+                entity.Property(e => e.GpsLocation).HasMaxLength(255); 
 
                 entity.Property(e => e.Type).HasMaxLength(255);
+
                 entity.HasOne(e=>e.Trip).WithMany(e=>e.Locations)
-                        .HasForeignKey(p => p.IdTrip);
+                        .HasForeignKey(p => p.TripId);
+ 
                 entity.ConfigureByConvention();
             });
 
@@ -170,15 +168,15 @@ public class XploreDbContext :
                 entity.ToTable(XploreConsts.DbTablePrefix + "Price");
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
-
-                entity.Property(e => e.IdTrip).HasMaxLength(255);
+ 
 
                 entity.Property(e => e.Value)
                     .HasPrecision(10, 2)
                     .HasColumnName("Value");
                     
-                entity.HasOne(e=>e.Trip).WithMany(e=>e.Prices)
-                        .HasForeignKey(p => p.IdTrip);
+                entity.HasOne(e=>e.ScheduledTrip).WithMany(e=>e.Prices)
+                        .HasForeignKey(p => p.ScheduledTripId);
+
                 entity.ConfigureByConvention();
             });
 
@@ -187,59 +185,57 @@ public class XploreDbContext :
                 entity.ToTable(XploreConsts.DbTablePrefix + "Rating");
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
-
-                entity.Property(e => e.IdReview).HasMaxLength(255);
+ 
 
                 entity.Property(e => e.Type).HasMaxLength(255);
 
                 entity.Property(e => e.Value).HasMaxLength(255);
+                
+                entity.HasOne(e=>e.Review).WithMany(e=>e.Ratings)
+                        .HasForeignKey(p => p.ReviewId);
+
                 entity.ConfigureByConvention();
             });
 
             builder.Entity<Review>(entity =>
-            {
-                entity.HasKey(e => e.IdTourist)
-                    .HasName("Review_pkey");
-
+            { 
                 entity.ToTable(XploreConsts.DbTablePrefix + "Review");
+ 
 
-                entity.Property(e => e.IdTourist).HasMaxLength(255);
-
+                entity.Property(e => e.Id).ValueGeneratedNever();
                 entity.Property(e => e.Comment).HasMaxLength(2550);
+  
 
-                entity.Property(e => e.IdTrip)
-                    .IsRequired()
-                    .HasMaxLength(255);
+                entity.HasOne(e=>e.ScheduledTrip).WithMany(e=>e.Reviews)
+                        .HasForeignKey(p => p.ScheduledTripId);
 
-                entity.Property(e => e.Rating)
-                    .IsRequired()
-                    .HasMaxLength(255);
-                entity.HasOne(e=>e.Trip).WithMany(e=>e.Reviews)
-                        .HasForeignKey(p => p.IdTrip);
+                entity.HasOne(e=>e.Tourist).WithMany(e=>e.Reviews)
+                        .HasForeignKey(p => p.TouristId);
+
+
                 entity.ConfigureByConvention();
             });
 
-            builder.Entity<Schedule>(entity =>
-            {
-                entity.HasNoKey();
+            builder.Entity<ScheduledTrip>(entity =>
+            { 
 
-                entity.ToTable(XploreConsts.DbTablePrefix + "Schedule");
+                entity.ToTable(XploreConsts.DbTablePrefix + "ScheduledTrip"); 
 
-                entity.Property(e => e.IdGuide).HasMaxLength(255);
+                entity.Property(e => e.Id).ValueGeneratedNever();
+                //one-to-many relationship with Trip table
 
-                entity.Property(e => e.IdTrip).HasMaxLength(255);
+                // entity.HasOne<Trip>().WithMany().HasForeignKey(x=>x.TripId).IsRequired(); 
+                
+                entity.HasOne(e=>e.Trip).WithMany(e=>e.ScheduledTrips)
+                        .HasForeignKey(p => p.TripId);
+
                 entity.ConfigureByConvention();
             });
 
             builder.Entity<SubscribeAt>(entity =>
-            {
-                entity.HasNoKey();
-
+            {  
                 entity.ToTable(XploreConsts.DbTablePrefix + "SubscribeAt");
-
-                entity.Property(e => e.IdTourist).HasMaxLength(255);
-
-                entity.Property(e => e.IdTrip).HasMaxLength(255);
+                entity.HasKey(x=>new{x.ScheduledTripId,x.TouristId}); 
                 entity.ConfigureByConvention();
             });
 
@@ -297,14 +293,10 @@ public class XploreDbContext :
             });
 
             builder.Entity<WishList>(entity =>
-            {
-                entity.HasNoKey();
-
+            { 
                 entity.ToTable(XploreConsts.DbTablePrefix + "WishList");
 
-                entity.Property(e => e.IdTourist).HasMaxLength(255);
-
-                entity.Property(e => e.IdTrip).HasMaxLength(255);
+                entity.HasKey(x=>new{x.TripId,x.TouristId}); 
                 entity.ConfigureByConvention();
             });
 

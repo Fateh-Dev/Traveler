@@ -2162,10 +2162,6 @@ namespace Xplore.Migrations
                         .HasColumnType("text")
                         .HasColumnName("ExtraProperties");
 
-                    b.Property<Guid>("IdTrip")
-                        .HasMaxLength(255)
-                        .HasColumnType("uuid");
-
                     b.Property<DateTime?>("LastModificationTime")
                         .HasColumnType("timestamp without time zone")
                         .HasColumnName("LastModificationTime");
@@ -2174,12 +2170,15 @@ namespace Xplore.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("LastModifierId");
 
+                    b.Property<Guid>("TripId")
+                        .HasColumnType("uuid");
+
                     b.Property<string>("Url")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IdTrip");
+                    b.HasIndex("TripId");
 
                     b.ToTable("Xplore.Image", (string)null);
                 });
@@ -2223,10 +2222,6 @@ namespace Xplore.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)");
 
-                    b.Property<Guid>("IdTrip")
-                        .HasMaxLength(255)
-                        .HasColumnType("uuid");
-
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
@@ -2244,13 +2239,16 @@ namespace Xplore.Migrations
                     b.Property<int?>("Order")
                         .HasColumnType("integer");
 
+                    b.Property<Guid>("TripId")
+                        .HasColumnType("uuid");
+
                     b.Property<int>("Type")
                         .HasMaxLength(255)
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IdTrip");
+                    b.HasIndex("TripId");
 
                     b.ToTable("Xplore.Location", (string)null);
                 });
@@ -2289,10 +2287,6 @@ namespace Xplore.Migrations
                         .HasColumnType("text")
                         .HasColumnName("ExtraProperties");
 
-                    b.Property<Guid>("IdTrip")
-                        .HasMaxLength(255)
-                        .HasColumnType("uuid");
-
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
@@ -2307,6 +2301,9 @@ namespace Xplore.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("LastModifierId");
 
+                    b.Property<Guid>("ScheduledTripId")
+                        .HasColumnType("uuid");
+
                     b.Property<decimal?>("Value")
                         .HasPrecision(10, 2)
                         .HasColumnType("numeric(10,2)")
@@ -2314,7 +2311,7 @@ namespace Xplore.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IdTrip");
+                    b.HasIndex("ScheduledTripId");
 
                     b.ToTable("Xplore.Price", (string)null);
                 });
@@ -2350,10 +2347,6 @@ namespace Xplore.Migrations
                         .HasColumnType("text")
                         .HasColumnName("ExtraProperties");
 
-                    b.Property<Guid>("IdReview")
-                        .HasMaxLength(255)
-                        .HasColumnType("uuid");
-
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
@@ -2368,29 +2361,27 @@ namespace Xplore.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("LastModifierId");
 
-                    b.Property<Guid?>("ReviewIdTourist")
+                    b.Property<Guid>("ReviewId")
                         .HasColumnType("uuid");
 
                     b.Property<int>("Type")
                         .HasMaxLength(255)
                         .HasColumnType("integer");
 
-                    b.Property<string>("Value")
+                    b.Property<int>("Value")
                         .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ReviewIdTourist");
+                    b.HasIndex("ReviewId");
 
                     b.ToTable("Xplore.Rating", (string)null);
                 });
 
             modelBuilder.Entity("Xplore.Models.Review", b =>
                 {
-                    b.Property<Guid>("IdTourist")
-                        .ValueGeneratedOnAdd()
-                        .HasMaxLength(255)
+                    b.Property<Guid>("Id")
                         .HasColumnType("uuid");
 
                     b.Property<string>("Comment")
@@ -2411,9 +2402,6 @@ namespace Xplore.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateOnly>("Date")
-                        .HasColumnType("date");
-
                     b.Property<Guid?>("DeleterId")
                         .HasColumnType("uuid")
                         .HasColumnName("DeleterId");
@@ -2425,13 +2413,6 @@ namespace Xplore.Migrations
                     b.Property<string>("ExtraProperties")
                         .HasColumnType("text")
                         .HasColumnName("ExtraProperties");
-
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("IdTrip")
-                        .HasMaxLength(255)
-                        .HasColumnType("uuid");
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
@@ -2448,24 +2429,28 @@ namespace Xplore.Migrations
                         .HasColumnName("LastModifierId");
 
                     b.Property<int>("Rating")
-                        .HasMaxLength(255)
                         .HasColumnType("integer");
 
-                    b.Property<Guid?>("TouristId")
+                    b.Property<Guid>("ScheduledTripId")
                         .HasColumnType("uuid");
 
-                    b.HasKey("IdTourist")
-                        .HasName("Review_pkey");
+                    b.Property<Guid>("TouristId")
+                        .HasColumnType("uuid");
 
-                    b.HasIndex("IdTrip");
+                    b.HasKey("Id");
+
+                    b.HasIndex("ScheduledTripId");
 
                     b.HasIndex("TouristId");
 
                     b.ToTable("Xplore.Review", (string)null);
                 });
 
-            modelBuilder.Entity("Xplore.Models.Schedule", b =>
+            modelBuilder.Entity("Xplore.Models.ScheduledTrip", b =>
                 {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasMaxLength(40)
@@ -2480,8 +2465,8 @@ namespace Xplore.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateOnly?>("Date")
-                        .HasColumnType("date");
+                    b.Property<DateTime?>("Date")
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<Guid?>("DeleterId")
                         .HasColumnType("uuid")
@@ -2491,23 +2476,12 @@ namespace Xplore.Migrations
                         .HasColumnType("timestamp without time zone")
                         .HasColumnName("DeletionTime");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
                     b.Property<string>("ExtraProperties")
                         .HasColumnType("text")
                         .HasColumnName("ExtraProperties");
-
-                    b.Property<Guid?>("GuideId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("IdGuide")
-                        .HasMaxLength(255)
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("IdTrip")
-                        .HasMaxLength(255)
-                        .HasColumnType("uuid");
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
@@ -2523,18 +2497,24 @@ namespace Xplore.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("LastModifierId");
 
-                    b.Property<Guid?>("TripId")
+                    b.Property<Guid>("TripId")
                         .HasColumnType("uuid");
 
-                    b.HasIndex("GuideId");
+                    b.HasKey("Id");
 
                     b.HasIndex("TripId");
 
-                    b.ToTable("Xplore.Schedule", (string)null);
+                    b.ToTable("Xplore.ScheduledTrip", (string)null);
                 });
 
             modelBuilder.Entity("Xplore.Models.SubscribeAt", b =>
                 {
+                    b.Property<Guid>("ScheduledTripId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("TouristId")
+                        .HasColumnType("uuid");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasMaxLength(40)
@@ -2548,9 +2528,6 @@ namespace Xplore.Migrations
                     b.Property<Guid?>("CreatorId")
                         .HasColumnType("uuid")
                         .HasColumnName("CreatorId");
-
-                    b.Property<DateOnly?>("Date")
-                        .HasColumnType("date");
 
                     b.Property<Guid?>("DeleterId")
                         .HasColumnType("uuid")
@@ -2567,14 +2544,6 @@ namespace Xplore.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("IdTourist")
-                        .HasMaxLength(255)
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("IdTrip")
-                        .HasMaxLength(255)
-                        .HasColumnType("uuid");
-
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
@@ -2589,15 +2558,9 @@ namespace Xplore.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("LastModifierId");
 
-                    b.Property<Guid?>("TouristId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid?>("TripId")
-                        .HasColumnType("uuid");
+                    b.HasKey("ScheduledTripId", "TouristId");
 
                     b.HasIndex("TouristId");
-
-                    b.HasIndex("TripId");
 
                     b.ToTable("Xplore.SubscribeAt", (string)null);
                 });
@@ -2764,6 +2727,9 @@ namespace Xplore.Migrations
                         .HasColumnType("character varying(255)")
                         .HasColumnName("GLanguages");
 
+                    b.Property<Guid>("GuideId")
+                        .HasColumnType("uuid");
+
                     b.Property<string>("IdAchived")
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)");
@@ -2822,11 +2788,19 @@ namespace Xplore.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("GuideId");
+
                     b.ToTable("Xplore.Trip", (string)null);
                 });
 
             modelBuilder.Entity("Xplore.Models.WishList", b =>
                 {
+                    b.Property<Guid>("TripId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("TouristId")
+                        .HasColumnType("uuid");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasMaxLength(40)
@@ -2856,14 +2830,6 @@ namespace Xplore.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("IdTourist")
-                        .HasMaxLength(255)
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("IdTrip")
-                        .HasMaxLength(255)
-                        .HasColumnType("uuid");
-
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
@@ -2878,15 +2844,9 @@ namespace Xplore.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("LastModifierId");
 
-                    b.Property<Guid?>("TouristId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid?>("TripId")
-                        .HasColumnType("uuid");
+                    b.HasKey("TripId", "TouristId");
 
                     b.HasIndex("TouristId");
-
-                    b.HasIndex("TripId");
 
                     b.ToTable("Xplore.WishList", (string)null);
                 });
@@ -3172,7 +3132,7 @@ namespace Xplore.Migrations
                 {
                     b.HasOne("Xplore.Models.Trip", "Trip")
                         .WithMany("Images")
-                        .HasForeignKey("IdTrip")
+                        .HasForeignKey("TripId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -3183,7 +3143,7 @@ namespace Xplore.Migrations
                 {
                     b.HasOne("Xplore.Models.Trip", "Trip")
                         .WithMany("Locations")
-                        .HasForeignKey("IdTrip")
+                        .HasForeignKey("TripId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -3192,80 +3152,99 @@ namespace Xplore.Migrations
 
             modelBuilder.Entity("Xplore.Models.Price", b =>
                 {
-                    b.HasOne("Xplore.Models.Trip", "Trip")
+                    b.HasOne("Xplore.Models.ScheduledTrip", "ScheduledTrip")
                         .WithMany("Prices")
-                        .HasForeignKey("IdTrip")
+                        .HasForeignKey("ScheduledTripId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Trip");
+                    b.Navigation("ScheduledTrip");
                 });
 
             modelBuilder.Entity("Xplore.Models.Rating", b =>
                 {
                     b.HasOne("Xplore.Models.Review", "Review")
-                        .WithMany()
-                        .HasForeignKey("ReviewIdTourist");
+                        .WithMany("Ratings")
+                        .HasForeignKey("ReviewId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Review");
                 });
 
             modelBuilder.Entity("Xplore.Models.Review", b =>
                 {
-                    b.HasOne("Xplore.Models.Trip", "Trip")
+                    b.HasOne("Xplore.Models.ScheduledTrip", "ScheduledTrip")
                         .WithMany("Reviews")
-                        .HasForeignKey("IdTrip")
+                        .HasForeignKey("ScheduledTripId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Xplore.Models.Tourist", "Tourist")
-                        .WithMany()
-                        .HasForeignKey("TouristId");
+                        .WithMany("Reviews")
+                        .HasForeignKey("TouristId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ScheduledTrip");
 
                     b.Navigation("Tourist");
-
-                    b.Navigation("Trip");
                 });
 
-            modelBuilder.Entity("Xplore.Models.Schedule", b =>
+            modelBuilder.Entity("Xplore.Models.ScheduledTrip", b =>
                 {
-                    b.HasOne("Xplore.Models.Guide", "Guide")
-                        .WithMany()
-                        .HasForeignKey("GuideId");
-
                     b.HasOne("Xplore.Models.Trip", "Trip")
-                        .WithMany()
-                        .HasForeignKey("TripId");
-
-                    b.Navigation("Guide");
+                        .WithMany("ScheduledTrips")
+                        .HasForeignKey("TripId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Trip");
                 });
 
             modelBuilder.Entity("Xplore.Models.SubscribeAt", b =>
                 {
-                    b.HasOne("Xplore.Models.Tourist", "Tourist")
-                        .WithMany()
-                        .HasForeignKey("TouristId");
+                    b.HasOne("Xplore.Models.ScheduledTrip", "ScheduledTrip")
+                        .WithMany("subscribedTourists")
+                        .HasForeignKey("ScheduledTripId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("Xplore.Models.Trip", "Trip")
-                        .WithMany()
-                        .HasForeignKey("TripId");
+                    b.HasOne("Xplore.Models.Tourist", "Tourist")
+                        .WithMany("SubscribedTrips")
+                        .HasForeignKey("TouristId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ScheduledTrip");
 
                     b.Navigation("Tourist");
+                });
 
-                    b.Navigation("Trip");
+            modelBuilder.Entity("Xplore.Models.Trip", b =>
+                {
+                    b.HasOne("Xplore.Models.Guide", "Guide")
+                        .WithMany("Trips")
+                        .HasForeignKey("GuideId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Guide");
                 });
 
             modelBuilder.Entity("Xplore.Models.WishList", b =>
                 {
                     b.HasOne("Xplore.Models.Tourist", "Tourist")
-                        .WithMany()
-                        .HasForeignKey("TouristId");
+                        .WithMany("WishLists")
+                        .HasForeignKey("TouristId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Xplore.Models.Trip", "Trip")
-                        .WithMany()
-                        .HasForeignKey("TripId");
+                        .WithMany("PotentialClients")
+                        .HasForeignKey("TripId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Tourist");
 
@@ -3358,15 +3337,43 @@ namespace Xplore.Migrations
                     b.Navigation("ConnectionStrings");
                 });
 
+            modelBuilder.Entity("Xplore.Models.Guide", b =>
+                {
+                    b.Navigation("Trips");
+                });
+
+            modelBuilder.Entity("Xplore.Models.Review", b =>
+                {
+                    b.Navigation("Ratings");
+                });
+
+            modelBuilder.Entity("Xplore.Models.ScheduledTrip", b =>
+                {
+                    b.Navigation("Prices");
+
+                    b.Navigation("Reviews");
+
+                    b.Navigation("subscribedTourists");
+                });
+
+            modelBuilder.Entity("Xplore.Models.Tourist", b =>
+                {
+                    b.Navigation("Reviews");
+
+                    b.Navigation("SubscribedTrips");
+
+                    b.Navigation("WishLists");
+                });
+
             modelBuilder.Entity("Xplore.Models.Trip", b =>
                 {
                     b.Navigation("Images");
 
                     b.Navigation("Locations");
 
-                    b.Navigation("Prices");
+                    b.Navigation("PotentialClients");
 
-                    b.Navigation("Reviews");
+                    b.Navigation("ScheduledTrips");
                 });
 #pragma warning restore 612, 618
         }

@@ -88,10 +88,10 @@ namespace Xplore
     IScheduleAppService
     :
     ICrudAppService<//Defines CRUD methods
-        ScheduleDto, //Used to show books
+        ScheduledTripDto, //Used to show books
         Guid, //Primary key of the book entity
         PagedAndSortedResultRequestDto, //Used for paging/sorting
-        CreateUpdateScheduleDto
+        CreateUpdateScheduledTripDto
     > //Used to create/update a book
     { }
 

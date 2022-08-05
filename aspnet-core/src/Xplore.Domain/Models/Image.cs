@@ -10,7 +10,7 @@ namespace Xplore.Models
 
         public string Description { get; set; }
 
-        public Guid IdTrip { get; set; }
+        public Guid TripId { get; set; }
 
         public Trip Trip { get; set; }
     }

@@ -6,6 +6,11 @@ namespace Xplore.Models
 {
     public partial class Tourist : FullAuditedAggregateRoot<Guid>
     {
+        public Tourist(Guid id) :
+            base(id)
+        {
+        }
+
         public string Firstname { get; set; }
 
         public string Lastname { get; set; }
@@ -37,5 +42,11 @@ namespace Xplore.Models
         public string Address { get; set; }
 
         public string Address2 { get; set; }
+
+        public ICollection<Review> Reviews { get; set; }
+
+        public ICollection<WishList> WishLists { get; set; }
+
+        public ICollection<SubscribeAt> SubscribedTrips { get; set; }
     }
 }
