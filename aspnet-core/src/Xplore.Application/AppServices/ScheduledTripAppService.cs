@@ -22,14 +22,36 @@ namespace Xplore.AppServices
     >, //Used to create/update a book
     IScheduleAppService //implement the IBookAppService
     {
-        private readonly IRepository<ScheduledTrip, Guid> _scheduleRepository;
+        private readonly IRepository<ScheduledTrip, Guid>
+            _scheduledTripRepository;
 
         public ScheduledTripAppService(
             IRepository<ScheduledTrip, Guid> repository
         ) :
             base(repository)
         {
-            _scheduleRepository = repository;
+            _scheduledTripRepository = repository;
+        }
+
+        [HttpGet("api/app/getScheduledTripWithDetails/{id}")]
+        public async Task<ScheduledTripDto>
+        GetscheduledtripWithDetailsAsync(Guid id)
+        {
+            //Get a IQueryable<T> by including sub collections
+            var queryable =
+                await _scheduledTripRepository
+                    .WithDetailsAsync(z => z.Prices,
+                    x => x.Reviews,
+                    d => d.subscribedTourists,
+                    f => f.Trip);
+
+            //Apply additional LINQ extension methods
+            var query = queryable.Where(x => x.Id == id);
+
+            //Execute the query and get the result
+            var res = await AsyncExecuter.FirstOrDefaultAsync(query);
+
+            return ObjectMapper.Map<ScheduledTrip, ScheduledTripDto>(res);
         }
 
         // [HttpGet("getTripSchedule")]
