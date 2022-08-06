@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-trip-item',
@@ -6,6 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./trip-item.component.scss']
 })
 export class TripItemComponent implements OnInit {
+  @Input()
+  title
+  @Input()
+  picUrl
 
   constructor() { }
 

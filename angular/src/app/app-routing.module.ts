@@ -5,6 +5,7 @@ import { DestinationsComponent } from './home/destinations/destinations.componen
 import { GuidesComponent } from './home/guides/guides.component';
 import { HelpComponent } from './home/help/help.component';
 import { HomeComponent } from './home/home.component';
+import { TripDetailsComponent } from './home/trips/trip-details/trip-details.component';
 import { TripsComponent } from './home/trips/trips.component';
 import { WishlistComponent } from './home/wishlist/wishlist.component';
 
@@ -20,6 +21,7 @@ const routes: Routes = [
     children: [
       { path: '', component: HomeComponent },
       { path: 'trips', component: TripsComponent },
+      { path: 'trips/trip-details/:id', component: TripDetailsComponent },
       { path: 'destinations', component: DestinationsComponent },
       { path: 'guides', component: GuidesComponent },
       { path: 'wishlist', component: WishlistComponent },
@@ -27,22 +29,22 @@ const routes: Routes = [
         path: 'account',
         loadChildren: () => import('@abp/ng.account').then(m => m.AccountModule.forLazy()),
       },
-    ]
-  },
 
-  {
-    path: 'identity',
-    loadChildren: () => import('@abp/ng.identity').then(m => m.IdentityModule.forLazy()),
-  },
-  {
-    path: 'tenant-management',
-    loadChildren: () =>
-      import('@abp/ng.tenant-management').then(m => m.TenantManagementModule.forLazy()),
-  },
-  {
-    path: 'setting-management',
-    loadChildren: () =>
-      import('@abp/ng.setting-management').then(m => m.SettingManagementModule.forLazy()),
+      {
+        path: 'identity',
+        loadChildren: () => import('@abp/ng.identity').then(m => m.IdentityModule.forLazy()),
+      },
+      {
+        path: 'tenant-management',
+        loadChildren: () =>
+          import('@abp/ng.tenant-management').then(m => m.TenantManagementModule.forLazy()),
+      },
+      {
+        path: 'setting-management',
+        loadChildren: () =>
+          import('@abp/ng.setting-management').then(m => m.SettingManagementModule.forLazy()),
+      },
+    ]
   },
 ];
 

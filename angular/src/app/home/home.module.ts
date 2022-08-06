@@ -8,13 +8,22 @@ import { GuidesComponent } from './guides/guides.component';
 import { HelpComponent } from './help/help.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { TripItemComponent } from './trips/trip-item/trip-item.component';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TripDetailsComponent } from './trips/trip-details/trip-details.component';
 
 @NgModule({
-  declarations: [HomeComponent, TripsComponent, DestinationsComponent, GuidesComponent, HelpComponent, WishlistComponent, TripItemComponent],
+  declarations: [
+    HomeComponent,
+    TripsComponent,
+    DestinationsComponent,
+    GuidesComponent,
+    HelpComponent,
+    WishlistComponent,
+    TripItemComponent,
+    TripDetailsComponent
+  ],
   imports: [
-    BrowserModule,
-    BrowserAnimationsModule, SharedModule, HomeRoutingModule],
+    SharedModule,
+    HomeRoutingModule
+  ],
 })
 export class HomeModule { }

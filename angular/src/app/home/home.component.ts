@@ -11,7 +11,7 @@ export class HomeComponent {
   get hasLoggedIn(): boolean {
     return this.oAuthService.hasValidAccessToken();
   }
-
+  items = [{ title: 'Ziama Mansouriah', picUrl: 'bnr-img-2.png' }, { title: 'Beni Bel3id', picUrl: 'bnr-img-3.png' }, { title: 'El machaki', picUrl: 'bnr-img-1.png' }, { title: 'Visit the Telemcen', picUrl: 'bnr-img-2.png' }, { title: 'Visit to Oued Zhour', picUrl: 'bnr-img-1.png' }]
   constructor(private oAuthService: OAuthService, private authService: AuthService) {}
 
   login() {

@@ -12,12 +12,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HomeModule } from './home/home.module';
 import { APP_ROUTE_PROVIDER } from './route.provider';
 
 @NgModule({
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+
     AppRoutingModule,
     CoreModule.forRoot({
       environment,
@@ -29,6 +31,8 @@ import { APP_ROUTE_PROVIDER } from './route.provider';
     TenantManagementConfigModule.forRoot(),
     SettingManagementConfigModule.forRoot(),
     ThemeBasicModule.forRoot(),
+    HomeModule
+    
   ],
   declarations: [AppComponent],
   providers: [APP_ROUTE_PROVIDER],

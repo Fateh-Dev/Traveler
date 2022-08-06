@@ -5,21 +5,28 @@ import { ThemeSharedModule } from '@abp/ng.theme.shared';
 import { NgxValidateCoreModule } from '@ngx-validate/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [],
   imports: [
     CoreModule,
+    BrowserModule,
+    CommonModule,
+    RouterModule,
     ThemeSharedModule,
-    NgbDropdownModule, CommonModule,
-    NgxValidateCoreModule, BrowserModule
+    NgbDropdownModule,
+    NgxValidateCoreModule
   ],
   exports: [
     CoreModule,
-    ThemeSharedModule, CommonModule,
+    ThemeSharedModule,
+    CommonModule,
+    RouterModule,
     NgbDropdownModule,
-    NgxValidateCoreModule, BrowserModule
+    NgxValidateCoreModule,
+    BrowserModule
   ],
   providers: []
 })
-export class SharedModule {}
+export class SharedModule { }
