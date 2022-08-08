@@ -7,10 +7,12 @@
     <div class="h-screen relative bg-green-500 shadow-lg w-screen px-40 ">ddd</div>
 </div> -->
 <div class="flex flex-col  ">
-        <header (scroll)="onWindowScroll()" class=" tester flex flex-row  fixed w-screen top-0 z-50 transition-all duration-200 ease-linear
-        text-gray-800 text-center px-20 h-16">
-                <span class="my-auto"><img class="inline-block h-8 cursor-pointer" src="../assets/logo.png" alt=""
-                                [routerLink]="''" /></span><span class="my-auto m-2 flex-1">
+        <header (scroll)="onWindowScroll()" class="headerToolbar   flex flex-row  fixed w-screen top-0 z-50 
+        text-gray-800 text-center px-20 ">
+                <span class="my-auto">
+                        <img class="  inline-block h-8 cursor-pointer" src="../assets/logo.png" alt=""
+                                [routerLink]="''" /></span>
+                <span class="my-auto m-2 flex-1">
                         <span class="cursor-pointer m-1 mx-3 font-semibold hover:text-myPrimaryColor"
                                 [routerLink]="'/wishlist'" [routerLinkActive]="'text-myPrimaryColor'"><i
                                         class="fa-regular fa-heart text-xl p-1"></i>Wishlist</span>
@@ -44,7 +46,7 @@
                 <span class="cursor-pointer m-auto mx-2 font-semibold hover:text-myPrimaryColor">Fateh</span>
 
         </header>
-        <div class="pt-8 bg-gray-100">
+        <div class="  bg-gray-100">
                 <router-outlet></router-outlet>
 
         </div>

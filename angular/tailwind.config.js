@@ -10,7 +10,8 @@ module.exports = {
       colors: {
         'light-blue': colors.lightBlue,
         cyan: colors.cyan,
-        myPrimaryColor: '#2cc693' 
+        // myPrimaryColor: '#2cc693' ,
+        myPrimaryColor: '#3f51b5' 
 
       },
     },

@@ -1,43 +1,51 @@
 <main class="flex-1 bg-gray-100">
-    <div class="bg-gray-100 h-2/3 px-60">
-        <img src="../../assets/bnr-img-2.png" class="w-5/6" />
+    <div class="bg-gray-100 h-2/3 overflow-hidden">
+        <img src="../../assets/images/home.jpg" class="w-full  h-2/3 " />
     </div>
-    <div class="px-60 relative -top-7 h-1">
-        <div class="border-4 h-16 rounded-full border-myPrimaryColor bg-white flex flex-row p-1 px-2">
-            <i class="fa fa-search text-4xl text-green-500"></i>
-            <span class="flex-1">
-                <div class="mb-3 pt-0">
-                    e.g: Ziama Mansouriah ..
-                    <!-- <input type="text" placeholder="Placeholder"
-                            class="px-3 py-3 placeholder-slate-300 text-slate-600 relative rounded text-sm border-0   outline-none  focus:border-0 active:border-0 hover:border-0   w-full" /> -->
+    <div class="px-60 relative -top-20 h-1 ">
+        <div class="border-2 h-16 rounded-full border-myPrimaryColor bg-white flex flex-row p-1 px-2 gap-3">
+            <i class="fa fa-search text-2xl text-green-500 m-auto"></i>
+            <span class="flex-1 m-auto ">
+                <div class="m-auto pt-0">
+                    <input type="text" placeholder="e.g: Ziama Mansouriah .."
+                        class="border-white  focus:ring-0 w-full" />
                 </div>
             </span>
             <span class="bg-myPrimaryColor cursor-pointer  
                                 font-semibold 
-                                py-1  px-4 rounded-full  text-black border-myPrimaryColor
+                                py-2  px-4 rounded-full  text-black border-myPrimaryColor
                                 border-2   border-opacity-0  
                                 hover:border-opacity-100 hover:text-myPrimaryColor
-                              hover:bg-white">Search</span>
+                              hover:bg-white m-auto">Search</span>
         </div>
     </div>
-    <div class=" bg-white  px-20 flex flex-row  py-20 gap-3">
+    <div class="bg-white px-20 relative py-4  ">
+        <span class="font-bold text-3xl"> Trips we think you would enjoy</span>
+    </div>
+    <div class=" bg-white  px-20 flex flex-row  py-1 gap-3">
         <div *ngFor="let item of items" [routerLink]="'/trips/trip-details/44'"
-            class="bg-white rounded-xl flex-1 border-2  border-myPrimaryColor cursor-pointer hover:shadow-xl">
+            class="bg-white rounded-md flex-1 border overflow-hidden border-myPrimaryColor cursor-pointer hover:shadow-lg">
             <app-trip-item [title]="item.title" [picUrl]="item.picUrl"></app-trip-item>
         </div>
     </div>
-    <section *ngIf="hasLoggedIn" class="h-72    px-20 flex flex-row py-3 gap-3">
-        <div class="bg-white rounded-xl border flex-1 overflow-hidden"><img class="inline-block w-full h-full"
-                src="../assets/bnr-img-3.png" alt="" /></div>
-        <div class="bg-white rounded-xl border flex-1 overflow-hidden"><img class="inline-block w-full h-full"
-                src="../assets/bnr-img-3.png" alt="" /></div>
-        <div class="bg-white rounded-xl border flex-1 overflow-hidden"><img class="inline-block w-full h-full"
-                src="../assets/bnr-img-3.png" alt="" /></div>
-        <div class="bg-white rounded-xl border flex-1 overflow-hidden"><img class="inline-block w-full h-full"
-                src="../assets/bnr-img-3.png" alt="" /></div>
-        <div class="bg-white rounded-xl border flex-1 overflow-hidden"><img class="inline-block w-full h-full"
-                src="../assets/bnr-img-3.png" alt="" /></div>
-        <div class="bg-white rounded-xl border flex-1 overflow-hidden"><img class="inline-block w-full h-full"
-                src="../assets/bnr-img-3.png" alt="" /></div>
+    <div class=" px-20 relative py-4  ">
+        <span class="font-bold text-3xl"> Places we think you would enjoy</span>
+    </div>
+    <section class="h-72 px-20 flex flex-row py-1 gap-2">
+        <div *ngFor="let item of ['11.jpg','12.jpg','13.jpg','14.jpg','15.jpg','16.jpg']"
+            class="bg-white rounded-md border flex-1 overflow-hidden cursor-pointer">
+            <img class="inline-block w-full h-full scale-100 hover:scale-110 ease-in duration-500"
+                [src]="'../assets/images/'+item" alt="" />
+        </div>
     </section>
+    <section class="h-40 px-20 flex flex-row py-1 gap-2">
+        <div *ngFor="let item of ['1.jpg','2.jpg','3.jpg','4.jpg','5.jpg','6.jpg']"
+            class="bg-white rounded-md border flex-1 overflow-hidden cursor-pointer">
+            <img class="inline-block w-full h-full scale-100 hover:scale-110 ease-in duration-500"
+                [src]="'../assets/images/'+item" alt="" />
+            <!-- <div class="h-40 relative -top-40  ">
+            </div> -->
+        </div>
+    </section>
+    <section class="bg-myPrimaryColor/50 h-96"></section><section class="bg-slate-100/50 h-96"></section>
 </main>
