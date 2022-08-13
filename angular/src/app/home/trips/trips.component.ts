@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TripService } from '@proxy/app-services';
+import { TripMiniDto } from '@proxy/models';
 
 @Component({
   selector: 'app-trips',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TripsComponent implements OnInit {
 
-  constructor() { }
+  loading = false;
+  items: TripMiniDto[] = [];
+  constructor(
+    public tripService: TripService) { }
 
   ngOnInit(): void {
+    this.loading = true
+    this.tripService.getHomeList().subscribe(
+      e => {
+        this.items = e;
+        this.loading = false
+      })
   }
 
 }

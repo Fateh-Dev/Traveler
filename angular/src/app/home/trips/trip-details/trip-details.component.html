@@ -1,23 +1,26 @@
-<div class="px-20 pt-16">
-    <section class="h-96 bg-slate-300">
+<!-- <div class="px-20 pt-16">
+  <section class="h-96 bg-slate-300">
+  
+  </section>
+  <section class="flex flex-row h-96">
+    <div class="basis-3/4 bg-green-300">
+      <span>
+        <p>
+          Spend a day sailing on the calm waters of the Mediterranean Sea as you head toward Suluada
+          Island. Embrace the serenity of the surroundings as you swim, snorkel, and admire the
+          views.
+        </p>
+        <h2>About Activity</h2>
+        <h2>Experiences</h2>
+        <h2>About Activity</h2>
+        <h2>Full description</h2>
+        <h2>Includes</h2>
+        <h2>Important information</h2>
+      </span>
+    </div>
+    <div class="basis-1/4 bg-gray-300"></div>
+  </section>
+</div> -->
 
-    </section>
-    <section class="flex flex-row h-96">
-        <div class="basis-3/4 bg-green-300">
-            <span>
-                <p>Spend a day sailing on the calm waters of the Mediterranean Sea as you head toward Suluada Island.
-                    Embrace the serenity
-                    of the surroundings as you swim, snorkel, and admire the views.</p>
-                <h2>About Activity</h2>
-                <h2>Experiences</h2>
-                <h2>About Activity</h2>
-                <h2>Full description</h2>
-                <h2>Includes</h2>
-                <h2>Important information</h2>
-            </span>
-        </div>
-        <div class="basis-1/4 bg-gray-300">
-
-        </div>
-    </section>
-</div>
+<img *ngIf="tripItem" [src]="'data:image/png;base64,'+tripItem.thumbnailImage" />
+<pre> {{ tripItem | json }}</pre>

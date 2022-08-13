@@ -3,7 +3,8 @@ import { Component, HostListener } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 
 import { Directive, ElementRef } from '@angular/core';
-import { TripService } from './trip.service';
+import { Trip, TripDto, TripMiniDto } from '@proxy/models';
+import { TripService } from '@proxy/app-services/trip.service';
 
 @Directive({ selector: 'img' })
 export class LazyImgDirective {
@@ -24,40 +25,25 @@ export class HomeComponent {
   get hasLoggedIn(): boolean {
     return this.oAuthService.hasValidAccessToken();
   }
-  items = [
-    { title: 'Ziama Mansouriah', picUrl: 'images/9.jpg' },
-    { title: 'Beni Bel3id', picUrl: 'images/10.jpg' },
-    { title: 'El machaki', picUrl: 'images/6.jpg' },
-    { title: 'Visit the Telemcen', picUrl: 'images/8.jpg' },
-    { title: 'Visit Ghardaia', picUrl: 'images/7.jpg' }
-  ]
-  constructor(private oAuthService: OAuthService, private authService: AuthService, public tripService: TripService) { }
+  loading = false;
+  items: TripMiniDto[] = [];
+  constructor(
+    private oAuthService: OAuthService,
+    private authService: AuthService,
+    public tripService: TripService) {
+
+  }
 
   login() {
     this.authService.navigateToLogin();
   }
-  //  @HostListener('window:scroll', ['$event'])
-  // onWindowScroll() {
-  //   let element = document.querySelector('.tester') as HTMLElement;
-  //   // console.log("client Heiehgt:", element.clientHeight)
-  //   // console.log("window Offset:", window.pageYOffset)
-  //   //TODO  Dynamic Opacity
-  //   if (window.pageYOffset > element?.clientHeight) {
-  //     element.classList.remove('bg-white/0');
-  //     element.classList.add('bg-white/100');
-  //     element.classList.add('shadow-md');
-  //   }
-  //   else {
-  //     // element.classList.remove('bg-white');
-  //     element.classList.remove('bg-white/100');
-  //     element.classList.add('bg-white/0');
 
-  //     element.classList.remove('shadow-md');
-  //   }
-  // }
   ngOnInit() {
-    this.tripService.getTrips().subscribe(
-      e => console.log((e as any).items)
-    )
+    this.loading = true
+    this.tripService.getHomeList().subscribe(
+      e => {
+        this.items = e;
+        this.loading = false
+      })
   }
 }

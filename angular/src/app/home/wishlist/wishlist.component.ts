@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatAccordion } from '@angular/material/expansion';
+import { difficultyOptions, durationUnitOptions } from '@proxy';
+import { TripService } from '@proxy/app-services';
+import { TripMiniDto } from '@proxy/models';
 
 @Component({
   selector: 'app-wishlist',
@@ -7,9 +11,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WishlistComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild(MatAccordion) accordion: MatAccordion;
+  loading = false;
+  items: TripMiniDto[] = [];
+  constructor( 
+    public tripService: TripService) {
 
-  ngOnInit(): void {
   }
-
+  ngOnInit() {
+    this.loading = true
+    this.tripService.getHomeList().subscribe(
+      e => {
+        this.items = e;
+        this.loading = false
+      })
+  }
 }

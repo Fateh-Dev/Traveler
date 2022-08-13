@@ -1,58 +1,48 @@
 <section class="h-16"></section>
 <div class="flex flex-row gap-2 px-20">
-    <div class="basis-1/4 py-2  flex flex-col ">
-        <div class="w-full p-2 border-t flex flex-row cursor-pointer hover:bg-slate-200">
-            <span>Duration</span> <span class="flex-1"></span>
-            <i class="fa-solid fa-angle-right m-auto px-2"></i>
-        </div>
-        <div class="w-full p-2 border-t flex flex-row cursor-pointer hover:bg-slate-200">
-            <span>Rating</span> <span class="flex-1"></span>
-            <i class="fa-solid fa-angle-right m-auto px-2"></i>
-        </div>
-        <div class="w-full p-2 border-t flex flex-row cursor-pointer hover:bg-slate-200">
-            <span>Difficulty</span> <span class="flex-1"></span>
-            <i class="fa-solid fa-angle-right m-auto px-2"></i>
-        </div>
-        <div class="w-full p-2 border-t flex flex-row cursor-pointer hover:bg-slate-200">
-            <span>Rating</span> <span class="flex-1"></span>
-            <i class="fa-solid fa-angle-right m-auto px-2"></i>
-        </div>
-        <div class="w-full p-2 border-y flex flex-row cursor-pointer hover:bg-slate-200">
-            <span>Difficulty</span> <span class="flex-1"></span>
-            <i class="fa-solid fa-angle-right m-auto px-2"></i>
-        </div>
+  <div class="basis-1/5 py-2 flex flex-col">
+    <mat-accordion class="example-headers-align" multi>
+      <mat-expansion-panel class="bg-white/0 shadow-none border m-1">
+        <mat-expansion-panel-header class="h-9">
+          <mat-panel-title class="text-emerald-700"> Duration</mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <span class="example-list-section">
+          <ul>
+            <li class=" " *ngFor="let i of [1, 2, 3, 4]">
+              <mat-checkbox class="text-emerald-700"> 2 - 4 Hours </mat-checkbox>
+            </li>
+          </ul>
+        </span>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel class="bg-white/0 shadow-none border m-1">
+        <mat-expansion-panel-header class="h-9">
+          <mat-panel-title class="text-emerald-700"> Rating</mat-panel-title>
+        </mat-expansion-panel-header>
+        <span class="example-list-section">
+          <ul>
+            <li class=" " *ngFor="let i of [1, 2, 3, 4]">
+              <mat-checkbox class="text-emerald-700"> 2 - 4 Hours </mat-checkbox>
+            </li>
+          </ul>
+        </span>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel class="bg-white/0 shadow-none border m-1">
+        <mat-expansion-panel-header class="h-9">
+          <mat-panel-title class="text-emerald-700"> Difficulty</mat-panel-title>
+        </mat-expansion-panel-header>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+  <div class="basis-4/5 flex flex-row flex-wrap gap-2 bg-slate-100 py-2 pt-10">
+    <div
+      class="bg-slate-200 basis-1/4 flex-1 rounded-md cursor-pointer border hover:shadow-lg"
+      *ngFor="let i of [1, 2, 3, 4, 5, 7, 3, 4, 5, 7, 3, 4, 5]"
+      [routerLink]="'/guides/guide-details/fefe'"
+    >
+      <app-guide-item></app-guide-item>
     </div>
-    <div class="basis-3/4 flex flex-col gap-3 bg-slate-100  py-2  pt-10">
-        <div class="bg-white rounded-md border flex flex-row overflow-hidden  cursor-pointer hover:shadow-lg"
-            [routerLink]="'/trips/trip-details/44'" *ngFor="let i of [1,2,3,4]">
-            <span class="inline-block  w-60 h-40 overflow-hidden">
-                <img class="inline-block  w-60 h-40 border-r m-auto scale-100 hover:scale-110 ease-in duration-500"
-                    [src]="'../../../assets/images/1'+i+'.jpg'" alt="" />
-            </span>
-            <span class=" flex-1 flex flex-col gap-1  p-3  ">
-                <span class="font-bold text-lg">From Merzouga: Overnight Camel Trek over Erg Chebbi Dunes</span>
-                <span class="font-semibold text-sm">{{i}} Hours</span>
-            </span>
-            <span class="flex flex-col gap-1  p-2 px-4 my-auto">
-                <span class="flex flex-row gap-1 ">
-                    <i class="fa-solid fa-star text-yellow-200"></i>
-                    <i class="fa-solid fa-star text-yellow-200"></i>
-                    <i class="fa-solid fa-star text-yellow-200"></i>
-                    <i class="fa-solid fa-star text-yellow-200"></i>
-                    <i class="fa-regular fa-star text-yellow-200"></i>
-                </span>
-                <span class="text-xs text-end"> <b>4 </b>(120 Reviews)</span>
-                <span class="font-semibold">From</span>
-                <span class="font-bold text-xl ">1{{i}}00 Da </span>
-                <span class="text-xs text-end">Per Person </span>
-                <span class="flex-1"> </span>
-            </span>
-        </div>
-        <div class="flex text-center">
-            <span
-                class="bg-myPrimaryColor p-2 rounded-full border-2 border-myPrimaryColor mx-auto px-4 cursor-pointer hover:bg-white ">
-                Load More Trips
-            </span>
-        </div>
-    </div>
+  </div>
 </div>

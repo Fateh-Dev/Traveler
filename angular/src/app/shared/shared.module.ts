@@ -6,6 +6,8 @@ import { NgxValidateCoreModule } from '@ngx-validate/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { MatSliderModule } from '@angular/material/slider';
+import { MaterialModule } from './material.module';
 
 @NgModule({
   declarations: [],
@@ -16,7 +18,8 @@ import { RouterModule } from '@angular/router';
     RouterModule,
     ThemeSharedModule,
     NgbDropdownModule,
-    NgxValidateCoreModule
+    NgxValidateCoreModule,
+    MaterialModule,
   ],
   exports: [
     CoreModule,
@@ -25,7 +28,8 @@ import { RouterModule } from '@angular/router';
     RouterModule,
     NgbDropdownModule,
     NgxValidateCoreModule,
-    BrowserModule
+    BrowserModule,
+    MaterialModule
   ],
   providers: []
 })

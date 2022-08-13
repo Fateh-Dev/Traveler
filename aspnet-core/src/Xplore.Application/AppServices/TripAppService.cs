@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.Application.Dtos;
@@ -46,8 +48,37 @@ namespace Xplore.AppServices
 
             //Execute the query and get the result
             var trip = await AsyncExecuter.FirstOrDefaultAsync(query);
+            TripDto TripDtoItem = ObjectMapper.Map<Trip, TripDto>(trip);
 
-            return ObjectMapper.Map<Trip, TripDto>(trip);
+            string someUrl = "MyStaticFiles/";
+
+            using (var webClient = new WebClient())
+            {
+                TripDtoItem.ThumbnailImage =
+                    webClient.DownloadData(someUrl + TripDtoItem.ThumbnailPic);
+            }
+
+            return TripDtoItem;
+        }
+
+        [HttpGet("api/app/GetHomeListAsync")]
+        public async Task<List<TripMiniDto>> GetHomeListAsync()
+        {
+            string someUrl = "MyStaticFiles/";
+            var trips = await _tripRepository.GetListAsync();
+            var MinTrips = new List<TripMiniDto>();
+
+            foreach (var item in trips)
+            {
+                var el = ObjectMapper.Map<Trip, TripMiniDto>(item);
+                using (var webClient = new WebClient())
+                {
+                    el.ThumbnailImage =
+                        webClient.DownloadData(someUrl + el.ThumbnailPic);
+                }
+                MinTrips.Add (el);
+            }
+            return MinTrips;
         }
     }
 }

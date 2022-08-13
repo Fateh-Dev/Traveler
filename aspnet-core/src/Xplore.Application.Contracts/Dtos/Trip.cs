@@ -11,6 +11,8 @@ namespace Xplore.Models
 
         public string Description { get; set; }
 
+        public string ThumbnailPic { get; set; }
+
         public double Rating { get; set; }
 
         public int Duration { get; set; }
@@ -49,6 +51,8 @@ namespace Xplore.Models
 
         public GuideDto Guide { get; set; }
 
+        public Byte[] ThumbnailImage { get; set; }
+
         public ICollection<LocationDto> Locations { get; set; }
 
         public ICollection<ImageDto> Images { get; set; }
@@ -75,11 +79,13 @@ namespace Xplore.Models
 
         public string Glanguages { get; set; }
 
+        public string ThumbnailPic { get; set; }
+
         public Difficulty Difficulty { get; set; }
 
         public double? TripSize { get; set; }
 
-        public Guid? GuideId { get; set; } 
+        public Guid? GuideId { get; set; }
 
         public DurationUnit DurationUnit { get; set; }
 
@@ -106,5 +112,32 @@ namespace Xplore.Models
         public string IncludedStuff { get; set; }
 
         public string Loging { get; set; }
+    }
+
+    public partial class TripMiniDto : AuditedEntityDto<Guid>
+    {
+        public string Title { get; set; }
+        public string ThumbnailPic { get; set; }
+        public string Description { get; set; }
+
+        public double Rating { get; set; }
+
+        public int Duration { get; set; }
+
+        public double? TripSize { get; set; }
+
+        public DurationUnit DurationUnit { get; set; }
+
+        public Difficulty Difficulty { get; set; }
+
+        public DateTime? Date { get; set; }
+
+        public DateTime? StartingTime { get; set; }
+
+        public string Activities { get; set; }
+
+        public string Loging { get; set; }
+
+        public Byte[] ThumbnailImage { get; set; }
     }
 }

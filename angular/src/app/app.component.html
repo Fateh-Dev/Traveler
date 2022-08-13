@@ -1,53 +1,97 @@
 <abp-loader-bar></abp-loader-bar>
 <!-- <abp-dynamic-layout></abp-dynamic-layout> -->
 
-<!-- <div class="h-16 sticky top-0 z-50 bg-blue-900 shadow-md w-screen px-40 ">ddd</div>
-<div class="absolute top-0 z-0 pt-16">
-    <div class="h-screen relative bg-gray-100 shadow-lg w-screen px-40 ">ddd</div>
-    <div class="h-screen relative bg-green-500 shadow-lg w-screen px-40 ">ddd</div>
-</div> -->
-<div class="flex flex-col  ">
-        <header (scroll)="onWindowScroll()" class="headerToolbar   flex flex-row  fixed w-screen top-0 z-50 
-        text-gray-800 text-center px-20 ">
-                <span class="my-auto">
-                        <img class="  inline-block h-8 cursor-pointer" src="../assets/logo.png" alt=""
-                                [routerLink]="''" /></span>
-                <span class="my-auto m-2 flex-1">
-                        <span class="cursor-pointer m-1 mx-3 font-semibold hover:text-myPrimaryColor"
-                                [routerLink]="'/wishlist'" [routerLinkActive]="'text-myPrimaryColor'"><i
-                                        class="fa-regular fa-heart text-xl p-1"></i>Wishlist</span>
-                        <span class="cursor-pointer m-1 mx-3 font-semibold hover:text-myPrimaryColor"
-                                [routerLink]="'/guides'" [routerLinkActive]="'text-myPrimaryColor'"><i
-                                        class="fa-solid fa-user-tie text-xl p-1"></i>Guides</span>
-                        <span class="cursor-pointer m-1 mx-3 font-semibold hover:text-myPrimaryColor"
-                                [routerLink]="'/destinations'" [routerLinkActive]="'text-myPrimaryColor'"><i
-                                        class="fa-solid fa-location-dot text-xl p-1"></i>Destinations</span>
-                        <span class="cursor-pointer m-1 mx-3 font-semibold hover:text-myPrimaryColor"
-                                [routerLink]="'/trips'" [routerLinkActive]="'text-myPrimaryColor'"><i
-                                        class="fa-solid fa-person-hiking text-xl p-1"></i>Trips</span>
-                        <!-- <span class="cursor-pointer m-1 mx-3 font-semibold">About</span> -->
-                        <span class="cursor-pointer m-1 mx-3 font-semibold hover:text-myPrimaryColor"
-                                [routerLink]="'/help'" [routerLinkActive]="'text-myPrimaryColor'"><i
-                                        class="fa-solid fa-circle-info text-xl p-1"></i>Help</span>
-                </span>
-                <span class="bg-myPrimaryColor cursor-pointer  
-                        font-semibold 
-                        rounded-full  text-black border-myPrimaryColor
-                        border-2   border-opacity-0  
-                        hover:border-opacity-100 hover:text-myPrimaryColor
-                        hover:bg-white animate-pulse text-lg
-                        m-2 mx-3 py-1.5 px-4 " [routerLink]="'/account'">
-                        Sign up
-                </span>
-
-                <img class="inline-block h-10 w-10 m-auto rounded-full ring-2 ring-myPrimaryColor cursor-pointer"
-                        src="https://cdn-icons-png.flaticon.com/512/147/147144.png" alt="" />
-
-                <span class="cursor-pointer m-auto mx-2 font-semibold hover:text-myPrimaryColor">Fateh</span>
-
-        </header>
-        <div class="  bg-gray-100">
-                <router-outlet></router-outlet>
-
-        </div>
+<div class="flex flex-col">
+  <header
+    (scroll)="onWindowScroll()"
+    class="headerToolbar flex flex-row fixed w-screen top-0 z-50 text-gray-800 text-center py-2 px-20"
+  >
+    <span>
+      <img
+        class="inline-block h-8 cursor-pointer"
+        src="../assets/logo.png"
+        alt=""
+        [routerLink]="''"
+    /></span>
+    <span class="my-auto m-2 flex">
+      <button
+        mat-flat-button
+        class="bg-white/0"
+        [routerLink]="'/wishlist'"
+        [routerLinkActive]="'text-myPrimaryColor'"
+      >
+        <span class="material-symbols-outlined p-1 py-2"> favorite </span>
+        <span>Wishlist</span>
+      </button>
+      <button
+        mat-flat-button
+        class="bg-white/0"
+        [routerLink]="'/guides'"
+        [routerLinkActive]="'text-myPrimaryColor'"
+      >
+        <span class="material-symbols-outlined p-1 py-2"> badge </span>
+        <span>Guides</span>
+      </button>
+      <button
+        mat-flat-button
+        class="bg-white/0"
+        [routerLink]="'/destinations'"
+        [routerLinkActive]="'text-myPrimaryColor'"
+      >
+        <span class="material-symbols-outlined p-1 py-2"> pin_drop </span>
+        <span>Destinations</span>
+      </button>
+      <button
+        mat-flat-button
+        class="bg-white/0"
+        [routerLink]="'/trips'"
+        [routerLinkActive]="'text-myPrimaryColor'"
+      >
+        <span class="material-symbols-outlined p-1 py-2"> card_travel </span>
+        <span>Trips</span>
+      </button>
+      <button
+        mat-flat-button
+        class="bg-white/0"
+        [routerLink]="'/help'"
+        [routerLinkActive]="'text-myPrimaryColor'"
+      >
+        <span class="material-symbols-outlined p-1 py-2"> info </span>
+        <span>Help</span>
+      </button>
+    </span>
+    <span class="my-auto m-2 flex-1"></span>
+    <span class="my-auto m-2 flex">
+      <button
+        mat-flat-button
+        [routerLink]="'/account'"
+        color="primary"
+        class="bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 shadow-md"
+      >
+        Sign Up
+      </button>
+    </span>
+    <!-- <span
+      ><img
+        [matMenuTriggerFor]="menu"
+        class="inline-block h-10 w-10 m-auto rounded-full ring-2 ring-myPrimaryColor cursor-pointer shadow"
+        src="https://cdn-icons-png.flaticon.com/512/147/147144.png"
+        alt=""
+      />
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>account_circle</mat-icon>
+          <span>Profile</span>
+        </button>
+        <button mat-menu-item (click)="logOut()">
+          <mat-icon>logout</mat-icon>
+          <span>Sign Out</span>
+        </button>
+      </mat-menu>
+      <span class="m-auto mx-2 font-semibold">Fateh</span>
+    </span> -->
+  </header>
+  <div class="bg-gray-100">
+    <router-outlet></router-outlet>
+  </div>
 </div>

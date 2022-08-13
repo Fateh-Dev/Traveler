@@ -21,6 +21,9 @@
       "dom"
     ],
     "paths": {
+      "@abpdz/ng.theme.basic": [
+        "src/abp/theme.basic/public-api.ts"
+      ],
       "@proxy": [
         "src/app/proxy/index.ts"
       ],

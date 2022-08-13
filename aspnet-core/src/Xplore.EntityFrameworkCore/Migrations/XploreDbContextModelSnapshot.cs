@@ -2779,6 +2779,9 @@ namespace Xplore.Migrations
                     b.Property<DateTime?>("StartingTime")
                         .HasColumnType("timestamp without time zone");
 
+                    b.Property<string>("ThumbnailPic")
+                        .HasColumnType("text");
+
                     b.Property<string>("Title")
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)");

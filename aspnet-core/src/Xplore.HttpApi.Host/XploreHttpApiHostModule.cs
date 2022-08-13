@@ -29,6 +29,7 @@ using Volo.Abp.Modularity;
 using Volo.Abp.Swashbuckle;
 using Volo.Abp.UI.Navigation.Urls;
 using Volo.Abp.VirtualFileSystem;
+using Microsoft.Extensions.FileProviders;
 
 namespace Xplore;
 
@@ -218,7 +219,7 @@ public class XploreHttpApiHostModule : AbpModule
     public override void OnApplicationInitialization(ApplicationInitializationContext context)
     {
         var app = context.GetApplicationBuilder();
-        var env = context.GetEnvironment();
+        var env = context.GetEnvironment(); 
 
         if (env.IsDevelopment())
         {
@@ -247,6 +248,13 @@ public class XploreHttpApiHostModule : AbpModule
         app.UseUnitOfWork();
         app.UseIdentityServer();
         app.UseAuthorization();
+  
+        app.UseStaticFiles(new StaticFileOptions
+        {
+            FileProvider = new PhysicalFileProvider(
+                Path.Combine(env.ContentRootPath, "MyStaticFiles")),
+            RequestPath = "/StaticFiles"
+        });
 
         app.UseSwagger();
         app.UseAbpSwaggerUI(c =>

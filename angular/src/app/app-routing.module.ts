@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { DestinationsComponent } from './home/destinations/destinations.component';
+import { GuideDetailsComponent } from './home/guides/guide-details/guide-details.component';
 import { GuidesComponent } from './home/guides/guides.component';
 import { HelpComponent } from './home/help/help.component';
 import { HomeComponent } from './home/home.component';
@@ -24,6 +25,7 @@ const routes: Routes = [
       { path: 'trips/trip-details/:id', component: TripDetailsComponent },
       { path: 'destinations', component: DestinationsComponent },
       { path: 'guides', component: GuidesComponent },
+      { path: 'guides/guide-details/:id', component: GuideDetailsComponent },
       { path: 'wishlist', component: WishlistComponent },
       { path: 'help', component: HelpComponent }, {
         path: 'account',
