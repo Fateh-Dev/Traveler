@@ -40,7 +40,7 @@ export class HomeComponent {
 
   ngOnInit() {
     this.loading = true
-    this.tripService.getHomeList().subscribe(
+    this.tripService.getHomeList(5).subscribe(
       e => {
         this.items = e;
         this.loading = false

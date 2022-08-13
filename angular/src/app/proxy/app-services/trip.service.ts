@@ -1,7 +1,7 @@
 import { RestService } from '@abp/ng.core';
 import type { PagedAndSortedResultRequestDto, PagedResultDto } from '@abp/ng.core';
 import { Injectable } from '@angular/core';
-import type { CreateUpdateTripDto, TripDto, TripMiniDto } from '../models/models';
+import type { CreateUpdateTripDto, TripDto, TripMiniDto, TripWithDetailsDto } from '../models/models';
 
 @Injectable({
   providedIn: 'root',
@@ -31,10 +31,11 @@ export class TripService {
     },
     { apiName: this.apiName });
 
-  getHomeList = () =>
+  getHomeList = (cpt: number) =>
     this.restService.request<any, TripMiniDto[]>({
       method: 'GET',
       url: '/api/app/GetHomeListAsync',
+      params: { cpt },
     },
     { apiName: this.apiName });
 
@@ -47,7 +48,7 @@ export class TripService {
     { apiName: this.apiName });
 
   getTripWithDetails = (id: string) =>
-    this.restService.request<any, TripDto>({
+    this.restService.request<any, TripWithDetailsDto>({
       method: 'GET',
       url: `/api/app/getTripWithDetails/${id}`,
     },

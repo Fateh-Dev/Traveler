@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { GuideDto } from '@proxy/models';
 
 @Component({
   selector: 'app-guide-item',
@@ -6,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./guide-item.component.scss']
 })
 export class GuideItemComponent implements OnInit {
-
+  @Input()
+  guide: GuideDto
   constructor() { }
 
   ngOnInit(): void {

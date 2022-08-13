@@ -419,8 +419,8 @@ export interface TripDto extends AuditedEntityDto<string> {
 
 export interface TripMiniDto extends AuditedEntityDto<string> {
   title?: string;
-  description?: string;
   thumbnailPic?: string;
+  description?: string;
   rating: number;
   duration: number;
   tripSize?: number;
@@ -431,6 +431,27 @@ export interface TripMiniDto extends AuditedEntityDto<string> {
   activities?: string;
   loging?: string;
   thumbnailImage: number[];
+}
+
+export interface TripWithDetailsDto {
+  title?: string;
+  thumbnailPic?: string;
+  description?: string;
+  rating: number;
+  duration: number;
+  tripSize?: number;
+  durationUnit: DurationUnit;
+  difficulty: Difficulty;
+  date?: string;
+  startingTime?: string;
+  activitiesList: string[];
+  logingList: string[];
+  thumbnailImage: number[];
+  risksList: string[];
+  notAllowedStuffList: string[];
+  requiredStuffList: string[];
+  notSuitableForList: string[];
+  includedStuffList: string[];
 }
 
 export interface WishList extends FullAuditedAggregateRoot<string> {

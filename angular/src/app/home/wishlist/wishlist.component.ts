@@ -20,7 +20,7 @@ export class WishlistComponent implements OnInit {
   }
   ngOnInit() {
     this.loading = true
-    this.tripService.getHomeList().subscribe(
+    this.tripService.getHomeList(20).subscribe(
       e => {
         this.items = e;
         this.loading = false

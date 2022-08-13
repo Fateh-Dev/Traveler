@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { GuideService, TripService } from '@proxy/app-services';
+import { GuideDto } from '@proxy/models';
 
 @Component({
   selector: 'app-guides',
@@ -6,10 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./guides.component.scss']
 })
 export class GuidesComponent implements OnInit {
+  loading = false;
+  items: GuideDto[] = [];
+  constructor(
+    public guideService: GuideService) {
 
-  constructor() { }
-
+  }
   ngOnInit(): void {
+    this.loading = true
+    this.guideService.getList({ maxResultCount: 20 }).subscribe(
+      e => {
+        this.items = e.items;
+        this.loading = false
+      })
   }
 
 }

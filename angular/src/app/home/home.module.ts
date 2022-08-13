@@ -15,6 +15,7 @@ import { WishListTripItemLoadingComponent } from './wishlist/wish-list-trip-item
 import { WishListTripItemComponent } from './wishlist/wish-list-trip-item/wish-list-trip-item.component';
 import { GuideItemComponent } from './guides/guide-item/guide-item.component';
 import { GuideDetailsComponent } from './guides/guide-details/guide-details.component';
+import { GuideItemLoadingComponent } from './guides/guide-item-loading/guide-item-loading.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { GuideDetailsComponent } from './guides/guide-details/guide-details.comp
     WishListTripItemLoadingComponent,
     WishListTripItemComponent,
     GuideItemComponent,
-    GuideDetailsComponent
+    GuideDetailsComponent,
+    GuideItemLoadingComponent
   ],
   imports: [
     SharedModule,

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TripService } from '@proxy/app-services';
-import { TripDto } from '@proxy/models';
+import { TripDto, TripWithDetailsDto } from '@proxy/models';
 
 @Component({
   selector: 'app-trip-details',
@@ -9,7 +9,7 @@ import { TripDto } from '@proxy/models';
   styleUrls: ['./trip-details.component.scss']
 })
 export class TripDetailsComponent implements OnInit {
-  tripItem: TripDto
+  tripItem: TripWithDetailsDto
   constructor(public tripService: TripService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {

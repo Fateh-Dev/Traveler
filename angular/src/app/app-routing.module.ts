@@ -9,12 +9,14 @@ import { HomeComponent } from './home/home.component';
 import { TripDetailsComponent } from './home/trips/trip-details/trip-details.component';
 import { TripsComponent } from './home/trips/trips.component';
 import { WishlistComponent } from './home/wishlist/wishlist.component';
+import { LoginComponent } from './login/login.component';
+import { GuideHomeComponent } from './profile/guide-home/guide-home.component';
 
 const routes: Routes = [
   {
     path: 'auth',
-    loadChildren: () => import('@abp/ng.account').then(m => m.AccountModule.forLazy()),
-
+    // loadChildren: () => import('@abp/ng.account').then(m => m.AccountModule.forLazy()),
+    component: LoginComponent
   },
   {
     path: '',
@@ -31,7 +33,12 @@ const routes: Routes = [
         path: 'account',
         loadChildren: () => import('@abp/ng.account').then(m => m.AccountModule.forLazy()),
       },
-
+      {
+        path: 'profile',
+        component: GuideHomeComponent,
+        loadChildren: () =>
+          import('./profile/profile.module').then((m) => m.ProfileModule),
+      },
       {
         path: 'identity',
         loadChildren: () => import('@abp/ng.identity').then(m => m.IdentityModule.forLazy()),

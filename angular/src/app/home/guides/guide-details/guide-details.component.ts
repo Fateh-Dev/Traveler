@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { GuideService } from '@proxy/app-services';
+import { GuideDto } from '@proxy/models';
 
 @Component({
   selector: 'app-guide-details',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GuideDetailsComponent implements OnInit {
 
-  constructor() { }
+  guideItem: GuideDto
+  constructor(public guideService: GuideService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe(paramMap => {
+
+      this.guideService.getGuideWithDetails(paramMap.get('id')).subscribe(
+        e => this.guideItem = e
+      )
+    })
   }
 
 }

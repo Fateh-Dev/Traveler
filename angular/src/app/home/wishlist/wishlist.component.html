@@ -1,5 +1,36 @@
 <section class="h-16"></section>
-<div class="flex flex-row gap-2 px-20">
+
+<div class="flex flex-row gap-2 px-5">
+  <div class="basis-1/5 py-2 flex flex-col"></div>
+  <div class="basis-4/5 py-2 flex flex-col">
+    <div
+      class="border-2 h-14 rounded-md border-myPrimaryColor bg-white flex flex-row p-1 px-2 mr-96 gap-3"
+    >
+      <i class="fa fa-search text-2xl text-myPrimaryColor m-auto"></i>
+      <span class="flex-1 m-auto">
+        <div class="m-auto pt-0">
+          <input
+            type="text"
+            placeholder="e.g: Firstname Lastname ..."
+            class="border-white focus:ring-0 w-full"
+          />
+        </div>
+      </span>
+      <span class="my-auto flex">
+        <button
+          mat-flat-button
+          [routerLink]="'/trips'"
+          color="primary"
+          class="bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 shadow-md rounded-3xl"
+        >
+          Search
+        </button>
+      </span>
+    </div>
+  </div>
+</div>
+
+<div class="flex flex-row gap-2 px-5">
   <div class="basis-1/5 py-2 flex flex-col">
     <mat-accordion class="example-headers-align" multi>
       <mat-expansion-panel class="bg-white/0 shadow-none border m-1">
@@ -49,7 +80,7 @@
       </button>
     </div>
   </div>
-  <div class="basis-3/4 flex flex-col gap-2 bg-slate-100 py-2 pt-10" *ngIf="loading">
+  <div class="basis-4/5 flex flex-col gap-2 bg-slate-100 py-2 pt-10" *ngIf="loading">
     <app-wish-list-trip-item-loading
       *ngFor="let trip of [1, 2, 3, 4]"
     ></app-wish-list-trip-item-loading>

@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MatSliderModule } from '@angular/material/slider';
 import { MaterialModule } from './material.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [],
@@ -20,6 +21,7 @@ import { MaterialModule } from './material.module';
     NgbDropdownModule,
     NgxValidateCoreModule,
     MaterialModule,
+    ReactiveFormsModule,
   ],
   exports: [
     CoreModule,
@@ -29,7 +31,8 @@ import { MaterialModule } from './material.module';
     NgbDropdownModule,
     NgxValidateCoreModule,
     BrowserModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule,
   ],
   providers: []
 })

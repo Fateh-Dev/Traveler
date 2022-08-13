@@ -61,25 +61,27 @@
       </button>
     </span>
     <span class="my-auto m-2 flex-1"></span>
-    <span class="my-auto m-2 flex">
-      <button
-        mat-flat-button
-        [routerLink]="'/account'"
-        color="primary"
-        class="bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 shadow-md"
-      >
-        Sign Up
-      </button>
-    </span>
-    <!-- <span
+    <ng-template #signUp>
+      <span class="my-auto m-2 flex">
+        <button
+          mat-flat-button
+          [routerLink]="'/account'"
+          color="primary"
+          class="bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 shadow-md"
+        >
+          Sign Up
+        </button>
+      </span></ng-template
+    >
+    <span *ngIf="this.configStatService.getOne('currentUser').isAuthenticated; else signUp"
       ><img
         [matMenuTriggerFor]="menu"
-        class="inline-block h-10 w-10 m-auto rounded-full ring-2 ring-myPrimaryColor cursor-pointer shadow"
+        class="inline-block h-10 w-10 m-auto rounded-full ring-2 ring-myPrimaryColor cursor-pointer"
         src="https://cdn-icons-png.flaticon.com/512/147/147144.png"
         alt=""
       />
       <mat-menu #menu="matMenu">
-        <button mat-menu-item>
+        <button mat-menu-item [routerLink]="'/profile'">
           <mat-icon>account_circle</mat-icon>
           <span>Profile</span>
         </button>
@@ -88,10 +90,12 @@
           <span>Sign Out</span>
         </button>
       </mat-menu>
-      <span class="m-auto mx-2 font-semibold">Fateh</span>
-    </span> -->
+      <span class="m-auto mx-2 font-semibold">{{
+        this.configStatService.getOne('currentUser').userName
+      }}</span>
+    </span>
   </header>
-  <div class="bg-gray-100">
+  <div class="bg-gray-100 min-h-screen">
     <router-outlet></router-outlet>
   </div>
 </div>

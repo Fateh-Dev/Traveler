@@ -69,7 +69,7 @@ namespace Xplore.Models
         public string Title { get; set; }
 
         [Required]
-        [StringLength(128)]
+        [StringLength(2000)]
         public string Description { get; set; }
 
         public double Rating { get; set; } = 5;
@@ -117,7 +117,9 @@ namespace Xplore.Models
     public partial class TripMiniDto : AuditedEntityDto<Guid>
     {
         public string Title { get; set; }
+
         public string ThumbnailPic { get; set; }
+
         public string Description { get; set; }
 
         public double Rating { get; set; }
@@ -139,5 +141,44 @@ namespace Xplore.Models
         public string Loging { get; set; }
 
         public Byte[] ThumbnailImage { get; set; }
+    }
+
+    public partial class TripWithDetailsDto
+    {
+        public string Title { get; set; }
+
+        public string ThumbnailPic { get; set; }
+
+        public string Description { get; set; }
+
+        public double Rating { get; set; }
+
+        public int Duration { get; set; }
+
+        public double? TripSize { get; set; }
+
+        public DurationUnit DurationUnit { get; set; }
+
+        public Difficulty Difficulty { get; set; }
+
+        public DateTime? Date { get; set; }
+
+        public DateTime? StartingTime { get; set; }
+
+        public string[] ActivitiesList { get; set; }
+
+        public string[] LogingList { get; set; }
+
+        public Byte[] ThumbnailImage { get; set; }
+
+        public string[] RisksList { get; set; }
+
+        public string[] NotAllowedStuffList { get; set; }
+
+        public string[] RequiredStuffList { get; set; }
+
+        public string[] NotSuitableForList { get; set; }
+
+        public string[] IncludedStuffList { get; set; }
     }
 }

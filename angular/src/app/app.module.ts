@@ -16,6 +16,9 @@ import { HomeModule } from './home/home.module';
 import { APP_ROUTE_PROVIDER } from './route.provider';
 import { ThemeBasicModule } from '@abpdz/ng.theme.basic';  
 import { SharedModule } from './shared/shared.module';
+import { ProfileModule } from './profile/profile.module';
+import { NotFound404Component } from './not-found404/not-found404.component';
+import { LoginComponent } from './login/login.component';
 @NgModule({
   imports: [
     BrowserModule,
@@ -31,10 +34,11 @@ import { SharedModule } from './shared/shared.module';
     TenantManagementConfigModule.forRoot(),
     SettingManagementConfigModule.forRoot(),
     ThemeBasicModule.forRoot(),
-    HomeModule,SharedModule
-
+    SharedModule,
+    // HomeModule,
+    // ProfileModule 
   ],
-  declarations: [AppComponent],
+  declarations: [AppComponent, NotFound404Component, LoginComponent],
   providers: [APP_ROUTE_PROVIDER],
   bootstrap: [AppComponent],
 })

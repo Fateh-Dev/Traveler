@@ -32,7 +32,7 @@ namespace Xplore.AppServices
         }
 
         [HttpGet("api/app/getTripWithDetails/{id}")]
-        public async Task<TripDto> GetTripWithDetailsAsync(Guid id)
+        public async Task<TripWithDetailsDto> GetTripWithDetailsAsync(Guid id)
         {
             //Get a IQueryable<T> by including sub collections
             var queryable =
@@ -48,9 +48,16 @@ namespace Xplore.AppServices
 
             //Execute the query and get the result
             var trip = await AsyncExecuter.FirstOrDefaultAsync(query);
-            TripDto TripDtoItem = ObjectMapper.Map<Trip, TripDto>(trip);
+            TripWithDetailsDto TripDtoItem = ObjectMapper.Map<Trip, TripWithDetailsDto>(trip);
 
             string someUrl = "MyStaticFiles/";
+            TripDtoItem.ActivitiesList=trip.Activities.Split("|");
+            TripDtoItem.RisksList=trip.Risks.Split("|");
+            TripDtoItem.RequiredStuffList=trip.RequiredStuff.Split("|");
+            TripDtoItem.NotAllowedStuffList=trip.NotAllowedStuff.Split("|");
+            TripDtoItem.NotSuitableForList=trip.NotSuitableFor.Split("|");
+            TripDtoItem.LogingList=trip.Loging.Split("|");
+            TripDtoItem.IncludedStuffList=trip.IncludedStuff.Split("|");
 
             using (var webClient = new WebClient())
             {
@@ -62,14 +69,20 @@ namespace Xplore.AppServices
         }
 
         [HttpGet("api/app/GetHomeListAsync")]
-        public async Task<List<TripMiniDto>> GetHomeListAsync()
+        public async Task<List<TripMiniDto>> GetHomeListAsync(int cpt)
         {
             string someUrl = "MyStaticFiles/";
-            var trips = await _tripRepository.GetListAsync();
+
+            //Obtain the IQueryable<Trip>
+            IQueryable<Trip> queryable =
+                await _tripRepository.GetQueryableAsync(); 
+            var trips = queryable.PageBy(0, cpt).ToList(); 
             var MinTrips = new List<TripMiniDto>();
 
+            // var count = 0;
             foreach (var item in trips)
             {
+                // if (count >= cpt) break;
                 var el = ObjectMapper.Map<Trip, TripMiniDto>(item);
                 using (var webClient = new WebClient())
                 {
@@ -77,6 +90,7 @@ namespace Xplore.AppServices
                         webClient.DownloadData(someUrl + el.ThumbnailPic);
                 }
                 MinTrips.Add (el);
+                // count++;
             }
             return MinTrips;
         }

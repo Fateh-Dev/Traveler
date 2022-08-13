@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { difficultyOptions, durationUnitOptions } from '@proxy';
 import { TripService } from '@proxy/app-services';
 import { TripMiniDto } from '@proxy/models';
 
@@ -14,9 +15,15 @@ export class TripsComponent implements OnInit {
   constructor(
     public tripService: TripService) { }
 
+  getEnumDiff(a) {
+    return difficultyOptions.find(e => e.value == a).key
+  }
+  getEnumDuration(a) {
+    return durationUnitOptions.find(e => e.value == a).key
+  }
   ngOnInit(): void {
     this.loading = true
-    this.tripService.getHomeList().subscribe(
+    this.tripService.getHomeList(20).subscribe(
       e => {
         this.items = e;
         this.loading = false

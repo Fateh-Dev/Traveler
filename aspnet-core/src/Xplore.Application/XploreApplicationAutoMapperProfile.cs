@@ -34,6 +34,7 @@ public class XploreApplicationAutoMapperProfile : Profile
          CreateMap<Trip, TripDto>();
          CreateMap<Trip, TripMiniDto>();
          CreateMap<Trip, TripMiniDto>();
+         CreateMap<Trip, TripWithDetailsDto>();
          CreateMap<CreateUpdateTripDto, Trip>();
          CreateMap<WishList, WishListDto>();
          CreateMap<CreateUpdateWishListDto, WishList>();
