@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.Application.Dtos;
@@ -32,6 +34,8 @@ namespace Xplore.AppServices
         [HttpGet("api/app/getGuideWithDetails/{id}")]
         public async Task<GuideDto> GetGuideWithDetailsAsync(Guid id)
         {
+            // string someUrl = "MyStaticFiles/";
+
             //Get a IQueryable<T> by including sub collections
             var queryable =
                 await _guideRepository.WithDetailsAsync(z => z.Trips);
@@ -39,10 +43,32 @@ namespace Xplore.AppServices
             //Apply additional LINQ extension methods
             var query = queryable.Where(x => x.Id == id);
 
+            
+
             //Execute the query and get the result
             var res = await AsyncExecuter.FirstOrDefaultAsync(query);
 
-            return ObjectMapper.Map<Guide, GuideDto>(res);
+            List<TripMiniDto> MinTrips =
+                ObjectMapper.Map<List<Trip>, List<TripMiniDto>>(res.Trips.ToList());
+
+            // foreach (var item in res.Trips)
+            // {
+            //     // if (count >= cpt) break;
+            //     var el = ObjectMapper.Map<Trip, TripMiniDto>(item);
+            //     using (var webClient = new WebClient())
+            //     {
+            //         // el.ThumbnailPic = "images/" + rnd.Next(1, 20) + ".jpg";
+            //         el.ThumbnailImage =
+            //             webClient.DownloadData(someUrl + el.ThumbnailPic);
+            //     }
+            //     MinTrips.Add (el);
+            //     // count++;
+            // }
+
+            // res.Trips = (ICollection<Trip>) MinTrips;
+            var guide = ObjectMapper.Map<Guide, GuideDto>(res);
+            guide.Trips = MinTrips;
+            return guide;
         }
     }
 }

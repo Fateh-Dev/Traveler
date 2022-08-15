@@ -13,7 +13,7 @@ using Xplore.EntityFrameworkCore;
 namespace Xplore.Migrations
 {
     [DbContext(typeof(XploreDbContext))]
-    [Migration("20220805023832_Initial")]
+    [Migration("20220815223952_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -2121,8 +2121,8 @@ namespace Xplore.Migrations
                     b.Property<string>("Username")
                         .HasColumnType("text");
 
-                    b.Property<string>("Wilaya")
-                        .HasColumnType("text");
+                    b.Property<int>("Wilaya")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Youtube")
                         .HasColumnType("text");
@@ -2780,6 +2780,9 @@ namespace Xplore.Migrations
 
                     b.Property<DateTime?>("StartingTime")
                         .HasColumnType("timestamp without time zone");
+
+                    b.Property<byte[]>("Thumbnail")
+                        .HasColumnType("bytea");
 
                     b.Property<string>("Title")
                         .HasMaxLength(255)

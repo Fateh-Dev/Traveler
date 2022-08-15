@@ -3,7 +3,7 @@
     <div class="w-60 h-40 rounded-lg relative -top-10 -left-10 overflow-hidden">
       <img
         *ngIf="tripItem"
-        [src]="'data:image/png;base64,' + tripItem.thumbnailImage"
+        [src]="'data:image/png;base64,' + tripItem.thumbnail"
         class="w-full h-full"
       />
     </div>
@@ -58,5 +58,5 @@
     </div>
   </div>
 
-  <!-- <pre> {{ tripItem | json }}</pre> -->
+  <pre> {{ tripItem | json }}</pre>
 </div>

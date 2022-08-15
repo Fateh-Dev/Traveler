@@ -33,7 +33,7 @@ public class XploreApplicationAutoMapperProfile : Profile
          CreateMap<CreateUpdateTouristDto, Tourist>();
          CreateMap<Trip, TripDto>();
          CreateMap<Trip, TripMiniDto>();
-         CreateMap<Trip, TripMiniDto>();
+        //  CreateMap< List<Trip>,List<TripMiniDto>>();
          CreateMap<Trip, TripWithDetailsDto>();
          CreateMap<CreateUpdateTripDto, Trip>();
          CreateMap<WishList, WishListDto>();

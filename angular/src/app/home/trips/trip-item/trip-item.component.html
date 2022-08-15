@@ -5,13 +5,14 @@
   <span class="flex-1"></span>
   <!-- <span class="px-2 py-1 h-8 bg-myPrimaryColor m-1 z-51 text-white font-bold rounded-xl">Easy</span> -->
 </div>
-<div class="h-36 w-full overflow-hidden">
+<div class="h-36 w-full overflow-hidden static">
   <img
     class="inline-block w-full h-full scale-100 hover:scale-110 ease-in duration-500"
-    [src]="'data:image/png;base64,' + trip.thumbnailImage"
+    [src]="'data:image/png;base64,' + trip.thumbnail"
     alt=""
     loading="lazy"
   />
+<mat-progress-bar mode="indeterminate" class="h-0 absolute bottom-1" *ngIf="loading"></mat-progress-bar>
 </div>
 <div class="flex flex-row h-0 px-2 relative -top-5">
   <mat-chip-list aria-label="Fish selection" (click)="$event.preventDefault()">

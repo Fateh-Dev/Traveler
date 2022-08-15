@@ -53,7 +53,7 @@
         </mat-expansion-panel-header>
         <span class="example-list-section">
           <ul>
-            <li class=" " *ngFor="let i of [1, 2, 3, 4, 5]">
+            <li class=" " *ngFor="let i of [1, 2, 3, 4, 5]" (click)="getTrips(i)">
               <mat-checkbox class="text-emerald-700">
                 <app-rating-stars [rate]="i"></app-rating-stars>
               </mat-checkbox>
@@ -95,16 +95,33 @@
       *ngFor="let item of [1, 2, 3, 4]"
       class="bg-white rounded-md basis-1/5 flex-1 border pb-2 overflow-hidden border-myPrimaryColor cursor-pointer hover:shadow-lg"
     >
-      <app-trip-item-loading *ngIf="loading"></app-trip-item-loading>
+      <app-trip-item-loading></app-trip-item-loading>
     </div>
   </div>
 </div>
-<div class="flex flex-row mx-auto" *ngIf="!loading">
+<!-- <div class="flex flex-row mx-auto" *ngIf="!loading">
   <button
     mat-flat-button
-    class="bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 rounded-full"
+    class="bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 rounded-full text-white mx-auto"
     style="border-radius: 20px"
+    (click)="loadMoreTrips()"
   >
     Load More Trips
   </button>
+</div> -->
+
+<div class="flex flex-row gap-2 px-5">
+  <div class="basis-1/5 py-2"></div>
+  <div class="basis-4/5 py-2">
+    <div class="flex flex-row mx-auto" *ngIf="!loading">
+      <button
+        mat-flat-button
+        class="bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 rounded-full text-white mx-auto"
+        style="border-radius: 20px"
+        (click)="loadMoreTrips()"
+      >
+        Load More Trips
+      </button>
+    </div>
+  </div>
 </div>

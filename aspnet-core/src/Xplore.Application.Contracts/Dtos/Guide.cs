@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Volo.Abp.Application.Dtos;
 
@@ -16,6 +17,8 @@ namespace Xplore.Models
 
         public string Email { get; set; }
 
+        public Byte[] ProfilePic { get; set; }
+
         public DateTime Birthday { get; set; }
 
         public string Description { get; set; }
@@ -30,7 +33,7 @@ namespace Xplore.Models
 
         public string Country { get; set; }
 
-        public string Wilaya { get; set; }
+        public Wilaya Wilaya { get; set; }
 
         public string City { get; set; }
 
@@ -50,8 +53,8 @@ namespace Xplore.Models
 
         public string Youtube { get; set; }
 
-        // [JsonIgnore]
-        public ICollection<TripDto> Trips { get; set; }
+        [IgnoreDataMember]
+        public ICollection<TripMiniDto> Trips { get; set; }
     }
 
     public partial class CreateUpdateGuideDto
@@ -67,6 +70,7 @@ namespace Xplore.Models
         public string Username { get; set; }
 
         public string Email { get; set; }
+        public Byte[] ProfilePic { get; set; }
 
         public DateTime Birthday { get; set; }
 
@@ -82,7 +86,7 @@ namespace Xplore.Models
 
         public string Country { get; set; }
 
-        public string Wilaya { get; set; }
+        public Wilaya Wilaya { get; set; }
 
         public string City { get; set; }
 

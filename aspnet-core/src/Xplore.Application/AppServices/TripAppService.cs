@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
@@ -48,50 +49,57 @@ namespace Xplore.AppServices
 
             //Execute the query and get the result
             var trip = await AsyncExecuter.FirstOrDefaultAsync(query);
-            TripWithDetailsDto TripDtoItem = ObjectMapper.Map<Trip, TripWithDetailsDto>(trip);
+            TripWithDetailsDto TripDtoItem =
+                ObjectMapper.Map<Trip, TripWithDetailsDto>(trip);
 
             string someUrl = "MyStaticFiles/";
-            TripDtoItem.ActivitiesList=trip.Activities.Split("|");
-            TripDtoItem.RisksList=trip.Risks.Split("|");
-            TripDtoItem.RequiredStuffList=trip.RequiredStuff.Split("|");
-            TripDtoItem.NotAllowedStuffList=trip.NotAllowedStuff.Split("|");
-            TripDtoItem.NotSuitableForList=trip.NotSuitableFor.Split("|");
-            TripDtoItem.LogingList=trip.Loging.Split("|");
-            TripDtoItem.IncludedStuffList=trip.IncludedStuff.Split("|");
+            TripDtoItem.ActivitiesList = trip.Activities.Split("|");
+            TripDtoItem.RisksList = trip.Risks.Split("|");
+            TripDtoItem.RequiredStuffList = trip.RequiredStuff.Split("|");
+            TripDtoItem.NotAllowedStuffList = trip.NotAllowedStuff.Split("|");
+            TripDtoItem.NotSuitableForList = trip.NotSuitableFor.Split("|");
+            TripDtoItem.LogingList = trip.Loging.Split("|");
+            TripDtoItem.IncludedStuffList = trip.IncludedStuff.Split("|");
 
-            using (var webClient = new WebClient())
-            {
-                TripDtoItem.ThumbnailImage =
-                    webClient.DownloadData(someUrl + TripDtoItem.ThumbnailPic);
-            }
-
+            // using (var webClient = new WebClient())
+            // {
+            //     TripDtoItem.ThumbnailImage =
+            //         webClient.DownloadData(someUrl + TripDtoItem.ThumbnailPic);
+            // }
             return TripDtoItem;
         }
 
         [HttpGet("api/app/GetHomeListAsync")]
-        public async Task<List<TripMiniDto>> GetHomeListAsync(int cpt)
+        public async Task<List<TripMiniDto>> GetHomeListAsync(TripFilter Filter)
         {
             string someUrl = "MyStaticFiles/";
 
-            //Obtain the IQueryable<Trip>
             IQueryable<Trip> queryable =
-                await _tripRepository.GetQueryableAsync(); 
-            var trips = queryable.PageBy(0, cpt).ToList(); 
-            var MinTrips = new List<TripMiniDto>();
-
-            // var count = 0;
-            foreach (var item in trips)
+                await _tripRepository.GetQueryableAsync();
+            if (Filter.Rating != null)
             {
-                // if (count >= cpt) break;
-                var el = ObjectMapper.Map<Trip, TripMiniDto>(item);
-                using (var webClient = new WebClient())
-                {
-                    el.ThumbnailImage =
-                        webClient.DownloadData(someUrl + el.ThumbnailPic);
-                }
-                MinTrips.Add (el);
-                // count++;
+                queryable = queryable.Where(e => e.Rating == Filter.Rating);
             }
+            var trips =
+                queryable
+                    .PageBy(Filter.PageSkip, Filter.MaxResult)
+                    .OrderBy(s => s.Title)
+                    .ToList();
+
+            // var MinTrips = new List<TripMiniDto>();
+            List<TripMiniDto> MinTrips =
+                ObjectMapper.Map<List<Trip>, List<TripMiniDto>>(trips);
+
+            // foreach (var item in trips)
+            // {
+            //     // var el = ObjectMapper.Map<Trip, TripMiniDto>(item);
+            //     using (var webClient = new WebClient())
+            //     {
+            //         item.Thumbnail =
+            //             webClient.DownloadData(someUrl + "images/30.jpg");
+            //     }
+            //     // MinTrips.Add (el);
+            // }
             return MinTrips;
         }
     }

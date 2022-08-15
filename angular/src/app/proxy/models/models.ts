@@ -1,5 +1,6 @@
 import type { EnumType } from '../enum-type.enum';
 import type { Gender } from '../gender.enum';
+import type { Wilaya } from '../wilaya.enum';
 import type { LocationType } from '../location-type.enum';
 import type { PriceCategory } from '../price-category.enum';
 import type { RatingType } from '../rating-type.enum';
@@ -22,6 +23,7 @@ export interface CreateUpdateGuideDto {
   lastname: string;
   username?: string;
   email?: string;
+  profilePic: number[];
   birthday?: string;
   description?: string;
   languages?: string;
@@ -29,7 +31,7 @@ export interface CreateUpdateGuideDto {
   gender: Gender;
   phoneNumber?: string;
   country?: string;
-  wilaya?: string;
+  wilaya: Wilaya;
   city?: string;
   zipCode: number;
   address?: string;
@@ -43,7 +45,7 @@ export interface CreateUpdateGuideDto {
 
 export interface CreateUpdateImageDto {
   tripId: string;
-  url?: string;
+  data: number[];
   description?: string;
 }
 
@@ -62,7 +64,7 @@ export interface CreateUpdatePriceDto {
 }
 
 export interface CreateUpdateRatingDto {
-  value: string;
+  value: number;
   type: RatingType;
   reviewId?: string;
 }
@@ -97,7 +99,7 @@ export interface CreateUpdateTouristDto {
   gender: Gender;
   phoneNumber?: string;
   country?: string;
-  wilaya?: string;
+  wilaya: Wilaya;
   city?: string;
   zipCode: number;
   address?: string;
@@ -110,7 +112,7 @@ export interface CreateUpdateTripDto {
   rating: number;
   duration: number;
   glanguages?: string;
-  thumbnailPic?: string;
+  thumbnail: number[];
   difficulty: Difficulty;
   tripSize?: number;
   guideId?: string;
@@ -164,7 +166,7 @@ export interface Guide extends FullAuditedAggregateRoot<string> {
   gender: Gender;
   phoneNumber?: string;
   country?: string;
-  wilaya?: string;
+  wilaya: Wilaya;
   city?: string;
   zipCode: number;
   address?: string;
@@ -182,6 +184,7 @@ export interface GuideDto extends AuditedEntityDto<string> {
   lastname?: string;
   username?: string;
   email?: string;
+  profilePic: number[];
   birthday?: string;
   description?: string;
   languages?: string;
@@ -189,7 +192,7 @@ export interface GuideDto extends AuditedEntityDto<string> {
   gender: Gender;
   phoneNumber?: string;
   country?: string;
-  wilaya?: string;
+  wilaya: Wilaya;
   city?: string;
   zipCode: number;
   address?: string;
@@ -199,7 +202,7 @@ export interface GuideDto extends AuditedEntityDto<string> {
   instagram?: string;
   twitter?: string;
   youtube?: string;
-  trips: TripDto[];
+  trips: TripMiniDto[];
 }
 
 export interface Image extends AuditedAggregateRoot<string> {
@@ -210,7 +213,7 @@ export interface Image extends AuditedAggregateRoot<string> {
 }
 
 export interface ImageDto extends AuditedEntityDto<string> {
-  url?: string;
+  data: number[];
   description?: string;
   tripId?: string;
 }
@@ -348,7 +351,7 @@ export interface TouristDto extends AuditedEntityDto<string> {
   gender: Gender;
   phoneNumber?: string;
   country?: string;
-  wilaya?: string;
+  wilaya: Wilaya;
   city?: string;
   zipCode: number;
   address?: string;
@@ -390,7 +393,7 @@ export interface Trip extends FullAuditedAggregateRoot<string> {
 export interface TripDto extends AuditedEntityDto<string> {
   title?: string;
   description?: string;
-  thumbnailPic?: string;
+  thumbnail: number[];
   rating: number;
   duration: number;
   glanguages?: string;
@@ -417,17 +420,37 @@ export interface TripDto extends AuditedEntityDto<string> {
   potentialClients: WishListDto[];
 }
 
+export interface TripFilter {
+  maxResult: number;
+  pageSkip: number;
+  title?: string;
+  rating?: number;
+  duration?: number;
+  tripSize?: number;
+  durationUnit?: DurationUnit;
+  difficulty?: Difficulty;
+  date?: string;
+  isValidated?: boolean;
+  activity?: string;
+  risk?: string;
+  notAllowed?: string;
+  required?: string;
+  notSuitable?: string;
+  includedStuff?: string;
+  loging?: string;
+}
+
 export interface TripMiniDto extends AuditedEntityDto<string> {
   title?: string;
-  thumbnailPic?: string;
+  thumbnail: number[];
   description?: string;
+  agency?: string;
   rating: number;
   duration: number;
   tripSize?: number;
   durationUnit: DurationUnit;
   difficulty: Difficulty;
   date?: string;
-  startingTime?: string;
   activities?: string;
   loging?: string;
   thumbnailImage: number[];
@@ -435,7 +458,7 @@ export interface TripMiniDto extends AuditedEntityDto<string> {
 
 export interface TripWithDetailsDto {
   title?: string;
-  thumbnailPic?: string;
+  thumbnail: number[];
   description?: string;
   rating: number;
   duration: number;

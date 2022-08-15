@@ -1,7 +1,7 @@
 import { RestService } from '@abp/ng.core';
 import type { PagedAndSortedResultRequestDto, PagedResultDto } from '@abp/ng.core';
 import { Injectable } from '@angular/core';
-import type { CreateUpdateTripDto, TripDto, TripMiniDto, TripWithDetailsDto } from '../models/models';
+import type { CreateUpdateTripDto, TripDto, TripFilter, TripMiniDto, TripWithDetailsDto } from '../models/models';
 
 @Injectable({
   providedIn: 'root',
@@ -31,11 +31,11 @@ export class TripService {
     },
     { apiName: this.apiName });
 
-  getHomeList = (cpt: number) =>
+  getHomeList = (Filter: TripFilter) =>
     this.restService.request<any, TripMiniDto[]>({
       method: 'GET',
       url: '/api/app/GetHomeListAsync',
-      params: { cpt },
+      params: { maxResult: Filter.maxResult, pageSkip: Filter.pageSkip, title: Filter.title, rating: Filter.rating, duration: Filter.duration, tripSize: Filter.tripSize, durationUnit: Filter.durationUnit, difficulty: Filter.difficulty, date: Filter.date, isValidated: Filter.isValidated, activity: Filter.activity, risk: Filter.risk, notAllowed: Filter.notAllowed, required: Filter.required, notSuitable: Filter.notSuitable, includedStuff: Filter.includedStuff, loging: Filter.loging },
     },
     { apiName: this.apiName });
 

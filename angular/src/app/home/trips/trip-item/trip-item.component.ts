@@ -22,6 +22,8 @@ export class LazyImgDirective {
 export class TripItemComponent implements OnInit {
   @Input()
   trip: TripMiniDto
+  @Input()
+  loading
 
   constructor() { }
   getEnumDiff(a) {

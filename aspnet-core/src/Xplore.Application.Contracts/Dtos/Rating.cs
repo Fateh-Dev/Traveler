@@ -7,7 +7,7 @@ namespace Xplore.Models
 {
     public partial class RatingDto : AuditedEntityDto<Guid>
     {
-        public int Value { get; set; }
+        public double Value { get; set; }
 
         public RatingType Type { get; set; }
 
@@ -20,7 +20,7 @@ namespace Xplore.Models
     {
         [Required]
         [StringLength(128)]
-        public string Value { get; set; }
+        public double Value { get; set; }
 
         [Required]
         public RatingType Type { get; set; } = RatingType.Guide;

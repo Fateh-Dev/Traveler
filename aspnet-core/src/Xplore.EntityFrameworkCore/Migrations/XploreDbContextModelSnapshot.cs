@@ -2119,8 +2119,8 @@ namespace Xplore.Migrations
                     b.Property<string>("Username")
                         .HasColumnType("text");
 
-                    b.Property<string>("Wilaya")
-                        .HasColumnType("text");
+                    b.Property<int>("Wilaya")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Youtube")
                         .HasColumnType("text");
@@ -2779,8 +2779,8 @@ namespace Xplore.Migrations
                     b.Property<DateTime?>("StartingTime")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<string>("ThumbnailPic")
-                        .HasColumnType("text");
+                    b.Property<byte[]>("Thumbnail")
+                        .HasColumnType("bytea");
 
                     b.Property<string>("Title")
                         .HasMaxLength(255)

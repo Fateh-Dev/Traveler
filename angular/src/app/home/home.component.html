@@ -1,46 +1,69 @@
-<main class="flex-1 bg-gray-100">
-  <div class="bg-gray-100 overflow-hidden">
-    <img src="https://source.unsplash.com/random/?algeria" class="object-cover object-center w-full h-96 " />
-  </div>
-  <div class="px-60 relative -top-20 h-1">
-    <div
-      class="border-2 h-14 rounded-md border-myPrimaryColor bg-white flex flex-row p-1 px-2 gap-3"
+<main class="flex-1 static bg-gray-100">
+  <div class="bg-gray-100 overflow-hidden bg-cover object-center">
+    <img
+      src="https://source.unsplash.com/random/?algeria"
+      class="object-cover object-center w-full h-96"
+    />
+    <p
+      class="px-60 w-full text-4xl outline-2 outline-myPrimaryColor text-center text-white font-bold absolute top-40"
     >
-      <i class="fa fa-search text-2xl text-myPrimaryColor m-auto"></i>
-      <span class="flex-1 m-auto">
-        <div class="m-auto pt-0">
-          <input
-            type="text"
-            placeholder="e.g: Ziama Mansouriah .."
-            class="border-white focus:ring-0 w-full"
-          />
-        </div>
-      </span>
-      <span class="my-auto flex">
-        <button
-          mat-flat-button
-          [routerLink]="'/trips'"
-          color="primary"
-          class="bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 shadow-md rounded-3xl"
-        >
-          Search
-        </button>
-      </span>
+      Xplore Magnificent Places in Algeria
+    </p>
+    <div class="px-60 absolute top-72 h-1 w-full">
+      <div
+        class="border-2 h-14 rounded-md border-myPrimaryColor bg-white flex flex-row p-1 px-2 gap-3"
+      >
+        <i class="fa fa-search text-2xl text-myPrimaryColor m-auto"></i>
+        <span class="flex-1 m-auto">
+          <div class="m-auto pt-0">
+            <input
+              type="text"
+              placeholder="e.g: Ziama Mansouriah .."
+              class="border-white focus:ring-0 w-full"
+            />
+          </div>
+        </span>
+        <span class="my-auto flex">
+          <button
+            mat-flat-button
+            [routerLink]="'/trips'"
+            color="primary"
+            class="bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 shadow-md rounded-3xl"
+          >
+            Search
+          </button>
+        </span>
+      </div>
     </div>
   </div>
-
   <div class="bg-white px-20 relative py-2 pt-4">
     <span class="font-bold text-3xl"> Trips we think you would enjoy</span>
   </div>
-  <div class="bg-white px-20 flex flex-row py-1 gap-2" *ngIf="!loading">
+  <div class="bg-white px-20 flex flex-row py-1 gap-2 static" *ngIf="!loading">
+    <div
+      class="bg-white w-10 h-10 hover:scale-110 ease-in duration-100 mt-36 opacity-80 rounded-full border cursor-pointer hover:shadow-lg absolute left-16 z-50 shadow"
+    >
+      <button mat-icon-button  (click)="loadMoreTrips()">
+        <mat-icon>navigate_before</mat-icon>
+      </button>
+    </div>
     <div
       *ngFor="let item of items"
       [routerLink]="'/trips/trip-details/' + item.id"
-      class="bg-white rounded-md flex-1 border pb-2 overflow-hidden border-myPrimaryColor cursor-pointer hover:shadow-lg"
+      class="bg-white rounded-md flex-1 z-20 border pb-2 overflow-hidden border-myPrimaryColor cursor-pointer hover:shadow-lg"
     >
-      <app-trip-item [trip]="item"></app-trip-item>
+      <app-trip-item [trip]="item" [loading]="_loading"></app-trip-item>
+    </div>
+
+    <div
+      class="bg-white w-10 h-10 hover:scale-110 ease-in duration-100 mt-36 opacity-80 rounded-full border cursor-pointer hover:shadow-lg absolute right-16 z-50 shadow"
+    >
+      <button mat-icon-button (click)="loadMoreTrips()">
+        <mat-icon>navigate_next</mat-icon>
+      </button>
     </div>
   </div>
+
   <div class="bg-white px-20 flex flex-row py-1 gap-2" *ngIf="loading">
     <div
       *ngFor="let item of [1, 2, 3, 4, 5]"
@@ -59,17 +82,9 @@
     >
       <img
         class="inline-block w-full h-full scale-100 hover:scale-110 ease-in duration-500"
-        [src]="'data:image/png;base64,' + trip.thumbnailImage"
+        [src]="'data:image/png;base64,' + trip.thumbnail"
         alt=""
       />
-    </div>
-  </section>
-  <section class="h-44 px-20 flex flex-row py-1 gap-2" *ngIf="loading">
-    <div
-      *ngFor="let trip of [1, 2, 3, 4, 5]"
-      class="rounded-md border flex-1 overflow-hidden cursor-pointer bg-slate-200"
-    >
-      <mat-progress-bar mode="indeterminate" class="h-10 object-bottom"></mat-progress-bar>
     </div>
   </section>
 </main>

@@ -40,10 +40,41 @@ export class HomeComponent {
 
   ngOnInit() {
     this.loading = true
-    this.tripService.getHomeList(5).subscribe(
+    this.tripService.getHomeList({ maxResult: 5, pageSkip: this.items.length }).subscribe(
       e => {
         this.items = e;
+        this.a = e
         this.loading = false
+        console.log(e)
+      })
+  }
+
+  _loading = false;
+  a: TripMiniDto[] = []
+  loadMoreTrips() {
+    // this.a.concat(this.items);
+    this._loading = true
+    this.tripService.getHomeList({ maxResult: 5, pageSkip: this.a.length }).subscribe(
+      e => {
+        if (e.length > 0) {
+          this.a.push(...e)
+          this.items = this.a.slice(this.a.length - 5)
+        }
+        this._loading = false
+        console.log(e)
+      })
+  }
+
+  loadPreviousTrips() {
+    this._loading = true
+    this.tripService.getHomeList({ maxResult: 5, pageSkip: this.a.length-5 }).subscribe(
+      e => {
+        if (e.length > 0) {
+          this.a.push(...e)
+          this.items = this.a.splice(this.a.length - 5, 5)
+        }
+        this._loading = false
+        console.log(e)
       })
   }
 }

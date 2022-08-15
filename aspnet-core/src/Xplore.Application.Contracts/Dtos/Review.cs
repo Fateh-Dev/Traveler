@@ -12,7 +12,7 @@ namespace Xplore.Models
 
         public string Comment { get; set; }
 
-        public int Rating { get; set; }
+        public double Rating { get; set; }
 
         public Guid ScheduledTripId { get; set; }
 
@@ -27,7 +27,7 @@ namespace Xplore.Models
 
         public string Comment { get; set; }
 
-        public int Rating { get; set; }
+        public double Rating { get; set; }
 
         public Guid ScheduledTripId { get; set; }
     }

@@ -28,11 +28,11 @@ export class AppComponent {
   }
 
   ngOnInit() {
-    console.log(this.configStatService.getOne('currentUser').isAuthenticated)
+    // console.log(this.configStatService.getOne('currentUser').isAuthenticated)
     let element = document.querySelector('.headerToolbar') as HTMLElement;
     // if (window.pageYOffset > 5) {
     // element.classList.remove('bg-white/0');
-    element.classList.add('bg-slate-400/30');
+    element.classList.add('bg-white/70');
     element.classList.add('backdrop-blur-lg');
     element.classList.add('shadow-md');
     // }

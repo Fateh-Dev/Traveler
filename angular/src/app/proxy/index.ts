@@ -8,4 +8,5 @@ export * from './gender.enum';
 export * from './location-type.enum';
 export * from './price-category.enum';
 export * from './rating-type.enum';
+export * from './wilaya.enum';
 export { AppServices, Models, Volo };

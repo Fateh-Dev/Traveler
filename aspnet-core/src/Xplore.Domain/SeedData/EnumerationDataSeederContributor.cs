@@ -177,7 +177,7 @@ namespace Xplore
                         Email = "Amine.A@gmail.com",
                         Gender = Gender.Man,
                         Birthday = new DateTime(1992, 7, 14),
-                        Wilaya = "Jijel",
+                        Wilaya = Wilaya.Bechar,
                         ZipCode = 18000,
                         Address = "Cite Elmoudjahidin - Tassoust - Jijel"
                     },

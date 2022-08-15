@@ -29,9 +29,9 @@ namespace Xplore.Models
 
         public string PhoneNumber { get; set; }
 
-        public string Country { get; set; }
+        public string Country { get; set; } 
 
-        public string Wilaya { get; set; }
+        public Wilaya Wilaya { get; set; }
 
         public string City { get; set; }
 

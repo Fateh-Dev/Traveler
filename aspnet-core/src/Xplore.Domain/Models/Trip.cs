@@ -19,7 +19,7 @@ namespace Xplore.Models
         public int Duration { get; set; }
 
         public string Glanguages { get; set; }
-        public string ThumbnailPic { get; set; }
+        public Byte[] Thumbnail { get; set; }
 
         public double? TripSize { get; set; }
 

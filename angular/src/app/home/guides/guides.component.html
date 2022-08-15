@@ -57,7 +57,7 @@
     <div
       class="bg-slate-200 basis-1/4 flex-1 rounded-md cursor-pointer border hover:shadow-lg"
       *ngFor="let i of items"
-      [routerLink]="'/guides/guide-details/'+i.id"
+      [routerLink]="'/guides/guide-details/' + i.id"
     >
       <app-guide-item [guide]="i"></app-guide-item>
     </div>
@@ -73,12 +73,17 @@
   </div>
 </div>
 
-<div class="flex flex-row mx-auto" *ngIf="!loading">
-  <button
-    mat-flat-button
-    class="bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 rounded-full"
-    style="border-radius: 20px"
-  >
-    Load More Trips
-  </button>
+<div class="flex flex-row gap-2 px-5">
+  <div class="basis-1/5 py-2"></div>
+  <div class="basis-4/5 py-2">
+    <div class="flex flex-row mx-auto" *ngIf="!loading">
+      <button
+        mat-flat-button
+        class="bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 rounded-full text-white mx-auto"
+        style="border-radius: 20px"
+      >
+        Load More Trips
+      </button>
+    </div>
+  </div>
 </div>

@@ -14,16 +14,23 @@ export class WishlistComponent implements OnInit {
   @ViewChild(MatAccordion) accordion: MatAccordion;
   loading = false;
   items: TripMiniDto[] = [];
-  constructor( 
+  constructor(
     public tripService: TripService) {
 
   }
   ngOnInit() {
     this.loading = true
-    this.tripService.getHomeList(20).subscribe(
+    this.tripService.getHomeList({ maxResult: 10, pageSkip: this.items.length }).subscribe(
       e => {
         this.items = e;
         this.loading = false
+      })
+  }
+
+  loadMoreTrips() {
+    this.tripService.getHomeList({ maxResult: 10, pageSkip: this.items.length }).subscribe(
+      e => {
+        this.items = this.items.concat(e)
       })
   }
 }
