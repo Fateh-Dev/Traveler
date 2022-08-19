@@ -2,7 +2,7 @@
 <!-- <abp-dynamic-layout></abp-dynamic-layout> -->
 
 <div class="flex flex-col">
-  <header  
+  <header
     (scroll)="onWindowScroll()"
     class="headerToolbar flex flex-row fixed w-screen top-0 z-50 text-gray-800 text-center py-2 px-20"
   >
@@ -21,8 +21,7 @@
         [routerLinkActive]="'text-myPrimaryColor'"
       >
         <span class="material-symbols-outlined p-1 py-2"> favorite </span>
-        <span 
-        [routerLinkActive]="'border-2'">Wishlist</span>
+        <span>Wishlist</span>
       </button>
       <button
         mat-flat-button
@@ -91,7 +90,9 @@
           <span>Sign Out</span>
         </button>
       </mat-menu>
-      <span class="m-auto mx-2 font-semibold">{{this.configStatService.getOne('currentUser').userName}}</span>
+      <span class="m-auto mx-2 font-semibold">{{
+        this.configStatService.getOne('currentUser').userName
+      }}</span>
     </span>
   </header>
   <div class="bg-gray-100 min-h-screen">

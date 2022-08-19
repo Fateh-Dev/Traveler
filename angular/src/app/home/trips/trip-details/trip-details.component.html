@@ -1,4 +1,4 @@
-<div class="m-28 border bg-slate-200 rounded-lg">
+<div class="m-28 border bg-slate-200 rounded-lg" *ngIf="!loading">
   <div class="flex flex-row">
     <div class="w-60 h-40 rounded-lg relative -top-10 -left-10 overflow-hidden">
       <img
@@ -16,44 +16,44 @@
     </div>
   </div>
   <div class="px-10 text-lg">
-    <div >
+    <div>
       <h1>Trip Description</h1>
       <div>{{ tripItem.description }}</div>
     </div>
     <div>
       <h1>Trip Activities</h1>
       <ul>
-        <li *ngFor="let i of tripItem.activitiesList">{{i}}</li>
+        <li *ngFor="let i of tripItem.activitiesList">{{ i }}</li>
       </ul>
     </div>
     <div>
       <h1>Not Suitable For</h1>
       <ul>
-        <li *ngFor="let i of tripItem.notSuitableForList">{{i}}</li>
+        <li *ngFor="let i of tripItem.notSuitableForList">{{ i }}</li>
       </ul>
     </div>
     <div>
       <h1>Included Stuff</h1>
       <ul>
-        <li *ngFor="let i of tripItem.includedStuffList">{{i}}</li>
+        <li *ngFor="let i of tripItem.includedStuffList">{{ i }}</li>
       </ul>
     </div>
     <div>
       <h1>Required Stuff</h1>
       <ul>
-        <li *ngFor="let i of tripItem.requiredStuffList">{{i}}</li>
+        <li *ngFor="let i of tripItem.requiredStuffList">{{ i }}</li>
       </ul>
     </div>
     <div>
       <h1>Risks</h1>
       <ul>
-        <li *ngFor="let i of tripItem.risksList">{{i}}</li>
+        <li *ngFor="let i of tripItem.risksList">{{ i }}</li>
       </ul>
     </div>
     <div>
       <h1>Loging</h1>
       <ul>
-        <li *ngFor="let i of tripItem.logingList">{{i}}</li>
+        <li *ngFor="let i of tripItem.logingList">{{ i }}</li>
       </ul>
     </div>
   </div>

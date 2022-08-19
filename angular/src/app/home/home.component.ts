@@ -5,6 +5,7 @@ import { OAuthService } from 'angular-oauth2-oidc';
 import { Directive, ElementRef } from '@angular/core';
 import { Trip, TripDto, TripMiniDto } from '@proxy/models';
 import { TripService } from '@proxy/app-services/trip.service';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Directive({ selector: 'img' })
 export class LazyImgDirective {
@@ -27,6 +28,13 @@ export class HomeComponent {
   }
   loading = false;
   items: TripMiniDto[] = [];
+
+  searchForm = new FormGroup({
+    start: new FormControl(new Date()),
+    end: new FormControl(new Date()),
+    title: new FormControl('')
+  });
+
   constructor(
     private oAuthService: OAuthService,
     private authService: AuthService,
@@ -67,7 +75,7 @@ export class HomeComponent {
 
   loadPreviousTrips() {
     this._loading = true
-    this.tripService.getHomeList({ maxResult: 5, pageSkip: this.a.length-5 }).subscribe(
+    this.tripService.getHomeList({ maxResult: 5, pageSkip: this.a.length - 5 }).subscribe(
       e => {
         if (e.length > 0) {
           this.a.push(...e)

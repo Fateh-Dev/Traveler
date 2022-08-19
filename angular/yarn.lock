@@ -2526,6 +2526,13 @@ ajv@^8.0.0, ajv@^8.8.0:
     require-from-string "^2.0.2"
     uri-js "^4.2.2"
 
+angular-material-fileupload@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/angular-material-fileupload/-/angular-material-fileupload-3.0.2.tgz#3c07d12ed7a9159c150c952e60ab3c112b42a97b"
+  integrity sha512-N1jUvFGxxHpD8AwyAHlhoBpYbtIfWBn9OnVJZUt+NjkG4YaBkHmq5Jy/nqzaytu6V1tt/K3cYjmnzDKVLDxT/g==
+  dependencies:
+    tslib "^1.9.0"
+
 angular-oauth2-oidc@^13.0.1:
   version "13.0.1"
   resolved "https://registry.npmjs.org/angular-oauth2-oidc/-/angular-oauth2-oidc-13.0.1.tgz"

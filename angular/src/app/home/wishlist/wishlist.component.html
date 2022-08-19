@@ -1,38 +1,14 @@
 <section class="h-16"></section>
 
 <div class="flex flex-row gap-2 px-5">
-  <div class="basis-1/5 py-2 flex flex-col"></div>
-  <div class="basis-4/5 py-2 flex flex-col">
-    <div
-      class="border-2 h-14 rounded-md border-myPrimaryColor bg-white flex flex-row p-1 px-2 mr-96 gap-3"
-    >
-      <i class="fa fa-search text-2xl text-myPrimaryColor m-auto"></i>
-      <span class="flex-1 m-auto">
-        <div class="m-auto pt-0">
-          <input
-            type="text"
-            placeholder="e.g: Firstname Lastname ..."
-            class="border-white focus:ring-0 w-full"
-          />
-        </div>
-      </span>
-      <span class="my-auto flex">
-        <button
-          mat-flat-button
-          [routerLink]="'/trips'"
-          color="primary"
-          class="bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 shadow-md rounded-3xl"
-        >
-          Search
-        </button>
-      </span>
-    </div>
+  <div class="basis-1/5 flex flex-col"></div>
+  <div class="basis-4/5 flex flex-col">
+    <app-search-field  (newItemEvent)="searchTrips($event)"></app-search-field>
   </div>
 </div>
-
 <div class="flex flex-row gap-2 px-5">
   <div class="basis-1/5 py-2 flex flex-col">
-    <mat-accordion class="example-headers-align" multi>
+    <mat-accordion class="example-headers-align sticky top-16 z-50 " multi>
       <mat-expansion-panel class="bg-white/0 shadow-none border m-1">
         <mat-expansion-panel-header class="h-9">
           <mat-panel-title class="text-emerald-700"> Duration</mat-panel-title>
@@ -53,8 +29,10 @@
         </mat-expansion-panel-header>
         <span class="example-list-section">
           <ul>
-            <li class=" " *ngFor="let i of [1, 2, 3, 4]">
-              <mat-checkbox class="text-emerald-700"> 2 - 4 Hours </mat-checkbox>
+            <li class=" " *ngFor="let i of [1, 2, 3, 4, 5]" (click)="getTripsByRating(i)">
+              <mat-checkbox class="text-emerald-700">
+                {{ i }}
+              </mat-checkbox>
             </li>
           </ul>
         </span>
@@ -64,6 +42,13 @@
         <mat-expansion-panel-header class="h-9">
           <mat-panel-title class="text-emerald-700"> Difficulty</mat-panel-title>
         </mat-expansion-panel-header>
+        <span class="example-list-section">
+          <ul>
+            <li class=" " *ngFor="let i of [0, 1, 2]" (click)="getTripsByDifficulty(i)">
+              <mat-checkbox class="text-emerald-700">{{ getEnumDiff(i) }} </mat-checkbox>
+            </li>
+          </ul>
+        </span>
       </mat-expansion-panel>
     </mat-accordion>
   </div>

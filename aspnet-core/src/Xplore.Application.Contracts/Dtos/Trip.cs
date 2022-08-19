@@ -78,9 +78,8 @@ namespace Xplore.Models
         public int Duration { get; set; }
 
         public string Glanguages { get; set; }
+
         // public string ThumbnailUrl { get; set; }
-
-
         public Byte[] Thumbnail { get; set; }
 
         public Difficulty Difficulty { get; set; }
@@ -149,7 +148,6 @@ namespace Xplore.Models
     {
         public string Title { get; set; }
 
-
         public Byte[] Thumbnail { get; set; }
 
         public string Description { get; set; }
@@ -193,7 +191,7 @@ namespace Xplore.Models
 
         public string Title { get; set; }
 
-        public double? Rating { get; set; }
+        public int? Rating { get; set; }
 
         public int? Duration { get; set; }
 

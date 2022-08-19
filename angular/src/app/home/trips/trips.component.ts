@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { difficultyOptions, durationUnitOptions } from '@proxy';
 import { TripService } from '@proxy/app-services';
-import { TripFilter, TripMiniDto } from '@proxy/models';
+import { TripFilter, TripMiniDto } from '@proxy/models'; 
 
 @Component({
   selector: 'app-trips',
@@ -11,12 +12,13 @@ import { TripFilter, TripMiniDto } from '@proxy/models';
 export class TripsComponent implements OnInit {
   filter: TripFilter = {
     maxResult: 12,
-    pageSkip: 0
+    pageSkip: 0,
   }
   loading = false;
   items: TripMiniDto[] = [];
+  searchFilter = '';
   constructor(
-    public tripService: TripService) { }
+    public tripService: TripService, private route: ActivatedRoute) { }
 
   getEnumDiff(a) {
     return difficultyOptions.find(e => e.value == a).key
@@ -25,12 +27,20 @@ export class TripsComponent implements OnInit {
     return durationUnitOptions.find(e => e.value == a).key
   }
   ngOnInit(): void {
-    this.loading = true
-    this.tripService.getHomeList({ maxResult: 12, pageSkip: this.items.length }).subscribe(
-      e => {
-        this.items = e;
-        this.loading = false
-      })
+
+    this.route.paramMap.subscribe(paramMap => {
+      if (paramMap.get('title')) {
+        this.filter.title = paramMap.get('title');
+
+        console.log(this.filter)
+      }
+      this.loading = true
+      this.tripService.getHomeList(this.filter).subscribe(
+        e => {
+          this.items = e;
+          this.loading = false
+        })
+    })
   }
 
   loadMoreTrips() {
@@ -40,15 +50,26 @@ export class TripsComponent implements OnInit {
         this.items = this.items.concat(e)
       })
   }
-  getTrips(rating) {
+  getTripsByRating(rate) {
+    this.filter.rating = rate
+    this.getTrips()
+  }
+  getTripsByDifficulty(difficulty) {
+    this.filter.difficulty = difficulty
+    this.getTrips()
+  }
+  getTrips() {
     this.loading = true
-    this.filter.pageSkip = 0; 
-    this.filter.rating = rating
+    this.filter.pageSkip = 0;
     this.tripService.getHomeList(this.filter).subscribe(
       e => {
         this.items = e;
         this.loading = false
       })
+  }
+  searchTrips(event: TripFilter) {
+    this.filter.title = event.title
+    this.getTrips();
   }
 
 }

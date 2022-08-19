@@ -8,6 +8,7 @@ import { GuideHomeComponent } from './guide-home/guide-home.component';
 import { CreateTripComponent } from './create-trip/create-trip.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../shared/material.module';
+import { MatFileUploadModule } from 'angular-material-fileupload';
 
 
 @NgModule({
@@ -18,7 +19,7 @@ import { MaterialModule } from '../shared/material.module';
   imports: [
     CommonModule,
     ProfileRoutingModule,
-    ReactiveFormsModule, MaterialModule
+    ReactiveFormsModule, MaterialModule, MatFileUploadModule
   ]
 })
 export class ProfileModule { }

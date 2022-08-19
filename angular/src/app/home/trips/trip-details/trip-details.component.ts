@@ -10,13 +10,17 @@ import { TripDto, TripWithDetailsDto } from '@proxy/models';
 })
 export class TripDetailsComponent implements OnInit {
   tripItem: TripWithDetailsDto
+  loading = false
   constructor(public tripService: TripService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(paramMap => {
-
+      this.loading = true
       this.tripService.getTripWithDetails(paramMap.get('id')).subscribe(
-        e => this.tripItem = e
+        e => {
+          this.tripItem = e
+          this.loading = false
+        }
       )
     })
 

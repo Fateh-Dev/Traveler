@@ -76,28 +76,46 @@ namespace Xplore.AppServices
 
             IQueryable<Trip> queryable =
                 await _tripRepository.GetQueryableAsync();
+
             if (Filter.Rating != null)
             {
                 queryable = queryable.Where(e => e.Rating == Filter.Rating);
             }
+
+            if (Filter.Title != null)
+            {
+                queryable =
+                    queryable
+                        .Where(e =>
+                            e.Title.ToUpper().Contains(Filter.Title.ToUpper()));
+            }
+
+            if (Filter.Difficulty != null)
+            {
+                queryable =
+                    queryable.Where(e => e.Difficulty == Filter.Difficulty);
+            }
+
             var trips =
                 queryable
                     .PageBy(Filter.PageSkip, Filter.MaxResult)
                     .OrderBy(s => s.Title)
                     .ToList();
 
-            // var MinTrips = new List<TripMiniDto>();
             List<TripMiniDto> MinTrips =
                 ObjectMapper.Map<List<Trip>, List<TripMiniDto>>(trips);
-
+            // var i = 1;
             // foreach (var item in trips)
             // {
             //     // var el = ObjectMapper.Map<Trip, TripMiniDto>(item);
             //     using (var webClient = new WebClient())
             //     {
             //         item.Thumbnail =
-            //             webClient.DownloadData(someUrl + "images/30.jpg");
+            //             webClient
+            //                 .DownloadData(someUrl + "images/" + i + ".jpg");
             //     }
+            //     if (i > 20) i = 1;
+            //     i++;
             //     // MinTrips.Add (el);
             // }
             return MinTrips;

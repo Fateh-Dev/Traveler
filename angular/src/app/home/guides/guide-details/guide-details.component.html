@@ -2,8 +2,20 @@
   <!-- <div class="flex flex-row z-20"> -->
   <div
     class="w-40 h-40 rounded-full bg-slate-300 z-20 border-4 border-white relative -top-10 left-10 overflow-hidden"
-  ></div>
+  >
+    <mat-spinner
+      mode="indeterminate"
+      class="m-auto relative"
+      [strokeWidth]="3"
+      [diameter]="152" 
+    ></mat-spinner>
+  </div>
   <!-- </div> -->
+  <mat-progress-bar
+    mode="indeterminate"
+    class="h-0 absolute bottom-1"
+    *ngIf="loading"
+  ></mat-progress-bar>
   <mat-tab-group mat-align-tabs="center" class="relative -top-32">
     <mat-tab label="General Informations">
       <div class="p-10">
@@ -22,7 +34,7 @@
     </mat-tab>
     <mat-tab label="Trips">
       <div class="p-10">
-        <div class="basis-4/5 flex flex-col gap-2  py-2 pt-10">
+        <div class="basis-4/5 flex flex-col gap-2 py-2 pt-10">
           <app-wish-list-trip-item
             *ngFor="let trip of guideItem.trips"
             [trip]="trip"

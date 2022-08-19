@@ -423,6 +423,8 @@ export interface TripDto extends AuditedEntityDto<string> {
 export interface TripFilter {
   maxResult: number;
   pageSkip: number;
+  start?: Date;
+  end?: Date;
   title?: string;
   rating?: number;
   duration?: number;

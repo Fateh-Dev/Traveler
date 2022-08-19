@@ -15,7 +15,8 @@ import { WishListTripItemLoadingComponent } from './wishlist/wish-list-trip-item
 import { WishListTripItemComponent } from './wishlist/wish-list-trip-item/wish-list-trip-item.component';
 import { GuideItemComponent } from './guides/guide-item/guide-item.component';
 import { GuideDetailsComponent } from './guides/guide-details/guide-details.component';
-import { GuideItemLoadingComponent } from './guides/guide-item-loading/guide-item-loading.component';
+import { GuideItemLoadingComponent } from './guides/guide-item-loading/guide-item-loading.component'; 
+import { SearchFieldComponent } from './search-field/search-field.component'; 
 
 @NgModule({
   declarations: [
@@ -33,11 +34,13 @@ import { GuideItemLoadingComponent } from './guides/guide-item-loading/guide-ite
     WishListTripItemComponent,
     GuideItemComponent,
     GuideDetailsComponent,
-    GuideItemLoadingComponent
+    GuideItemLoadingComponent, 
+    SearchFieldComponent
   ],
   imports: [
     SharedModule,
-    HomeRoutingModule
+    HomeRoutingModule,
+    
   ],
 })
 export class HomeModule { }

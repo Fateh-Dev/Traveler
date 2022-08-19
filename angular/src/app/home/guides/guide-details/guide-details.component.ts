@@ -9,15 +9,18 @@ import { GuideDto } from '@proxy/models';
   styleUrls: ['./guide-details.component.scss']
 })
 export class GuideDetailsComponent implements OnInit {
-
+  loading = false
   guideItem: GuideDto
   constructor(public guideService: GuideService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(paramMap => {
-
+      this.loading = true
       this.guideService.getGuideWithDetails(paramMap.get('id')).subscribe(
-        e => this.guideItem = e
+        e => {
+          this.guideItem = e;
+          this.loading = false;
+        }
       )
     })
   }
